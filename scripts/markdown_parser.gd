@@ -23,9 +23,13 @@ func parse_file_content(contents:String) -> void:
 	var heading_regex = RegEx.new()
 	heading_regex.compile(HEADING_1_REGEX)
 	
-	# Headings
-	for page_index in pages.size() - 1:
+	for page_index in pages.size():
 		var page = pages[page_index]
+		data[page_index] = {
+			"title": "",
+			"content": ""
+		}
+		# headings
 		var headings:Array[RegExMatch] = heading_regex.search_all(page)
 		for heading:RegExMatch in headings: data[page_index]["title"] = heading.get_string().trim_prefix("# ")
 	
