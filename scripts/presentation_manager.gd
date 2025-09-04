@@ -1,0 +1,34 @@
+extends Control
+class_name PresentationManager
+
+@export_file("*.md") var test_file:String
+@export_file("*.ini") var config_file:String
+
+var config := ConfigFile.new()
+const SCENE_NAME_SECTION:String = "scenes"
+
+func _ready() -> void:
+	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(test_file))
+	iterate_pages()
+
+func iterate_pages():
+	config.load(config_file)
+	
+	var page_to_load:PackedScene
+	
+	var data:Array[Dictionary] = MarkdownParser.data
+	for page in data:
+		var number_of_images:int = page.images.size()
+		
+		var content:String = page.content
+		var heading:String = page.title
+		var subheading:String = page.subtitle
+		var images:Array = page.images
+		
+		if heading:
+			if !subheading and !images:
+				page_to_load = load("res://templates/gummy/base.tscn")
+		
+		var loaded_page := page_to_load.instantiate()
+		add_child(loaded_page)
+		loaded_page.set_content(heading, subheading, content, images)

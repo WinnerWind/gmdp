@@ -14,6 +14,16 @@ config/name="gmdp"
 config/features=PackedStringArray("4.4")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MarkdownParser="*res://scripts/markdown_parser.gd"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/startup_runner/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://templates/": "purple"
+}

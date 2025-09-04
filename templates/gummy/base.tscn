@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://xqxwgg4jdb8e"]
+
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="1_w7tt0"]
+
+[node name="Base" type="Panel" node_paths=PackedStringArray("heading_label", "contents_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w7tt0")
+heading_label = NodePath("MarginContainer/Sorter/Heading")
+contents_label = NodePath("MarginContainer/Sorter/Content")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Sorter" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Heading" type="RichTextLabel" parent="MarginContainer/Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15
+horizontal_alignment = 1
+
+[node name="Content" type="RichTextLabel" parent="MarginContainer/Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true

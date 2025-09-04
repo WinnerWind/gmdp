@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dxdx73k3pcw5t"]
 
-[ext_resource type="Script" uid="uid://wur5b5wbhv7l" path="res://scripts/markdown_parser.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -10,4 +10,5 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o5qli")
-test_files = Array[String](["res://test/basic.md", "res://test/markdown.md"])
+test_file = "res://test/presentation.md"
+config_file = "res://templates/gummy/meta.ini"

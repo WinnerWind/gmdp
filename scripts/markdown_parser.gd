@@ -2,7 +2,6 @@ extends Node
 ## This script parses markdown into data that the presentation devices can understand
 
 var data:Array[Dictionary]
-@export_file("*.md") var test_files:Array[String]
 
 const PAGE_SPLITTER:String = "\n---\n"
 const HEADING_1_REGEX:String = r"^# (.*)"
@@ -17,10 +16,7 @@ const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
 const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{1,})+"
 
-func _ready() -> void:
-	parse_file_content(get_file_content(test_files[0]))
-
-func get_file_content(file_path:String) -> String:
+static func get_file_content(file_path:String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	return file.get_as_text()
 
