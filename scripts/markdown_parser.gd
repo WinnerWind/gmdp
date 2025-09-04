@@ -9,6 +9,9 @@ const HEADING_1_REGEX:String = r"^# (.*)"
 const HEADING_2_REGEX:String = r"^## (.*)"
 const IMAGE_REGEX:String = r"\!\[.*\]\(.*\)"
 const IMAGE_NAME_REGEX:String = r"\!\[.*\]"
+const ITALIC_BOLD_REGEX:String = r"\*\*\*.*\*\*\*"
+const BOLD_REGEX:String = r"\*\*.*\*\*"
+const ITALIC_REGEX:String = r"\*.*\*"
 
 func _ready() -> void:
 	parse_file_content(get_file_content(test_files[0]))
@@ -46,6 +49,23 @@ func parse_file_content(contents:String) -> void:
 			var image_link = image.get_string().replace(image_name.get_string(),"").replace("(","").replace(")","")
 			data[page_index]["images"].append(image_link)
 		
+		# markdown to bbcode
+		# bold and italics
+		var bold_and_italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_BOLD_REGEX)
+		var bold_text:Array[RegExMatch] = regex_every_line(page, BOLD_REGEX)
+		var italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_REGEX)
+		
+		for bold_and_italic:RegExMatch in bold_and_italic_text:
+			var bold_and_italic_bbcode:String = "[b][i]%s[/i][/b]" % bold_and_italic.get_string().replace("***", "")
+			page = page.replace(bold_and_italic.get_string(), bold_and_italic_bbcode)
+		
+		for bold:RegExMatch in bold_text:
+			var bold_bbcode:String = "[b]%s[/b]" % bold.get_string().replace("**","")
+			page = page.replace(bold.get_string(), bold_bbcode)
+		
+		for italic:RegExMatch in italic_text:
+			var italic_bbcode:String = "[i]%s[/i]" % italic.get_string().replace("*", "")
+			page = page.replace(italic.get_string(), italic_bbcode)
 		# filter the content
 		for heading in headings: page = page.replace(heading.get_string(), "")
 		for subheading in subheadings: page = page.replace(subheading.get_string(), "")

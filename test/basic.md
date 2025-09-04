@@ -12,4 +12,7 @@ What is love?
 ### Answer
 Babey don't hurt me, don't hurt me, no more
 
+***This text is bold and italic***
+**This text is just bold**
+*severe*
 ![image](assets/winnerwind.png)
