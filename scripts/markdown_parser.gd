@@ -4,7 +4,7 @@ extends Node
 var data:Array[Dictionary]
 @export_file("*.md") var test_files:Array[String]
 
-const PAGE_SPLITTER:String = "\n---\n\n"
+const PAGE_SPLITTER:String = "\n---\n"
 #const HEADING_1_REGEX:String = r"^#\s.*"
 const HEADING_1_REGEX:String = r"^# (.*)"
 const HEADING_2_REGEX:String = r"^## (.*)"
