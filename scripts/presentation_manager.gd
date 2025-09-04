@@ -14,7 +14,7 @@ func _ready() -> void:
 func iterate_pages():
 	config.load(config_file)
 	
-	var page_to_load:PackedScene
+	var page_to_load_path:String
 	
 	var data:Array[Dictionary] = MarkdownParser.data
 	for page in data:
@@ -27,8 +27,12 @@ func iterate_pages():
 		
 		if heading:
 			if !subheading and !images:
-				page_to_load = load("res://templates/gummy/base.tscn")
+				page_to_load_path = get_canonical_path_from_config("heading")
 		
+		var page_to_load:PackedScene = load(page_to_load_path)
 		var loaded_page := page_to_load.instantiate()
 		add_child(loaded_page)
 		loaded_page.set_content(heading, subheading, content, images)
+
+func get_canonical_path_from_config(key:String) -> String:
+	return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
