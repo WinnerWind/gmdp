@@ -15,11 +15,10 @@ const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
 const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
-const BULLET_REGEX:String = r"(^[-+*]\s.*(?:\n|$))+"
+const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{1,})+"
 
 func _ready() -> void:
 	parse_file_content(get_file_content(test_files[0]))
-	print(data[4]["title"],data[4]["content"])
 
 func get_file_content(file_path:String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -40,9 +39,11 @@ func parse_file_content(contents:String) -> void:
 		}
 		## markdown to bbcode
 		# Bullet points
-		var bullet_texts:Array[RegExMatch] = regex_every_line(page,BULLET_REGEX)
+		var bullet_regex:RegEx = RegEx.new()
+		bullet_regex.compile(BULLET_REGEX)
+		var bullet_texts:Array[RegExMatch] = bullet_regex.search_all(page)
 		for bullet in bullet_texts:
-			page = page.replace(bullet.get_string(),"[ul]%s[/ul]" % bullet.get_string().replace("- ", "").replace("* ","").replace("+ ",""))
+			page = page.replace(bullet.get_string(),"[ul]\n%s[/ul]" % bullet.get_string().replace("- ", "").replace("* ","").replace("+ ",""))
 		
 		
 		# Comments
