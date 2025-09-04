@@ -15,4 +15,5 @@ Babey don't hurt me, don't hurt me, no more
 ***This text is bold and italic***
 **This text is just bold**
 *severe*
+`codeblock that is` *in line!*
 ![image](assets/winnerwind.png)

@@ -12,6 +12,7 @@ const IMAGE_NAME_REGEX:String = r"\!\[.*\]"
 const ITALIC_BOLD_REGEX:String = r"\*\*\*.*\*\*\*"
 const BOLD_REGEX:String = r"\*\*.*\*\*"
 const ITALIC_REGEX:String = r"\*.*\*"
+const INLINE_CODE_REGEX:String = r"`.*`"
 
 func _ready() -> void:
 	parse_file_content(get_file_content(test_files[0]))
@@ -66,6 +67,13 @@ func parse_file_content(contents:String) -> void:
 		for italic:RegExMatch in italic_text:
 			var italic_bbcode:String = "[i]%s[/i]" % italic.get_string().replace("*", "")
 			page = page.replace(italic.get_string(), italic_bbcode)
+		
+		# code
+		var code_text:Array[RegExMatch] = regex_every_line(page, INLINE_CODE_REGEX)
+		for code:RegExMatch in code_text:
+			var code_bbcode:String = "[code]%s[/code]" % code.get_string().replace("`", "")
+			page = page.replace(code.get_string(), code_bbcode)
+		
 		# filter the content
 		for heading in headings: page = page.replace(heading.get_string(), "")
 		for subheading in subheadings: page = page.replace(subheading.get_string(), "")
@@ -80,7 +88,7 @@ static func regex_every_line(content:String, search_regex:String) -> Array[RegEx
 	search.compile(search_regex)
 	var matches:Array[RegExMatch]
 	for line in content.split("\n"):
-		var match:RegExMatch = search.search(line)
+		var match:Array[RegExMatch] = search.search_all(line)
 		if match: #Found a regex match
-			matches.append(match)
+			matches.append_array(match)
 	return matches
