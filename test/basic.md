@@ -20,5 +20,8 @@ Babey don't hurt me, don't hurt me, no more
 ```
 Multiline Code!
 ```
-
+%%
+This is a comment that shouldn't appear in the final verson.
+%%
+%% Single line Comment %%
 ![image](assets/winnerwind.png)

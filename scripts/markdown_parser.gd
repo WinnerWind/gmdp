@@ -14,6 +14,7 @@ const BOLD_REGEX:String = r"\*\*.*\*\*"
 const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
 const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
+const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
 
 func _ready() -> void:
 	parse_file_content(get_file_content(test_files[0]))
@@ -35,6 +36,13 @@ func parse_file_content(contents:String) -> void:
 			"images": [],
 			"content": ""
 		}
+		
+		# Comments
+		var comment_regex:RegEx = RegEx.new()
+		comment_regex.compile(COMMENT_REGEX)
+		var comment_texts:Array[RegExMatch] = comment_regex.search_all(page)
+		for comment in comment_texts:	page = page.replace(comment.get_string(), "")
+		
 		# headings 
 		var headings:Array[RegExMatch] = regex_every_line(page, HEADING_1_REGEX)
 		var subheadings:Array[RegExMatch] = regex_every_line(page, HEADING_2_REGEX)
@@ -76,7 +84,6 @@ func parse_file_content(contents:String) -> void:
 		for code:RegExMatch in multiline_code_text:
 			var code_bbcode:String = "[code]%s[/code]" % code.get_string().replace("```", "")
 			page = page.replace(code.get_string(), code_bbcode)
-			print(code.get_string(), code_bbcode)
 		
 		var code_text:Array[RegExMatch] = regex_every_line(page, INLINE_CODE_REGEX)
 		for code:RegExMatch in code_text:
