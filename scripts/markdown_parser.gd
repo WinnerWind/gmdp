@@ -15,9 +15,11 @@ const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
 const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
+const BULLET_REGEX:String = r"(^[-+*]\s.*(?:\n|$))+"
 
 func _ready() -> void:
 	parse_file_content(get_file_content(test_files[0]))
+	print(data[4]["title"],data[4]["content"])
 
 func get_file_content(file_path:String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
@@ -36,6 +38,12 @@ func parse_file_content(contents:String) -> void:
 			"images": [],
 			"content": ""
 		}
+		## markdown to bbcode
+		# Bullet points
+		var bullet_texts:Array[RegExMatch] = regex_every_line(page,BULLET_REGEX)
+		for bullet in bullet_texts:
+			page = page.replace(bullet.get_string(),"[ul]%s[/ul]" % bullet.get_string().replace("- ", "").replace("* ","").replace("+ ",""))
+		
 		
 		# Comments
 		var comment_regex:RegEx = RegEx.new()
@@ -59,7 +67,6 @@ func parse_file_content(contents:String) -> void:
 			var image_link = image.get_string().replace(image_name.get_string(),"").replace("(","").replace(")","")
 			data[page_index]["images"].append(image_link)
 		
-		# markdown to bbcode
 		# bold and italics
 		var bold_and_italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_BOLD_REGEX)
 		var bold_text:Array[RegExMatch] = regex_every_line(page, BOLD_REGEX)
@@ -98,7 +105,8 @@ func parse_file_content(contents:String) -> void:
 		page = page.strip_edges()
 		
 		data[page_index]["content"] = page
-	print(data)
+		
+	#print(data)
 
 static func regex_every_line(content:String, search_regex:String) -> Array[RegExMatch]:
 	var search = RegEx.new()
