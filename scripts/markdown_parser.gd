@@ -13,6 +13,7 @@ const ITALIC_BOLD_REGEX:String = r"\*\*\*.*\*\*\*"
 const BOLD_REGEX:String = r"\*\*.*\*\*"
 const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
+const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 
 func _ready() -> void:
 	parse_file_content(get_file_content(test_files[0]))
@@ -69,10 +70,19 @@ func parse_file_content(contents:String) -> void:
 			page = page.replace(italic.get_string(), italic_bbcode)
 		
 		# code
+		var multiline_code_regex := RegEx.new()
+		multiline_code_regex.compile(MULTILINE_CODE_REGEX)
+		var multiline_code_text:Array[RegExMatch] = multiline_code_regex.search_all(page)
+		for code:RegExMatch in multiline_code_text:
+			var code_bbcode:String = "[code]%s[/code]" % code.get_string().replace("```", "")
+			page = page.replace(code.get_string(), code_bbcode)
+			print(code.get_string(), code_bbcode)
+		
 		var code_text:Array[RegExMatch] = regex_every_line(page, INLINE_CODE_REGEX)
 		for code:RegExMatch in code_text:
 			var code_bbcode:String = "[code]%s[/code]" % code.get_string().replace("`", "")
 			page = page.replace(code.get_string(), code_bbcode)
+		
 		
 		# filter the content
 		for heading in headings: page = page.replace(heading.get_string(), "")
