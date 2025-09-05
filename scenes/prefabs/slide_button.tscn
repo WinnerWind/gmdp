@@ -1,9 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://duimm05pw8ngk"]
+[gd_scene load_steps=3 format=3 uid="uid://duimm05pw8ngk"]
 
 [ext_resource type="Script" uid="uid://ds5y7skyggthf" path="res://scripts/slide_button.gd" id="1_e8lkv"]
+[ext_resource type="Texture2D" uid="uid://x888e3gcqm2a" path="res://test/soham.png" id="2_e8lkv"]
 
-[node name="SlideButton" type="MarginContainer" node_paths=PackedStringArray("page_number_container", "content_blurb_container")]
-custom_minimum_size = Vector2(0, 75)
+[node name="SlideButton" type="MarginContainer" node_paths=PackedStringArray("page_number_container", "content_blurb_container", "preview_container")]
+custom_minimum_size = Vector2(0, 150)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -15,10 +16,21 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_e8lkv")
 page_number_container = NodePath("Sorter/Page Number")
 content_blurb_container = NodePath("Sorter/Content")
+preview_container = NodePath("Sorter/MarginContainer/Preview")
 
 [node name="Sorter" type="VBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Preview" type="TextureRect" parent="Sorter/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_e8lkv")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="Page Number" type="RichTextLabel" parent="Sorter"]
 layout_mode = 2

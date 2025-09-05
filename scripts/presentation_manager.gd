@@ -9,6 +9,7 @@ class_name PresentationManager
 @export var slide_buttons_sorter:VBoxContainer
 
 @export var slide_button_scene:PackedScene
+@export var page_subviewport:PackedScene
 
 var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
@@ -45,7 +46,10 @@ func iterate_pages():
 		
 		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
 		var loaded_page := page_to_load.instantiate()
-		main_slide_sorter.add_child(loaded_page)
+		loaded_page.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
+		var subviewport:PageSubViewPort = page_subviewport.instantiate()
+		subviewport.add_page(loaded_page)
+		main_slide_sorter.add_child(subviewport)
 		loaded_page.set_content(heading, subheading, content, images)
 	
 	set_slide_buttons(data)
@@ -57,11 +61,12 @@ func set_slide_buttons(pages:Array):
 	for child in slide_buttons_sorter.get_children(): child.queue_free()
 	for index in pages.size():
 		var page = pages[index]
+		var page_preview = main_slide_sorter.get_child(index).get_subviewport_texture()
 		var slide_button:SlideButton = slide_button_scene.instantiate()
-		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title))
+		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title), page_preview)
 		slide_button.go_to_page.connect(scroll_to_page.bind(index))
 		slide_buttons_sorter.add_child(slide_button)
 
 func scroll_to_page(page_number:int):
 	var scroll_max = main_slide_scroll.get_v_scroll_bar().max_value
-	main_slide_scroll.scroll_vertical = (scroll_max / total_pages)*float(page_number)
+	main_slide_scroll.scroll_vertical = int((float(scroll_max) / float(total_pages))*float(page_number))

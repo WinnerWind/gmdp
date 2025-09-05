@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://dt8k4dbtsyj0o"]
+
+[ext_resource type="Script" uid="uid://dm1jrk1lmr6pr" path="res://scripts/page_subviewport.gd" id="1_vj1hi"]
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" node_paths=PackedStringArray("subviewport")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+ratio = 1.77
+script = ExtResource("1_vj1hi")
+subviewport = NodePath("PageSubviewport/SubViewport")
+
+[node name="PageSubviewport" type="SubViewportContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="PageSubviewport"]
+handle_input_locally = false
+size = Vector2i(1146, 648)
+size_2d_override = Vector2i(1920, 1080)
+size_2d_override_stretch = true
+render_target_update_mode = 4
