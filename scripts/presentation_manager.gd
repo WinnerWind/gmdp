@@ -20,9 +20,7 @@ func iterate_pages():
 	var page_to_load_path:String
 	
 	var data:Array[Dictionary] = MarkdownParser.data
-	for page in data:
-		var number_of_images:int = page.images.size()
-		
+	for page in data:		
 		var content:String = page.content
 		var heading:String = page.title
 		var subheading:String = page.subtitle
