@@ -32,6 +32,9 @@ size_flags_horizontal = 3
 [node name="file" type="MenuButton" parent="Navbar/Sorter/Left"]
 layout_mode = 2
 text = "file"
+item_count = 1
+popup/item_0/text = "open"
+popup/item_0/id = 0
 
 [node name="view" type="MenuButton" parent="Navbar/Sorter/Left"]
 layout_mode = 2
@@ -57,7 +60,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Button" type="Button" parent="Navbar/Sorter/Right"]
+[node name="Refresh" type="Button" parent="Navbar/Sorter/Right"]
 layout_mode = 2
 text = "refresh"
 
@@ -97,3 +100,5 @@ theme_override_constants/margin_bottom = 100
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[connection signal="pressed" from="Navbar/Sorter/Right/Refresh" to="." method="refresh"]

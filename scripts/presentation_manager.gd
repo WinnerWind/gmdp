@@ -14,11 +14,14 @@ var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
 
 var total_pages:int
+
 func _ready() -> void:
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(test_file))
 	iterate_pages()
 	get_window().size_changed.connect(iterate_pages)
 
+func refresh() -> void:
+	iterate_pages()
 func iterate_pages():
 	for child in main_slide_sorter.get_children(): child.free()
 	config.load(config_file)
@@ -46,6 +49,7 @@ func iterate_pages():
 		loaded_page.set_content(heading, subheading, content, images)
 	
 	set_slide_buttons(data)
+
 func get_canonical_path_from_config(key:String) -> String:
 	return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
 
@@ -57,6 +61,7 @@ func set_slide_buttons(pages:Array):
 		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title))
 		slide_button.go_to_page.connect(scroll_to_page.bind(index))
 		slide_buttons_sorter.add_child(slide_button)
+
 func scroll_to_page(page_number:int):
-	var max = main_slide_scroll.get_v_scroll_bar().max_value
-	main_slide_scroll.scroll_vertical = (max / total_pages)*page_number
+	var scroll_max = main_slide_scroll.get_v_scroll_bar().max_value
+	main_slide_scroll.scroll_vertical = (scroll_max / total_pages)*float(page_number)
