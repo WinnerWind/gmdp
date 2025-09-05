@@ -11,8 +11,10 @@ const SCENE_NAME_SECTION:String = "scenes"
 func _ready() -> void:
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(test_file))
 	iterate_pages()
+	get_window().size_changed.connect(iterate_pages)
 
 func iterate_pages():
+	for child in main_slide_sorter.get_children(): child.free()
 	config.load(config_file)
 	
 	var page_to_load_path:String
