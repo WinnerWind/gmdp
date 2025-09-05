@@ -1,5 +1,10 @@
 # Heading
 
+---
+
+# Page 2
+
+This is the second page. We have more text here, which is really nice.
 Content.
 
 A minor change to my [wave]text[/wave]
@@ -8,13 +13,7 @@ A minor change to my [wave]text[/wave]
 
 ---
 
-# Page 2
-
-This is the second page. We have more text here, which is really nice.
-
----
-
 # Page 3
-
+## Subheading?
 This is the end. 
 j

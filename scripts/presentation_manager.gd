@@ -29,8 +29,14 @@ func iterate_pages():
 		var images:Array = page.images
 		
 		if heading:
-			if !subheading and !images:
-				page_to_load_path = get_canonical_path_from_config("heading")
+			if content:
+				if !subheading and !images:
+					page_to_load_path = get_canonical_path_from_config("heading")
+				elif subheading and !images:
+					page_to_load_path = get_canonical_path_from_config("heading_subtitle")
+			else: # No content
+				if !images:
+					page_to_load_path = get_canonical_path_from_config("title")
 		
 		var page_to_load:PackedScene = load(page_to_load_path)
 		var loaded_page := page_to_load.instantiate()
