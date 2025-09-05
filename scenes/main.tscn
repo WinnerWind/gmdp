@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://duimm05pw8ngk" path="res://scenes/prefabs/slide_button.tscn" id="2_0wfyh"]
 
-[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "slide_buttons_sorter")]
+[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +13,7 @@ script = ExtResource("1_o5qli")
 test_file = "res://test/presentation.md"
 config_file = "res://templates/gummy/meta.ini"
 main_slide_sorter = NodePath("Content/Main/Margins/Slides")
+main_slide_scroll = NodePath("Content/Main")
 slide_buttons_sorter = NodePath("Content/Slides/ScrollContainer/Sorter")
 slide_button_scene = ExtResource("2_0wfyh")
 

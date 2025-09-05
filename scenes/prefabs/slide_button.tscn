@@ -1,43 +1,40 @@
-[gd_scene load_steps=3 format=3 uid="uid://duimm05pw8ngk"]
+[gd_scene load_steps=2 format=3 uid="uid://duimm05pw8ngk"]
 
 [ext_resource type="Script" uid="uid://ds5y7skyggthf" path="res://scripts/slide_button.gd" id="1_e8lkv"]
-[ext_resource type="Texture2D" uid="uid://x888e3gcqm2a" path="res://test/soham.png" id="1_vuljj"]
 
 [node name="SlideButton" type="MarginContainer" node_paths=PackedStringArray("page_number_container", "content_blurb_container")]
-custom_minimum_size = Vector2(0, 150)
+custom_minimum_size = Vector2(0, 75)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 script = ExtResource("1_e8lkv")
 page_number_container = NodePath("Sorter/Page Number")
 content_blurb_container = NodePath("Sorter/Content")
 
 [node name="Sorter" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="MarginContainer" type="MarginContainer" parent="Sorter"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="TextureRect" type="TextureRect" parent="Sorter/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("1_vuljj")
-expand_mode = 3
-stretch_mode = 5
+alignment = 1
 
 [node name="Page Number" type="RichTextLabel" parent="Sorter"]
 layout_mode = 2
+mouse_filter = 2
 bbcode_enabled = true
 text = "[i]Page 1 of 10[/i]"
 fit_content = true
 horizontal_alignment = 1
 
-[node name="Content" type="RichTextLabel" parent="Sorter"]
+[node name="Content" type="Label" parent="Sorter"]
 layout_mode = 2
 text = "What is love?"
-fit_content = true
-autowrap_mode = 0
 horizontal_alignment = 1
+text_overrun_behavior = 4
+
+[node name="Toggled Panel" type="Panel" parent="."]
+show_behind_parent = true
+layout_mode = 2
+mouse_filter = 2
