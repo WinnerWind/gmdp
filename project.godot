@@ -27,3 +27,8 @@ enabled=PackedStringArray("res://addons/startup_runner/plugin.cfg")
 folder_colors={
 "res://templates/": "purple"
 }
+
+[rendering]
+
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
