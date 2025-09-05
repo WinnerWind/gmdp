@@ -16,7 +16,7 @@ const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
 const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{1,})+"
 
-static func get_file_content(file_path:String) -> String:
+func get_file_content(file_path:String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	return file.get_as_text()
 

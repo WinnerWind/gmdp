@@ -4,6 +4,7 @@ class_name PresentationManager
 @export_file("*.md") var test_file:String
 @export_file("*.ini") var config_file:String
 
+@export var main_slide_sorter:VBoxContainer
 var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
 
@@ -31,7 +32,7 @@ func iterate_pages():
 		
 		var page_to_load:PackedScene = load(page_to_load_path)
 		var loaded_page := page_to_load.instantiate()
-		add_child(loaded_page)
+		main_slide_sorter.add_child(loaded_page)
 		loaded_page.set_content(heading, subheading, content, images)
 
 func get_canonical_path_from_config(key:String) -> String:

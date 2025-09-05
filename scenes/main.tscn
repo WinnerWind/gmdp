@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
 
-[node name="Main" type="Control"]
+[node name="Main" type="Control" node_paths=PackedStringArray("main_slide_sorter")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,3 +12,21 @@ grow_vertical = 2
 script = ExtResource("1_o5qli")
 test_file = "res://test/presentation.md"
 config_file = "res://templates/gummy/meta.ini"
+main_slide_sorter = NodePath("Main Viewport/Scroll/Sorter")
+
+[node name="Main Viewport" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Scroll" type="ScrollContainer" parent="Main Viewport"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="Sorter" type="VBoxContainer" parent="Main Viewport/Scroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
