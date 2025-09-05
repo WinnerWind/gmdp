@@ -17,3 +17,11 @@ A minor change to my [wave]text[/wave]
 ## Subheading?
 This is the end. 
 j
+
+---
+
+# Last page
+This contains an image. I swear.
+
+![test](res://test/soham.png)
+![test](res://test/soham.png)

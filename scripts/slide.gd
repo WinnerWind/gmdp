@@ -21,3 +21,7 @@ func set_content(heading:String, subheading:String, content:String, images:Array
 	if heading_label: heading_label.text = heading
 	if subheading_label: subheading_label.text = subheading
 	if contents_label: contents_label.text = content
+	if image_nodes:
+		for index in image_nodes.size():
+			var image_node:TextureRect = image_nodes[index]
+			image_node.texture = load(images[index])
