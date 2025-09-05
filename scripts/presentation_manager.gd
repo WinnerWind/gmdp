@@ -5,6 +5,10 @@ class_name PresentationManager
 @export_file("*.ini") var config_file:String
 
 @export var main_slide_sorter:VBoxContainer
+@export var slide_buttons_sorter:VBoxContainer
+
+@export var slide_button_scene:PackedScene
+
 var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
 
@@ -36,6 +40,14 @@ func iterate_pages():
 		var loaded_page := page_to_load.instantiate()
 		main_slide_sorter.add_child(loaded_page)
 		loaded_page.set_content(heading, subheading, content, images)
-
+	
+	set_slide_buttons(data)
 func get_canonical_path_from_config(key:String) -> String:
 	return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
+
+func set_slide_buttons(pages:Array):
+	for index in pages.size():
+		var page = pages[index]
+		var slide_button:SlideButton = slide_button_scene.instantiate()
+		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title).left(20))
+		slide_buttons_sorter.add_child(slide_button)

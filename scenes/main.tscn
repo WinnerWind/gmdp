@@ -1,9 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=3 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://duimm05pw8ngk" path="res://scenes/prefabs/slide_button.tscn" id="2_0wfyh"]
 
-[node name="Main" type="Control" node_paths=PackedStringArray("main_slide_sorter")]
-layout_mode = 3
+[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "slide_buttons_sorter")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,25 +12,87 @@ grow_vertical = 2
 script = ExtResource("1_o5qli")
 test_file = "res://test/presentation.md"
 config_file = "res://templates/gummy/meta.ini"
-main_slide_sorter = NodePath("Main Viewport/Scroll/Sorter")
+main_slide_sorter = NodePath("Content/Main/Margins/Slides")
+slide_buttons_sorter = NodePath("Content/Slides/ScrollContainer/Sorter")
+slide_button_scene = ExtResource("2_0wfyh")
 
-[node name="Main Viewport" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Navbar" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Sorter" type="HBoxContainer" parent="Navbar"]
+layout_mode = 2
+
+[node name="Left" type="HBoxContainer" parent="Navbar/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="file" type="MenuButton" parent="Navbar/Sorter/Left"]
+layout_mode = 2
+text = "file"
+
+[node name="view" type="MenuButton" parent="Navbar/Sorter/Left"]
+layout_mode = 2
+text = "view"
+
+[node name="Center" type="HBoxContainer" parent="Navbar/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="Tabs" type="TabBar" parent="Navbar/Sorter/Center"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+current_tab = 0
+tab_alignment = 1
+tab_count = 2
+tab_0/title = "slides"
+tab_1/title = "edit"
+
+[node name="Right" type="HBoxContainer" parent="Navbar/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Button" type="Button" parent="Navbar/Sorter/Right"]
+layout_mode = 2
+text = "refresh"
+
+[node name="Content" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Slides" type="PanelContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Content/Slides"]
+layout_mode = 2
+
+[node name="Sorter" type="VBoxContainer" parent="Content/Slides/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Main" type="ScrollContainer" parent="Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="Margins" type="MarginContainer" parent="Content/Main"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="Scroll" type="ScrollContainer" parent="Main Viewport"]
-layout_mode = 2
-horizontal_scroll_mode = 0
-
-[node name="Sorter" type="VBoxContainer" parent="Main Viewport/Scroll"]
+[node name="Slides" type="VBoxContainer" parent="Content/Main/Margins"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
