@@ -23,5 +23,5 @@ j
 # Last page
 This contains an image. I swear.
 
-![test](res://test/soham.png)
-![test](res://test/soham.png)
+![test](soham.png)
+![test](soham.png)

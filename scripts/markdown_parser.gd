@@ -16,8 +16,14 @@ const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
 const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{1,})+"
 
+var last_file_path:String
+var last_file_basepath:String:
+	get:
+		return last_file_path.get_base_dir()
+
 func get_file_content(file_path:String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
+	last_file_path = file_path
 	return file.get_as_text()
 
 func parse_file_content(contents:String) -> void:
@@ -114,3 +120,15 @@ static func regex_every_line(content:String, search_regex:String) -> Array[RegEx
 		if match: #Found a regex match
 			matches.append_array(match)
 	return matches
+
+func get_image_from_name(image_name:String) -> ImageTexture:
+	var full_image_path = last_file_basepath + "/" + image_name
+	if FileAccess.file_exists(full_image_path):
+		var image = Image.new()
+		var error = image.load(full_image_path)
+		if error == OK:
+			return ImageTexture.create_from_image(image)
+		else:
+			return
+	else:
+		return null

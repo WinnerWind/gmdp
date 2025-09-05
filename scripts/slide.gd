@@ -24,4 +24,4 @@ func set_content(heading:String, subheading:String, content:String, images:Array
 	if image_nodes:
 		for index in image_nodes.size():
 			var image_node:TextureRect = image_nodes[index]
-			image_node.texture = load(images[index])
+			image_node.texture = MarkdownParser.get_image_from_name(images[index])
