@@ -28,17 +28,13 @@ func iterate_pages():
 		var subheading:String = page.subtitle
 		var images:Array = page.images
 		
-		if heading:
-			if content:
-				if !subheading and !images:
-					page_to_load_path = get_canonical_path_from_config("heading")
-				elif subheading and !images:
-					page_to_load_path = get_canonical_path_from_config("heading_subtitle")
-			else: # No content
-				if !images:
-					page_to_load_path = get_canonical_path_from_config("title")
+		match [!!heading, !!subheading, !!content, !!images]:
+			[true, false, true, false]: page_to_load_path = "heading"
+			[true, true, true, false]: page_to_load_path = "heading_subtitle"
+			[true, false, true, true]: page_to_load_path = "heading_%d_image" % images.size()
+			[true, false, false, false]: page_to_load_path = "title"
 		
-		var page_to_load:PackedScene = load(page_to_load_path)
+		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
 		var loaded_page := page_to_load.instantiate()
 		main_slide_sorter.add_child(loaded_page)
 		loaded_page.set_content(heading, subheading, content, images)
