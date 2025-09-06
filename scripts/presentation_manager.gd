@@ -4,10 +4,15 @@ class_name PresentationManager
 @export_file("*.md") var test_file:String
 @export_file("*.ini") var config_file:String
 
+@export_category("Nodes")
 @export var main_slide_sorter:VBoxContainer
 @export var main_slide_scroll:ScrollContainer
 @export var slide_buttons_sorter:VBoxContainer
+@export var text_editor:TextEdit
+@export var themes_view:Control
+@export var slides_view:Control
 
+@export_category("PackedScenes")
 @export var slide_button_scene:PackedScene
 @export var page_subviewport:PackedScene
 
@@ -18,11 +23,19 @@ var total_pages:int
 
 func _ready() -> void:
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(test_file))
+	text_editor.text = MarkdownParser.text_content
+	
 	iterate_pages()
 	get_window().size_changed.connect(iterate_pages)
 
 func refresh() -> void:
 	iterate_pages()
+
+func set_text_content() -> void:
+	var text = text_editor.text
+	MarkdownParser.refresh_set_content(text)
+	refresh()
+	
 func iterate_pages():
 	for child in main_slide_sorter.get_children(): child.free()
 	config.load(config_file)
@@ -70,3 +83,20 @@ func set_slide_buttons(pages:Array):
 func scroll_to_page(page_number:int):
 	var scroll_max = main_slide_scroll.get_v_scroll_bar().max_value
 	main_slide_scroll.scroll_vertical = int((float(scroll_max) / float(total_pages))*float(page_number))
+
+func _on_tabs_tab_changed(tab: int) -> void:
+	match tab:
+		0: # slides
+			slides_view.show()
+			text_editor.hide()
+			themes_view.hide()
+			await get_tree().process_frame #viewports need to come back up
+			refresh()
+		1: #text editor
+			slides_view.hide()
+			text_editor.show()
+			themes_view.hide() 
+		2: # themes
+			slides_view.hide()
+			text_editor.hide()
+			themes_view.show()

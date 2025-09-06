@@ -14,17 +14,27 @@ const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
 const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
-const BULLET_REGEX:String = r"(?<=\n{1,})([-+*]\s.*\n{0,})+"
+const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{0,})+"
 
 var last_file_path:String
 var last_file_basepath:String:
 	get:
 		return last_file_path.get_base_dir()
 
+var text_content:String
+
 func get_file_content(file_path:String) -> String:
 	var file = FileAccess.open(file_path, FileAccess.READ)
 	last_file_path = file_path
+	text_content = file.get_as_text()
 	return file.get_as_text()
+
+func refresh_from_existing_content() ->  void:
+	parse_file_content(text_content)
+
+func refresh_set_content(content:String) -> void:
+	parse_file_content(content)
+	text_content = content
 
 func parse_file_content(contents:String) -> void:
 	# Split Pages
