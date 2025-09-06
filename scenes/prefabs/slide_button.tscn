@@ -32,6 +32,16 @@ texture = ExtResource("2_e8lkv")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Toggled Panel" type="Panel" parent="Sorter/MarginContainer/Preview"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="Page Number" type="RichTextLabel" parent="Sorter"]
 layout_mode = 2
 mouse_filter = 2
@@ -45,8 +55,3 @@ layout_mode = 2
 text = "What is love?"
 horizontal_alignment = 1
 text_overrun_behavior = 4
-
-[node name="Toggled Panel" type="Panel" parent="."]
-show_behind_parent = true
-layout_mode = 2
-mouse_filter = 2
