@@ -54,7 +54,7 @@ func iterate_pages():
 		match [!!heading, !!subheading, !!content, !!images]:
 			[true, false, true, false]: page_to_load_path = "heading"
 			[true, true, true, false]: page_to_load_path = "heading_subtitle"
-			[true, false, true, true]: page_to_load_path = "heading_%d_image" % images.size()
+			[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
 			[true, false, false, false]: page_to_load_path = "title"
 		
 		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
@@ -68,7 +68,10 @@ func iterate_pages():
 	set_slide_buttons(data)
 
 func get_canonical_path_from_config(key:String) -> String:
-	return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
+	if config.has_section_key(SCENE_NAME_SECTION, key):
+		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
+	else:
+		return "Does not exist!"
 
 func set_slide_buttons(pages:Array):
 	for child in slide_buttons_sorter.get_children(): child.queue_free()
@@ -79,6 +82,17 @@ func set_slide_buttons(pages:Array):
 		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title), page_preview)
 		slide_button.go_to_page.connect(scroll_to_page.bind(index))
 		slide_buttons_sorter.add_child(slide_button)
+
+func iterate_scenes_and_send_warning(key:String, number:int) -> String:
+	var original_number = number
+	while get_canonical_path_from_config(key % number) == "Does not exist!":
+		number -= 1
+	if original_number != number:
+		push_warning("Scene {original_scene_name} was not found and it was substituted with {current_scene_name}".format({
+			"original_scene_name": key % original_number,
+			"current_scene_name": key % number
+		}))
+	return key % number
 
 func scroll_to_page(page_number:int):
 	var scroll_max = main_slide_scroll.get_v_scroll_bar().max_value
