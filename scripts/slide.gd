@@ -1,4 +1,5 @@
 extends Control
+class_name Slide
 
 @export var heading_label:RichTextLabel
 @export var subheading_label:RichTextLabel
