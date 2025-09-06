@@ -14,7 +14,7 @@ const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
 const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
-const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{1,})+"
+const BULLET_REGEX:String = r"(?<=\n{1,})([-+*]\s.*\n{0,})+"
 
 var last_file_path:String
 var last_file_basepath:String:
