@@ -21,6 +21,10 @@ const SCENE_NAME_SECTION:String = "scenes"
 
 var total_pages:int
 
+func switch_theme_to(theme_path:String):
+	config_file = theme_path
+	refresh()
+
 func _ready() -> void:
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(test_file))
 	text_editor.text = MarkdownParser.text_content

@@ -9,13 +9,14 @@ class_name ThemesList
 @export var title_page:PageSubViewPort
 @export var heading_page:PageSubViewPort
 @export var subtitle_page:PageSubViewPort
-
+@export var selection_button:Button
+@export var url_button:Button
 
 @export var theme_entry:PackedScene
 func _ready() -> void:
 	var dir = DirAccess.open(themes_path)
 	for directory in dir.get_directories():
-		var full_path:String = themes_path+"/"+directory+"/"
+		var full_path:String = themes_path+"/"+directory
 		var meta_file_full_path:String = full_path + "/meta.ini"
 		if FileAccess.file_exists(meta_file_full_path):
 			var config = ConfigFile.new()
@@ -39,7 +40,7 @@ func _ready() -> void:
 						
 						var new_theme_entry:ThemeEntry = theme_entry.instantiate()
 						new_theme_entry.set_details(theme_name, author)
-						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, version, date, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path))
+						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, version, date, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path, meta_file_full_path))
 						theme_list.add_child(new_theme_entry)
 					else:
 						push_error("Metadata incomplete in %s" % meta_file_full_path)
@@ -48,7 +49,7 @@ func _ready() -> void:
 			else:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])
 
-func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String):
+func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String):
 	theme_name_label.text = theme_name
 	theme_by_label.text = "Authored by {author}, and designed by {designer} on {date}. Version v{version}".format({
 		"author": author,
@@ -74,3 +75,19 @@ func set_details(theme_name:String, author:String, designed_by:String, version:S
 	heading_page.add_page(heading_scene)
 	subtitle_page.add_page(subtitle_scene)
 	
+	current_url = url
+	current_theme_meta_file = meta_file
+	
+	url_button.show()
+	selection_button.show()
+
+var current_url:String = ""
+func open_url():
+	if not current_url == "":
+		OS.shell_open(current_url)
+
+var current_theme_meta_file:String
+signal switch_theme_to(theme_meta_file:String)
+func use_theme():
+	if not current_theme_meta_file == "":
+		switch_theme_to.emit(current_theme_meta_file)
