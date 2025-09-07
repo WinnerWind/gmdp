@@ -24,7 +24,7 @@ func _ready() -> void:
 			# Data validation
 			if "metadata" in config.get_sections() and "scenes" in config.get_sections():
 				var scenes = config.get_section_keys("scenes")
-				if "title" in scenes and "heading" in scenes and "heading_subtitle" in scenes:
+				if "title" in scenes and "heading" in scenes and "heading_subtitle" in scenes and "text_only" in scenes:
 					var metadata = config.get_section_keys("metadata")
 					if "name" in metadata and "author" in metadata and "designed_by" in metadata and "version" in metadata and "date" in metadata and "url" in metadata:
 						# All data checks are done so lets populate the scene

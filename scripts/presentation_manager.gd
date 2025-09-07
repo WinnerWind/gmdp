@@ -58,6 +58,7 @@ func iterate_pages():
 			[true, true, true, false]: page_to_load_path = "heading_subtitle"
 			[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
 			[true, false, false, false]: page_to_load_path = "title"
+			[false, false, true, false]: page_to_load_path = "text_only"
 			_: page_to_load_path = "title"
 		
 		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
