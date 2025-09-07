@@ -1,12 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=7 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://duimm05pw8ngk" path="res://scenes/prefabs/slide_button.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dt8k4dbtsyj0o" path="res://scenes/prefabs/page_subviewport.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://calus87qprk6b" path="res://scripts/themes_list.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/popup_menu_button.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
 
-[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "themes_view", "slides_view")]
+[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "themes_view", "slides_view", "open_file", "save_file")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -20,6 +21,8 @@ slide_buttons_sorter = NodePath("Slides View/Slides/ScrollContainer/Sorter")
 text_editor = NodePath("Editor")
 themes_view = NodePath("Themes")
 slides_view = NodePath("Slides View")
+open_file = NodePath("Open File Dialog")
+save_file = NodePath("Save File")
 slide_button_scene = ExtResource("2_0wfyh")
 page_subviewport = ExtResource("3_sugp2")
 
@@ -47,10 +50,12 @@ popup/item_2/text = "Open New Markdown File (no undo!)"
 popup/item_2/id = 2
 popup/item_3/text = "Exit"
 popup/item_3/id = 3
+script = ExtResource("4_tefeu")
 
 [node name="view" type="MenuButton" parent="Navbar/Sorter/Left"]
 layout_mode = 2
 text = "view"
+script = ExtResource("4_tefeu")
 
 [node name="Center" type="HBoxContainer" parent="Navbar/Sorter"]
 layout_mode = 2
@@ -196,12 +201,16 @@ text = "open url"
 [node name="Open File Dialog" type="FileDialog" parent="."]
 title = "Open a File"
 position = Vector2i(0, 36)
-visible = true
 ok_button_text = "Open"
 file_mode = 0
 filters = PackedStringArray("*.md", "*.txt")
 use_native_dialog = true
 
+[node name="Save File" type="FileDialog" parent="."]
+filters = PackedStringArray("*.md", "*.txt")
+use_native_dialog = true
+
+[connection signal="id_pressed" from="Navbar/Sorter/Left/file" to="." method="file_menu_functions"]
 [connection signal="tab_changed" from="Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
 [connection signal="pressed" from="Navbar/Sorter/Right/Refresh" to="." method="refresh"]
 [connection signal="text_changed" from="Editor" to="." method="set_text_content"]
@@ -209,3 +218,4 @@ use_native_dialog = true
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/Use" to="Themes" method="use_theme"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/URL" to="Themes" method="open_url"]
 [connection signal="file_selected" from="Open File Dialog" to="." method="set_file_path"]
+[connection signal="file_selected" from="Save File" to="." method="save"]

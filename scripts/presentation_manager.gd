@@ -10,6 +10,9 @@ class_name PresentationManager
 @export var text_editor:TextEdit
 @export var themes_view:Control
 @export var slides_view:Control
+@export_subgroup("FileDialogs")
+@export var open_file:FileDialog
+@export var save_file:FileDialog
 
 @export_category("PackedScenes")
 @export var slide_button_scene:PackedScene
@@ -81,7 +84,7 @@ func set_slide_buttons(pages:Array):
 	for child in slide_buttons_sorter.get_children(): child.queue_free()
 	for index in pages.size():
 		var page = pages[index]
-		await get_tree().process_frame
+		await get_tree().process_frame # Required to get subviewport texture
 		var page_preview = main_slide_sorter.get_child(index).get_subviewport_texture()
 		var slide_button:SlideButton = slide_button_scene.instantiate()
 		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title), page_preview)
@@ -124,3 +127,19 @@ func set_file_path(file_path:String):
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(file_path))
 	text_editor.text = MarkdownParser.text_content
 	refresh()
+
+func save(path:String):
+	var file := FileAccess.open(path, FileAccess.WRITE)
+	file.store_string(MarkdownParser.text_content)
+	file.close()
+	print("Saved!")
+func file_menu_functions(id:int):
+	match id:
+		0: #open file
+			open_file.show()
+		1: #save
+			save_file.show()
+		2: #open new file
+			pass
+		3: #exit
+			get_tree().quit()
