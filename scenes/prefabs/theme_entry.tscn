@@ -24,3 +24,4 @@ bbcode_enabled = true
 text = "[i]WinnerWind[/i]"
 fit_content = true
 visible_characters = 25
+visible_ratio = 2.5

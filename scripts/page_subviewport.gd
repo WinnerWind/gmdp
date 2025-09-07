@@ -10,6 +10,7 @@ func _ready() -> void:
 		push_warning("Parent %s is not a BoxContainer, so the slide will not set it's size."%get_parent().name)
 
 func add_page(node:Node) -> void:
+	for child in subviewport.get_children(): child.queue_free()
 	subviewport.add_child(node)
 
 func get_subviewport_texture() -> ViewportTexture:
