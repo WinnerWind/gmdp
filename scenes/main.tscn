@@ -13,7 +13,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o5qli")
-test_file = "res://test/presentation.md"
 config_file = "res://templates/gummy/meta.ini"
 main_slide_sorter = NodePath("Slides View/Main/Margins/Slides")
 main_slide_scroll = NodePath("Slides View/Main")
@@ -194,8 +193,17 @@ visible = false
 layout_mode = 2
 text = "open url"
 
+[node name="Open File Dialog" type="FileDialog" parent="."]
+title = "Open a File"
+visible = true
+ok_button_text = "Open"
+file_mode = 0
+filters = PackedStringArray("*.md", "*.txt")
+use_native_dialog = true
+
 [connection signal="tab_changed" from="Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
 [connection signal="pressed" from="Navbar/Sorter/Right/Refresh" to="." method="refresh"]
 [connection signal="switch_theme_to" from="Themes" to="." method="switch_theme_to"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/Use" to="Themes" method="use_theme"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/URL" to="Themes" method="open_url"]
+[connection signal="file_selected" from="Open File Dialog" to="." method="set_file_path"]

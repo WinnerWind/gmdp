@@ -1,7 +1,6 @@
 extends Control
 class_name PresentationManager
 
-@export_file("*.md") var test_file:String
 @export_file("*.ini") var config_file:String
 
 @export_category("Nodes")
@@ -26,7 +25,6 @@ func switch_theme_to(theme_path:String):
 	refresh()
 
 func _ready() -> void:
-	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(test_file))
 	text_editor.text = MarkdownParser.text_content
 	
 	iterate_pages()
@@ -34,6 +32,8 @@ func _ready() -> void:
 
 func refresh() -> void:
 	iterate_pages()
+	text_editor.text = MarkdownParser.text_content
+
 
 func set_text_content() -> void:
 	var text = text_editor.text
@@ -118,3 +118,7 @@ func _on_tabs_tab_changed(tab: int) -> void:
 			slides_view.hide()
 			text_editor.hide()
 			themes_view.show()
+
+func set_file_path(file_path:String):
+	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(file_path))
+	refresh()

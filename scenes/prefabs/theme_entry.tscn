@@ -14,12 +14,14 @@ author_label = NodePath("Author")
 
 [node name="Name" type="Label" parent="."]
 layout_mode = 2
+mouse_filter = 1
 text = "My Amazing Theme"
 text_overrun_behavior = 3
 
 [node name="Author" type="RichTextLabel" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 1
 bbcode_enabled = true
 text = "[i]WinnerWind[/i]"
 fit_content = true
