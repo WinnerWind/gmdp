@@ -15,13 +15,14 @@ script = ExtResource("1_vj1hi")
 subviewport = NodePath("PageSubviewport/SubViewport")
 
 [node name="PageSubviewport" type="SubViewportContainer" parent="."]
+custom_minimum_size = Vector2(1, 1)
 layout_mode = 2
 size_flags_vertical = 3
 stretch = true
 
 [node name="SubViewport" type="SubViewport" parent="PageSubviewport"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(1146, 648)
 size_2d_override = Vector2i(1920, 1080)
 size_2d_override_stretch = true
 render_target_update_mode = 4
