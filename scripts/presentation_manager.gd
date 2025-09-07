@@ -8,8 +8,10 @@ class_name PresentationManager
 @export var main_slide_scroll:ScrollContainer
 @export var slide_buttons_sorter:VBoxContainer
 @export var text_editor:TextEdit
+@export var editor_panel:PanelContainer
 @export var themes_view:Control
 @export var slides_view:Control
+@export var location_label:RichTextLabel
 @export_subgroup("FileDialogs")
 @export var open_file:FileDialog
 @export var save_file:FileDialog
@@ -108,22 +110,24 @@ func _on_tabs_tab_changed(tab: int) -> void:
 	match tab:
 		0: # slides
 			slides_view.show()
-			text_editor.hide()
+			editor_panel.hide()
 			themes_view.hide()
 			await get_tree().process_frame #viewports need to come back up
 			refresh()
 		1: #text editor
 			slides_view.hide()
-			text_editor.show()
+			editor_panel.show()
 			themes_view.hide() 
 		2: # themes
 			slides_view.hide()
-			text_editor.hide()
+			editor_panel.hide()
 			themes_view.show()
 
 func set_file_path(file_path:String):
+	# Used when file is opened
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(file_path))
 	text_editor.text = MarkdownParser.text_content
+	location_label.text = "%s/[b]%s"%[MarkdownParser.last_file_basepath, MarkdownParser.last_file_path.get_file()]
 	refresh()
 
 func save(path:String):
@@ -131,7 +135,9 @@ func save(path:String):
 	file.store_string(MarkdownParser.text_content)
 	file.close()
 	MarkdownParser.last_file_path = path
+	location_label.text = "%s/[b]%s"%[MarkdownParser.last_file_basepath, MarkdownParser.last_file_path.get_file()]
 	print("Saved!")
+
 func file_menu_functions(id:int):
 	match id:
 		0: #open file

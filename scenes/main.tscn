@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/popup_menu_button.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
 
-[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "themes_view", "slides_view", "open_file", "save_file")]
+[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "open_file", "save_file")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -18,9 +18,11 @@ config_file = "res://templates/gummy/meta.ini"
 main_slide_sorter = NodePath("Slides View/Main/Margins/Slides")
 main_slide_scroll = NodePath("Slides View/Main")
 slide_buttons_sorter = NodePath("Slides View/Slides/ScrollContainer/Sorter")
-text_editor = NodePath("Editor")
+text_editor = NodePath("Editor Panel/Sorter/Editor")
+editor_panel = NodePath("Editor Panel")
 themes_view = NodePath("Themes")
 slides_view = NodePath("Slides View")
+location_label = NodePath("Editor Panel/Sorter/Location")
 open_file = NodePath("Open File Dialog")
 save_file = NodePath("Save File")
 slide_button_scene = ExtResource("2_0wfyh")
@@ -83,6 +85,7 @@ layout_mode = 2
 text = "refresh"
 
 [node name="Slides View" type="HBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -119,11 +122,24 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Editor" type="TextEdit" parent="."]
-visible = false
+[node name="Editor Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Sorter" type="VBoxContainer" parent="Editor Panel"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Editor" type="TextEdit" parent="Editor Panel/Sorter"]
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Basic markdown syntax such at italic are supported here."
+
+[node name="Location" type="RichTextLabel" parent="Editor Panel/Sorter"]
+layout_mode = 2
+bbcode_enabled = true
+text = "NOT SAVING ANYWHERE"
+fit_content = true
 
 [node name="Themes" type="PanelContainer" parent="." node_paths=PackedStringArray("theme_list", "theme_name_label", "theme_by_label", "title_page", "heading_page", "subtitle_page", "selection_button", "url_button")]
 visible = false
@@ -213,7 +229,7 @@ use_native_dialog = true
 [connection signal="id_pressed" from="Navbar/Sorter/Left/file" to="." method="file_menu_functions"]
 [connection signal="tab_changed" from="Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
 [connection signal="pressed" from="Navbar/Sorter/Right/Refresh" to="." method="refresh"]
-[connection signal="text_changed" from="Editor" to="." method="set_text_content"]
+[connection signal="text_changed" from="Editor Panel/Sorter/Editor" to="." method="set_text_content"]
 [connection signal="switch_theme_to" from="Themes" to="." method="switch_theme_to"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/Use" to="Themes" method="use_theme"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/URL" to="Themes" method="open_url"]
