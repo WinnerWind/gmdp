@@ -81,6 +81,7 @@ func set_slide_buttons(pages:Array):
 	for child in slide_buttons_sorter.get_children(): child.queue_free()
 	for index in pages.size():
 		var page = pages[index]
+		await get_tree().process_frame
 		var page_preview = main_slide_sorter.get_child(index).get_subviewport_texture()
 		var slide_button:SlideButton = slide_button_scene.instantiate()
 		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title), page_preview)
