@@ -28,8 +28,6 @@ func switch_theme_to(theme_path:String):
 	refresh()
 
 func _ready() -> void:
-	text_editor.text = MarkdownParser.text_content
-	
 	iterate_pages()
 	get_window().size_changed.connect(iterate_pages)
 
@@ -132,14 +130,22 @@ func save(path:String):
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(MarkdownParser.text_content)
 	file.close()
+	MarkdownParser.last_file_path = path
 	print("Saved!")
 func file_menu_functions(id:int):
 	match id:
 		0: #open file
 			open_file.show()
 		1: #save
-			save_file.show()
+			if MarkdownParser.last_file_path:
+				save(MarkdownParser.last_file_path)
+			else:
+				save_file.show()
 		2: #open new file
-			pass
+			MarkdownParser.last_file_path = ""
+			MarkdownParser.text_content = ""
+			MarkdownParser.parse_file_content(MarkdownParser.text_content)
+			text_editor.text = MarkdownParser.text_content
+			refresh()
 		3: #exit
 			get_tree().quit()
