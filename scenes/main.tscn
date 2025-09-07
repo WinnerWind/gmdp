@@ -195,6 +195,7 @@ text = "open url"
 
 [node name="Open File Dialog" type="FileDialog" parent="."]
 title = "Open a File"
+position = Vector2i(0, 36)
 visible = true
 ok_button_text = "Open"
 file_mode = 0
@@ -203,6 +204,7 @@ use_native_dialog = true
 
 [connection signal="tab_changed" from="Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
 [connection signal="pressed" from="Navbar/Sorter/Right/Refresh" to="." method="refresh"]
+[connection signal="text_changed" from="Editor" to="." method="set_text_content"]
 [connection signal="switch_theme_to" from="Themes" to="." method="switch_theme_to"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/Use" to="Themes" method="use_theme"]
 [connection signal="pressed" from="Themes/Sorter/Info/Buttons/URL" to="Themes" method="open_url"]

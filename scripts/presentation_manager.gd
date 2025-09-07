@@ -32,8 +32,6 @@ func _ready() -> void:
 
 func refresh() -> void:
 	iterate_pages()
-	text_editor.text = MarkdownParser.text_content
-
 
 func set_text_content() -> void:
 	var text = text_editor.text
@@ -60,10 +58,10 @@ func iterate_pages():
 			[true, true, true, false]: page_to_load_path = "heading_subtitle"
 			[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
 			[true, false, false, false]: page_to_load_path = "title"
+			_: page_to_load_path = "title"
 		
 		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
 		var loaded_page := page_to_load.instantiate()
-		loaded_page.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
 		var subviewport:PageSubViewPort = page_subviewport.instantiate()
 		subviewport.add_page(loaded_page)
 		main_slide_sorter.add_child(subviewport)
@@ -121,4 +119,5 @@ func _on_tabs_tab_changed(tab: int) -> void:
 
 func set_file_path(file_path:String):
 	MarkdownParser.parse_file_content(MarkdownParser.get_file_content(file_path))
+	text_editor.text = MarkdownParser.text_content
 	refresh()
