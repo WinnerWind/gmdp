@@ -121,6 +121,19 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="Starting Text" type="RichTextLabel" parent="Slides View/Main/Margins/Slides"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "Welcome to GMDP! 
+If you're reading this, you have no presentation configured. 
+
+You can start editing a new presentation from scratch by going to the edit tab. 
+
+You can open existing markdown files as a presentation from the File menu.
+
+I hope you enjoy GMDP!"
+
 [node name="Editor Panel" type="PanelContainer" parent="."]
 visible = false
 layout_mode = 2

@@ -30,7 +30,6 @@ func switch_theme_to(theme_path:String):
 	refresh()
 
 func _ready() -> void:
-	iterate_pages()
 	get_window().size_changed.connect(iterate_pages)
 
 func refresh() -> void:
