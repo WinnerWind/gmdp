@@ -202,3 +202,12 @@ func _on_main_scroll_changed(new_value: float) -> void:
 	for child:SlideButton in slide_buttons_sorter.get_children():
 		child.untoggle()
 	slide_buttons_sorter.get_child(current_page_number - 1).toggle()
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("Save"):
+		if MarkdownParser.last_file_path:
+			save(MarkdownParser.last_file_path)
+		else:
+			save_file.show()
+	elif event.is_action_pressed("Open File"):
+		open_file.show()
