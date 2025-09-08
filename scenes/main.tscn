@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=10 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cb3246b2xfqtc" path="res://scenes/presenter_view.tscn" id="4_o6xl0"]
 [ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/popup_menu_button.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
+[ext_resource type="Script" uid="uid://catm6dbuc0lhh" path="res://scripts/scroll_point_emitter.gd" id="7_85g3d"]
 
 [node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "open_file", "save_file")]
 anchors_preset = 15
@@ -120,6 +121,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
+script = ExtResource("7_85g3d")
 
 [node name="Margins" type="MarginContainer" parent="NavSorter/Slides View/Main"]
 layout_mode = 2
@@ -261,6 +263,7 @@ use_native_dialog = true
 [connection signal="id_pressed" from="NavSorter/Navbar/Sorter/Left/view" to="." method="view_menu_functions"]
 [connection signal="tab_clicked" from="NavSorter/Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
 [connection signal="pressed" from="NavSorter/Navbar/Sorter/Right/Refresh" to="." method="refresh"]
+[connection signal="scroll_changed" from="NavSorter/Slides View/Main" to="." method="_on_main_scroll_changed"]
 [connection signal="text_changed" from="NavSorter/Editor Panel/MarginContainer/Sorter/Editor" to="." method="set_text_content"]
 [connection signal="switch_theme_to" from="NavSorter/Themes" to="." method="switch_theme_to"]
 [connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/Use" to="NavSorter/Themes" method="use_theme"]

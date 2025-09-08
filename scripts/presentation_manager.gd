@@ -192,3 +192,14 @@ func view_menu_functions(id:int):
 			new_presentation.theme_data_path = config_file
 			get_tree().root.add_child(new_presentation)
 			hide()
+
+func _on_main_scroll_changed(new_value: float) -> void:
+	var new_value_int = int(new_value)
+	var max_value:int = int(main_slide_scroll.get_v_scroll_bar().max_value)
+	# Essentially get the size of the viewport used.
+	var page_height:int = main_slide_sorter.get_child(0).get_child(0).size.y
+	var current_page_number = snappedi(new_value_int/page_height, 1) + 1
+	
+	for child:SlideButton in slide_buttons_sorter.get_children():
+		child.untoggle()
+	slide_buttons_sorter.get_child(current_page_number - 1).toggle()
