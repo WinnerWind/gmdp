@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=22 format=3 uid="uid://chomi8nn8138g"]
+[gd_resource type="Theme" load_steps=23 format=3 uid="uid://chomi8nn8138g"]
 
 [ext_resource type="FontFile" uid="uid://be06miu2tcruu" path="res://resources/fonts/FiraCode-Regular.ttf" id="1_7ip6p"]
 [ext_resource type="StyleBox" uid="uid://chl5nc56hjif0" path="res://resources/theme/styleboxes/panel_halo.tres" id="2_086gh"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dssj6aiqil8up" path="res://resources/fonts/FiraCode-Light.ttf" id="3_lfacf"]
 [ext_resource type="StyleBox" uid="uid://bhauqvwqcnk2d" path="res://resources/theme/styleboxes/button_pressed.tres" id="3_r8lfk"]
 [ext_resource type="StyleBox" uid="uid://cpktkqpy8bfys" path="res://resources/theme/styleboxes/fg_panel_alt.tres" id="4_bwsqs"]
+[ext_resource type="FontFile" uid="uid://b5l0orglnm1xl" path="res://resources/fonts/FiraCode-Bold.ttf" id="5_mra7g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jr5h8"]
 content_margin_left = 10.0
@@ -139,6 +140,7 @@ PopupMenu/fonts/font = ExtResource("1_7ip6p")
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_chhdl")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_mra7g")
 RichTextLabel/colors/default_color = Color(0.976471, 0.94902, 0.87451, 1)
+RichTextLabel/fonts/bold_font = ExtResource("5_mra7g")
 RichTextLabel/fonts/italics_font = ExtResource("3_lfacf")
 RichTextLabel/fonts/normal_font = ExtResource("1_7ip6p")
 TabBar/colors/font_selected_color = Color(0.933333, 0.909804, 0.835294, 1)
