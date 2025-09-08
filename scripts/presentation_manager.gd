@@ -1,7 +1,7 @@
 extends Control
 class_name PresentationManager
 
-@export_file("*.ini") var config_file:String
+static var config_file:String = "res://templates/gummy/meta.ini"
 
 @export_category("Nodes")
 @export var main_slide_sorter:VBoxContainer
@@ -20,7 +20,7 @@ class_name PresentationManager
 @export var slide_button_scene:PackedScene
 @export var page_subviewport:PackedScene
 
-var config := ConfigFile.new()
+static var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
 
 var total_pages:int
@@ -73,7 +73,31 @@ func iterate_pages():
 	
 	set_slide_buttons(data)
 
-func get_canonical_path_from_config(key:String) -> String:
+static func get_specific_page(page_number:int, custom_config_file:String = "res://templates/gummy/meta.ini"):
+	config.load(custom_config_file)
+	
+	var data := MarkdownParser.data
+	var page = data[page_number]
+	var page_to_load_path:String
+	var content:String = page.content
+	var heading:String = page.title
+	var subheading:String = page.subtitle
+	var images:Array = page.images
+	
+	match [!!heading, !!subheading, !!content, !!images]:
+		[true, false, true, false]: page_to_load_path = "heading"
+		[true, true, true, false]: page_to_load_path = "heading_subtitle"
+		[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
+		[true, false, false, false]: page_to_load_path = "title"
+		[false, false, true, false]: page_to_load_path = "text_only"
+		_: page_to_load_path = "title"
+	
+	var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
+	var loaded_page:Slide = page_to_load.instantiate()
+	loaded_page.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
+	loaded_page.set_content(heading, subheading, content, images)
+	return loaded_page
+static func get_canonical_path_from_config(key:String) -> String:
 	if config.has_section_key(SCENE_NAME_SECTION, key):
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
 	else:
@@ -90,7 +114,7 @@ func set_slide_buttons(pages:Array):
 		slide_button.go_to_page.connect(scroll_to_page.bind(index))
 		slide_buttons_sorter.add_child(slide_button)
 
-func iterate_scenes_and_send_warning(key:String, number:int) -> String:
+static func iterate_scenes_and_send_warning(key:String, number:int) -> String:
 	var original_number = number
 	while get_canonical_path_from_config(key % number) == "Does not exist!":
 		number -= 1

@@ -14,7 +14,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_o5qli")
-config_file = "res://templates/gummy/meta.ini"
 main_slide_sorter = NodePath("Slides View/Main/Margins/Slides")
 main_slide_scroll = NodePath("Slides View/Main")
 slide_buttons_sorter = NodePath("Slides View/Slides/ScrollContainer/Sorter")
