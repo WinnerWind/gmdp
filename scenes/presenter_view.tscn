@@ -11,6 +11,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vh47l")
 page_container = NodePath("Page")
+main_scene = "uid://dxdx73k3pcw5t"
 
 [node name="Page" parent="." instance=ExtResource("1_tw7g5")]
 layout_mode = 2

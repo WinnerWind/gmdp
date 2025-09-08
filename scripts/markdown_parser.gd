@@ -1,18 +1,7 @@
 extends Node
 ## This script parses markdown into data that the presentation devices can understand
 
-var data:Array[Dictionary] = [{
-	"title": "MyHeading",
-	"content" : "hi!",
-	"images": [],
-	"subtitle": "no!!!!"
-},
-	{
-		"title": "This is a bucket",
-		"content": "",
-		"images": [],
-		"subtitle": "no!!!!"
-	}]
+var data:Array[Dictionary] = [{}]
 
 const PAGE_SPLITTER:String = "\n---\n"
 const HEADING_1_REGEX:String = r"^# (.*)"

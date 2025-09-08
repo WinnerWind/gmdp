@@ -19,6 +19,8 @@ static var config_file:String = "res://templates/gummy/meta.ini"
 @export_category("PackedScenes")
 @export var slide_button_scene:PackedScene
 @export var page_subviewport:PackedScene
+@export_subgroup("Presentation")
+@export var presentation:PackedScene
 
 static var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
@@ -34,6 +36,8 @@ func _ready() -> void:
 
 func refresh() -> void:
 	iterate_pages()
+	var has_data = !MarkdownParser.data[0]
+	$Navbar/Sorter/Left/view.get_popup().set_item_disabled(0, has_data)
 
 func set_text_content() -> void:
 	var text = text_editor.text
@@ -43,6 +47,7 @@ func set_text_content() -> void:
 func iterate_pages():
 	for child in main_slide_sorter.get_children(): child.free()
 	config.load(config_file)
+	if not MarkdownParser.data[0]: return
 	
 	var page_to_load_path:String
 	
@@ -178,3 +183,11 @@ func file_menu_functions(id:int):
 			refresh()
 		3: #exit
 			get_tree().quit()
+
+func view_menu_functions(id:int):
+	match id:
+		0: #start presentation
+			var new_presentation:PresenterView = presentation.instantiate()
+			new_presentation.theme_data_path = config_file
+			get_tree().root.add_child(new_presentation)
+			hide()
