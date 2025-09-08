@@ -25,6 +25,7 @@ alignment = 1
 [node name="MarginContainer" type="MarginContainer" parent="Sorter"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_type_variation = &"MarginsSlideButton"
 
 [node name="Preview" type="TextureRect" parent="Sorter/MarginContainer"]
 layout_mode = 2
@@ -41,6 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme_type_variation = &"PanelSlideUntoggled"
 
 [node name="Page Number" type="RichTextLabel" parent="Sorter"]
 layout_mode = 2

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=9 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
+[ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://duimm05pw8ngk" path="res://scenes/prefabs/slide_button.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dt8k4dbtsyj0o" path="res://scenes/prefabs/page_subviewport.tscn" id="3_sugp2"]
 [ext_resource type="Script" uid="uid://calus87qprk6b" path="res://scripts/themes_list.gd" id="4_jyhfs"]
@@ -8,40 +9,47 @@
 [ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/popup_menu_button.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
 
-[node name="Main" type="VBoxContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "open_file", "save_file")]
+[node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "open_file", "save_file")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_tipki")
+theme_type_variation = &"PanelBG"
 script = ExtResource("1_o5qli")
-main_slide_sorter = NodePath("Slides View/Main/Margins/Slides")
-main_slide_scroll = NodePath("Slides View/Main")
-slide_buttons_sorter = NodePath("Slides View/Slides/ScrollContainer/Sorter")
-text_editor = NodePath("Editor Panel/Sorter/Editor")
-editor_panel = NodePath("Editor Panel")
-themes_view = NodePath("Themes")
-slides_view = NodePath("Slides View")
-location_label = NodePath("Editor Panel/Sorter/Location")
-open_file = NodePath("Open File Dialog")
-save_file = NodePath("Save File")
+main_slide_sorter = NodePath("NavSorter/Slides View/Main/Margins/Slides")
+main_slide_scroll = NodePath("NavSorter/Slides View/Main")
+slide_buttons_sorter = NodePath("NavSorter/Slides View/Slides/ScrollContainer/Sorter")
+text_editor = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Editor")
+editor_panel = NodePath("NavSorter/Editor Panel")
+themes_view = NodePath("NavSorter/Themes")
+slides_view = NodePath("NavSorter/Slides View")
+location_label = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Location")
+view_button = NodePath("NavSorter/Navbar/Sorter/Left/view")
+open_file = NodePath("NavSorter/Open File Dialog")
+save_file = NodePath("NavSorter/Save File")
 slide_button_scene = ExtResource("2_0wfyh")
 page_subviewport = ExtResource("3_sugp2")
 presentation = ExtResource("4_o6xl0")
 
-[node name="Navbar" type="PanelContainer" parent="."]
+[node name="NavSorter" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Navbar" type="PanelContainer" parent="NavSorter"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
+theme_type_variation = &"PanelNav"
 
-[node name="Sorter" type="HBoxContainer" parent="Navbar"]
+[node name="Sorter" type="HBoxContainer" parent="NavSorter/Navbar"]
 layout_mode = 2
 
-[node name="Left" type="HBoxContainer" parent="Navbar/Sorter"]
+[node name="Left" type="HBoxContainer" parent="NavSorter/Navbar/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="file" type="MenuButton" parent="Navbar/Sorter/Left"]
+[node name="file" type="MenuButton" parent="NavSorter/Navbar/Sorter/Left"]
 layout_mode = 2
 text = "file"
 item_count = 4
@@ -55,7 +63,7 @@ popup/item_3/text = "Exit"
 popup/item_3/id = 3
 script = ExtResource("4_tefeu")
 
-[node name="view" type="MenuButton" parent="Navbar/Sorter/Left"]
+[node name="view" type="MenuButton" parent="NavSorter/Navbar/Sorter/Left"]
 layout_mode = 2
 text = "view"
 item_count = 1
@@ -64,12 +72,12 @@ popup/item_0/id = 0
 popup/item_0/disabled = true
 script = ExtResource("4_tefeu")
 
-[node name="Center" type="HBoxContainer" parent="Navbar/Sorter"]
+[node name="Center" type="HBoxContainer" parent="NavSorter/Navbar/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="Tabs" type="TabBar" parent="Navbar/Sorter/Center"]
+[node name="Tabs" type="TabBar" parent="NavSorter/Navbar/Sorter/Center"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
@@ -80,53 +88,51 @@ tab_0/title = "slides"
 tab_1/title = "edit"
 tab_2/title = "themes"
 
-[node name="Right" type="HBoxContainer" parent="Navbar/Sorter"]
+[node name="Right" type="HBoxContainer" parent="NavSorter/Navbar/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 2
 
-[node name="Refresh" type="Button" parent="Navbar/Sorter/Right"]
+[node name="Refresh" type="Button" parent="NavSorter/Navbar/Sorter/Right"]
 layout_mode = 2
 text = "refresh"
 
-[node name="Slides View" type="HBoxContainer" parent="."]
+[node name="Slides View" type="HBoxContainer" parent="NavSorter"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Slides" type="PanelContainer" parent="Slides View"]
+[node name="Slides" type="PanelContainer" parent="NavSorter/Slides View"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
+theme_type_variation = &"PanelSlides"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Slides View/Slides"]
+[node name="ScrollContainer" type="ScrollContainer" parent="NavSorter/Slides View/Slides"]
 layout_mode = 2
 
-[node name="Sorter" type="VBoxContainer" parent="Slides View/Slides/ScrollContainer"]
+[node name="Sorter" type="VBoxContainer" parent="NavSorter/Slides View/Slides/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Main" type="ScrollContainer" parent="Slides View"]
+[node name="Main" type="ScrollContainer" parent="NavSorter/Slides View"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 0
 
-[node name="Margins" type="MarginContainer" parent="Slides View/Main"]
+[node name="Margins" type="MarginContainer" parent="NavSorter/Slides View/Main"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 50
-theme_override_constants/margin_top = 50
-theme_override_constants/margin_right = 50
-theme_override_constants/margin_bottom = 50
+theme_type_variation = &"MarginSlides"
 
-[node name="Slides" type="VBoxContainer" parent="Slides View/Main/Margins"]
+[node name="Slides" type="VBoxContainer" parent="NavSorter/Slides View/Main/Margins"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Starting Text" type="RichTextLabel" parent="Slides View/Main/Margins/Slides"]
+[node name="Starting Text" type="RichTextLabel" parent="NavSorter/Slides View/Main/Margins/Slides"]
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
@@ -139,100 +145,107 @@ You can open existing markdown files as a presentation from the File menu.
 
 I hope you enjoy GMDP!"
 
-[node name="Editor Panel" type="PanelContainer" parent="."]
+[node name="Editor Panel" type="PanelContainer" parent="NavSorter"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Sorter" type="VBoxContainer" parent="Editor Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="NavSorter/Editor Panel"]
+layout_mode = 2
+
+[node name="Sorter" type="VBoxContainer" parent="NavSorter/Editor Panel/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Editor" type="TextEdit" parent="Editor Panel/Sorter"]
+[node name="Editor" type="TextEdit" parent="NavSorter/Editor Panel/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Basic markdown syntax such at italic are supported here."
 
-[node name="Location" type="RichTextLabel" parent="Editor Panel/Sorter"]
+[node name="Location" type="RichTextLabel" parent="NavSorter/Editor Panel/MarginContainer/Sorter"]
 layout_mode = 2
 bbcode_enabled = true
 text = "NOT SAVING ANYWHERE"
 fit_content = true
 
-[node name="Themes" type="PanelContainer" parent="." node_paths=PackedStringArray("theme_list", "theme_name_label", "theme_by_label", "title_page", "heading_page", "subtitle_page", "selection_button", "url_button")]
+[node name="Themes" type="PanelContainer" parent="NavSorter" node_paths=PackedStringArray("theme_list", "theme_name_label", "theme_by_label", "title_page", "heading_page", "subtitle_page", "selection_button", "url_button")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+theme_type_variation = &"PanelThemes"
 script = ExtResource("4_jyhfs")
 themes_path = "res://templates"
-theme_list = NodePath("Sorter/List")
-theme_name_label = NodePath("Sorter/Info/Name")
-theme_by_label = NodePath("Sorter/Info/By")
-title_page = NodePath("Sorter/Info/Previews/Title")
-heading_page = NodePath("Sorter/Info/Previews/Heading")
-subtitle_page = NodePath("Sorter/Info/Previews/Subtitle")
-selection_button = NodePath("Sorter/Info/Buttons/Use")
-url_button = NodePath("Sorter/Info/Buttons/URL")
+theme_list = NodePath("MarginContainer/Sorter/List")
+theme_name_label = NodePath("MarginContainer/Sorter/Info/Name")
+theme_by_label = NodePath("MarginContainer/Sorter/Info/By")
+title_page = NodePath("MarginContainer/Sorter/Info/Previews/Title")
+heading_page = NodePath("MarginContainer/Sorter/Info/Previews/Heading")
+subtitle_page = NodePath("MarginContainer/Sorter/Info/Previews/Subtitle")
+selection_button = NodePath("MarginContainer/Sorter/Info/Buttons/Use")
+url_button = NodePath("MarginContainer/Sorter/Info/Buttons/URL")
 theme_entry = ExtResource("5_tbgi4")
 
-[node name="Sorter" type="HBoxContainer" parent="Themes"]
+[node name="MarginContainer" type="MarginContainer" parent="NavSorter/Themes"]
 layout_mode = 2
 
-[node name="List" type="VBoxContainer" parent="Themes/Sorter"]
+[node name="Sorter" type="HBoxContainer" parent="NavSorter/Themes/MarginContainer"]
+layout_mode = 2
+
+[node name="List" type="VBoxContainer" parent="NavSorter/Themes/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 
-[node name="Info" type="VBoxContainer" parent="Themes/Sorter"]
+[node name="Info" type="VBoxContainer" parent="NavSorter/Themes/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Name" type="RichTextLabel" parent="Themes/Sorter/Info"]
+[node name="Name" type="RichTextLabel" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 text = "NO THEME SELECTED"
 
-[node name="By" type="RichTextLabel" parent="Themes/Sorter/Info"]
+[node name="By" type="RichTextLabel" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 text = "Authored by WinnerWind and designed by WinnerWind on 2025-09-06. Version 1.1.1"
 
-[node name="Previews" type="GridContainer" parent="Themes/Sorter/Info"]
+[node name="Previews" type="GridContainer" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2
 size_flags_vertical = 3
 columns = 2
 
-[node name="Title" parent="Themes/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
+[node name="Title" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
 visible = false
 layout_mode = 2
 
-[node name="Heading" parent="Themes/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
+[node name="Heading" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
 visible = false
 layout_mode = 2
 
-[node name="Subtitle" parent="Themes/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
+[node name="Subtitle" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
 visible = false
 layout_mode = 2
 
-[node name="Buttons" type="HBoxContainer" parent="Themes/Sorter/Info"]
+[node name="Buttons" type="HBoxContainer" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 alignment = 2
 
-[node name="Use" type="Button" parent="Themes/Sorter/Info/Buttons"]
+[node name="Use" type="Button" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons"]
 visible = false
 layout_mode = 2
 text = "use this theme"
 
-[node name="URL" type="Button" parent="Themes/Sorter/Info/Buttons"]
+[node name="URL" type="Button" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons"]
 visible = false
 layout_mode = 2
 text = "open url"
 
-[node name="Open File Dialog" type="FileDialog" parent="."]
+[node name="Open File Dialog" type="FileDialog" parent="NavSorter"]
 title = "Open a File"
 position = Vector2i(0, 36)
 ok_button_text = "Open"
@@ -240,17 +253,17 @@ file_mode = 0
 filters = PackedStringArray("*.md", "*.txt")
 use_native_dialog = true
 
-[node name="Save File" type="FileDialog" parent="."]
+[node name="Save File" type="FileDialog" parent="NavSorter"]
 filters = PackedStringArray("*.md", "*.txt")
 use_native_dialog = true
 
-[connection signal="id_pressed" from="Navbar/Sorter/Left/file" to="." method="file_menu_functions"]
-[connection signal="id_pressed" from="Navbar/Sorter/Left/view" to="." method="view_menu_functions"]
-[connection signal="tab_changed" from="Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
-[connection signal="pressed" from="Navbar/Sorter/Right/Refresh" to="." method="refresh"]
-[connection signal="text_changed" from="Editor Panel/Sorter/Editor" to="." method="set_text_content"]
-[connection signal="switch_theme_to" from="Themes" to="." method="switch_theme_to"]
-[connection signal="pressed" from="Themes/Sorter/Info/Buttons/Use" to="Themes" method="use_theme"]
-[connection signal="pressed" from="Themes/Sorter/Info/Buttons/URL" to="Themes" method="open_url"]
-[connection signal="file_selected" from="Open File Dialog" to="." method="set_file_path"]
-[connection signal="file_selected" from="Save File" to="." method="save"]
+[connection signal="id_pressed" from="NavSorter/Navbar/Sorter/Left/file" to="." method="file_menu_functions"]
+[connection signal="id_pressed" from="NavSorter/Navbar/Sorter/Left/view" to="." method="view_menu_functions"]
+[connection signal="tab_clicked" from="NavSorter/Navbar/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
+[connection signal="pressed" from="NavSorter/Navbar/Sorter/Right/Refresh" to="." method="refresh"]
+[connection signal="text_changed" from="NavSorter/Editor Panel/MarginContainer/Sorter/Editor" to="." method="set_text_content"]
+[connection signal="switch_theme_to" from="NavSorter/Themes" to="." method="switch_theme_to"]
+[connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/Use" to="NavSorter/Themes" method="use_theme"]
+[connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/URL" to="NavSorter/Themes" method="open_url"]
+[connection signal="file_selected" from="NavSorter/Open File Dialog" to="." method="set_file_path"]
+[connection signal="file_selected" from="NavSorter/Save File" to="." method="save"]

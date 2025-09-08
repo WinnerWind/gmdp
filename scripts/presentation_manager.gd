@@ -12,6 +12,7 @@ static var config_file:String = "res://templates/gummy/meta.ini"
 @export var themes_view:Control
 @export var slides_view:Control
 @export var location_label:RichTextLabel
+@export var view_button:MenuButton
 @export_subgroup("FileDialogs")
 @export var open_file:FileDialog
 @export var save_file:FileDialog
@@ -37,7 +38,7 @@ func _ready() -> void:
 func refresh() -> void:
 	iterate_pages()
 	var has_data = !MarkdownParser.data[0]
-	$Navbar/Sorter/Left/view.get_popup().set_item_disabled(0, has_data)
+	view_button.get_popup().set_item_disabled(0, has_data)
 
 func set_text_content() -> void:
 	var text = text_editor.text
