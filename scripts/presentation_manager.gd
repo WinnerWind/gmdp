@@ -72,7 +72,6 @@ func iterate_pages():
 		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
 		var loaded_page:Slide = page_to_load.instantiate()
 		var subviewport:PageSubViewPort = page_subviewport.instantiate()
-		loaded_page.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
 		subviewport.add_page(loaded_page)
 		main_slide_sorter.add_child(subviewport)
 		loaded_page.set_content(heading, subheading, content, images)

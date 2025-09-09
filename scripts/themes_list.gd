@@ -64,10 +64,6 @@ func set_details(theme_name:String, author:String, designed_by:String, version:S
 	var subtitle_scene:Slide = load(heading_subtitle_scene_path).instantiate()
 	var text_only_scene:Slide = load(text_only_scene_path).instantiate()
 	
-	heading_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
-	title_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
-	subtitle_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
-	text_only_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
 	
 	title_scene.set_content(theme_name, "", "", [])
 	heading_scene.set_content("So what is {theme_name}?".format({"theme_name":theme_name}), "", "This is a really beautiful theme made for GMDP!\nTry me out! Please!",[])
