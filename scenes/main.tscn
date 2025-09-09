@@ -176,6 +176,8 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Basic markdown syntax such at italic are supported here."
+wrap_mode = 1
+scroll_fit_content_width = true
 
 [node name="Location" type="RichTextLabel" parent="NavSorter/Editor Panel/MarginContainer/Sorter"]
 layout_mode = 2
