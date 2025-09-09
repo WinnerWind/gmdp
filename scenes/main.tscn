@@ -106,7 +106,6 @@ icon_alignment = 1
 expand_icon = true
 
 [node name="Slides View" type="HBoxContainer" parent="NavSorter"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -185,6 +184,7 @@ text = "NOT SAVING ANYWHERE"
 fit_content = true
 
 [node name="Themes" type="PanelContainer" parent="NavSorter" node_paths=PackedStringArray("theme_list", "theme_name_label", "theme_by_label", "title_page", "heading_page", "subtitle_page", "text_only_page", "selection_button", "url_button")]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 theme_type_variation = &"PanelThemes"
@@ -229,7 +229,8 @@ text = "NO THEME SELECTED"
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
-text = "Authored by WinnerWind and designed by WinnerWind on 2025-09-06. Version 1.1.1"
+bbcode_enabled = true
+text = "You can add themes here. For more info about themes, visit [url=\"https://winnerwind.in\"]this link[/url]"
 
 [node name="Previews" type="GridContainer" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2
@@ -287,6 +288,7 @@ use_native_dialog = true
 [connection signal="scroll_changed" from="NavSorter/Slides View/Main" to="." method="_on_main_scroll_changed"]
 [connection signal="text_changed" from="NavSorter/Editor Panel/MarginContainer/Sorter/Editor" to="." method="set_text_content"]
 [connection signal="switch_theme_to" from="NavSorter/Themes" to="." method="switch_theme_to"]
+[connection signal="meta_clicked" from="NavSorter/Themes/MarginContainer/Sorter/Info/By" to="NavSorter/Themes" method="open_url_custom"]
 [connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/Use" to="NavSorter/Themes" method="use_theme"]
 [connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/URL" to="NavSorter/Themes" method="open_url"]
 [connection signal="file_selected" from="NavSorter/Open File Dialog" to="." method="set_file_path"]

@@ -53,7 +53,7 @@ func _ready() -> void:
 
 func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String, text_only_scene_path:String):
 	theme_name_label.text = theme_name
-	theme_by_label.text = "Authored by {author}, and designed by {designer} on {date}. Version v{version}".format({
+	theme_by_label.text = "Authored by [b]{author}[/b] and designed by [b]{designer}[/b] on {date}. [i]Version v{version}[/i]".format({
 		"author": author,
 		"designer": designed_by,
 		"version": version,
@@ -94,6 +94,9 @@ var current_url:String = ""
 func open_url():
 	if not current_url == "":
 		OS.shell_open(current_url)
+
+func open_url_custom(custom_url:String):
+	OS.shell_open(custom_url)
 
 var current_theme_meta_file:String
 signal switch_theme_to(theme_meta_file:String)
