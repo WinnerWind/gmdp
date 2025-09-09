@@ -199,6 +199,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.4
 
+[node name="VSeparator" type="VSeparator" parent="NavSorter/Themes/MarginContainer/Sorter"]
+layout_mode = 2
+
 [node name="Info" type="VBoxContainer" parent="NavSorter/Themes/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
