@@ -1,0 +1,29 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8o7w7af37ine"]
+
+[ext_resource type="FontFile" uid="uid://bbkq7hth75yar" path="res://templates/gummy/fonts/SpaceGrotesk_VariableFont_wght.ttf" id="1_6r0ku"]
+[ext_resource type="FontFile" uid="uid://d0dl8am30um3g" path="res://templates/gummy/fonts/Peace_Sans.otf" id="1_obqlp"]
+
+[sub_resource type="Gradient" id="Gradient_60xmt"]
+colors = PackedColorArray(0.126, 0.1494, 0.36, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6r0ku"]
+gradient = SubResource("Gradient_60xmt")
+fill = 1
+fill_from = Vector2(1, 0)
+fill_to = Vector2(0.6, 0.4)
+metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_obqlp"]
+texture = SubResource("GradientTexture2D_6r0ku")
+
+[resource]
+default_font = ExtResource("1_6r0ku")
+default_font_size = 64
+BGPanel/base_type = &"Panel"
+BGPanel/styles/panel = SubResource("StyleBoxTexture_obqlp")
+MarginContainer/constants/margin_bottom = 50
+MarginContainer/constants/margin_left = 50
+MarginContainer/constants/margin_right = 50
+MarginContainer/constants/margin_top = 50
+Title/base_type = &"RichTextLabel"
+Title/fonts/normal_font = ExtResource("1_obqlp")
