@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dt8k4dbtsyj0o"]
+[gd_scene load_steps=3 format=3 uid="uid://dt8k4dbtsyj0o"]
 
 [ext_resource type="Script" uid="uid://dm1jrk1lmr6pr" path="res://scripts/page_subviewport.gd" id="1_vj1hi"]
+[ext_resource type="PackedScene" uid="uid://dch0lkbdu1s6s" path="res://templates/gummy/title.tscn" id="2_ekkdk"]
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" node_paths=PackedStringArray("subviewport")]
+[node name="AspectRatioContainer" type="AspectRatioContainer" node_paths=PackedStringArray("subviewport", "center_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -13,6 +14,8 @@ size_flags_vertical = 3
 ratio = 1.77
 script = ExtResource("1_vj1hi")
 subviewport = NodePath("PageSubviewport/SubViewport")
+center_container = NodePath("PageSubviewport/SubViewport/CenterContainer")
+page_size = Vector2(1920, 1080)
 
 [node name="PageSubviewport" type="SubViewportContainer" parent="."]
 custom_minimum_size = Vector2(1, 1)
@@ -27,3 +30,13 @@ size = Vector2i(1146, 648)
 size_2d_override = Vector2i(1920, 1080)
 size_2d_override_stretch = true
 render_target_update_mode = 4
+
+[node name="CenterContainer" type="PanelContainer" parent="PageSubviewport/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" parent="PageSubviewport/SubViewport/CenterContainer" instance=ExtResource("2_ekkdk")]
+layout_mode = 2
