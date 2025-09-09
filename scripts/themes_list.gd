@@ -9,6 +9,7 @@ class_name ThemesList
 @export var title_page:PageSubViewPort
 @export var heading_page:PageSubViewPort
 @export var subtitle_page:PageSubViewPort
+@export var text_only_page:PageSubViewPort
 @export var selection_button:Button
 @export var url_button:Button
 
@@ -37,10 +38,11 @@ func _ready() -> void:
 						var heading_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading")
 						var title_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "title")
 						var heading_subtitle_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_subtitle")
+						var text_only_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "text_only")
 						
 						var new_theme_entry:ThemeEntry = theme_entry.instantiate()
 						new_theme_entry.set_details(theme_name, author)
-						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, version, date, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path, meta_file_full_path))
+						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, version, date, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path, meta_file_full_path, text_only_scene_path))
 						theme_list.add_child(new_theme_entry)
 					else:
 						push_error("Metadata incomplete in %s" % meta_file_full_path)
@@ -49,7 +51,7 @@ func _ready() -> void:
 			else:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])
 
-func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String):
+func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String, text_only_scene_path:String):
 	theme_name_label.text = theme_name
 	theme_by_label.text = "Authored by {author}, and designed by {designer} on {date}. Version v{version}".format({
 		"author": author,
@@ -60,20 +62,27 @@ func set_details(theme_name:String, author:String, designed_by:String, version:S
 	var heading_scene:Slide = load(heading_scene_path).instantiate()
 	var title_scene:Slide = load(title_scene_path).instantiate()
 	var subtitle_scene:Slide = load(heading_subtitle_scene_path).instantiate()
+	var text_only_scene:Slide = load(text_only_scene_path).instantiate()
+	
 	heading_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
 	title_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
 	subtitle_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
+	text_only_scene.call_deferred(&"set_scale_no_size", (Vector2.ONE * 3))
+	
 	title_scene.set_content(theme_name, "", "", [])
 	heading_scene.set_content("So what is {theme_name}?".format({"theme_name":theme_name}), "", "This is a really beautiful theme made for GMDP!\nTry me out! Please!",[])
 	subtitle_scene.set_content("So, you decided to try it", "but have you really?", "I mean, who's to say? Click the \"Use this theme\" button to try me!", [])
+	text_only_scene.set_content("","","This is a scene which only has text. This scene contains nothing but text. What did you expect?", [])
 	
 	title_page.show()
 	heading_page.show()
 	subtitle_page.show()
+	text_only_page.show()
 	
 	title_page.add_page(title_scene)
 	heading_page.add_page(heading_scene)
 	subtitle_page.add_page(subtitle_scene)
+	text_only_page.add_page(text_only_scene)
 	
 	current_url = url
 	current_theme_meta_file = meta_file

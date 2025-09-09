@@ -170,7 +170,7 @@ bbcode_enabled = true
 text = "NOT SAVING ANYWHERE"
 fit_content = true
 
-[node name="Themes" type="PanelContainer" parent="NavSorter" node_paths=PackedStringArray("theme_list", "theme_name_label", "theme_by_label", "title_page", "heading_page", "subtitle_page", "selection_button", "url_button")]
+[node name="Themes" type="PanelContainer" parent="NavSorter" node_paths=PackedStringArray("theme_list", "theme_name_label", "theme_by_label", "title_page", "heading_page", "subtitle_page", "text_only_page", "selection_button", "url_button")]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
@@ -183,6 +183,7 @@ theme_by_label = NodePath("MarginContainer/Sorter/Info/By")
 title_page = NodePath("MarginContainer/Sorter/Info/Previews/Title")
 heading_page = NodePath("MarginContainer/Sorter/Info/Previews/Heading")
 subtitle_page = NodePath("MarginContainer/Sorter/Info/Previews/Subtitle")
+text_only_page = NodePath("MarginContainer/Sorter/Info/Previews/TextOnly")
 selection_button = NodePath("MarginContainer/Sorter/Info/Buttons/Use")
 url_button = NodePath("MarginContainer/Sorter/Info/Buttons/URL")
 theme_entry = ExtResource("5_tbgi4")
@@ -228,6 +229,10 @@ visible = false
 layout_mode = 2
 
 [node name="Subtitle" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
+visible = false
+layout_mode = 2
+
+[node name="TextOnly" parent="NavSorter/Themes/MarginContainer/Sorter/Info/Previews" instance=ExtResource("3_sugp2")]
 visible = false
 layout_mode = 2
 
