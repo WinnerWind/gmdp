@@ -62,8 +62,9 @@ func iterate_pages():
 		var images:Array = page.images
 		
 		match [!!heading, !!subheading, !!content, !!images]:
-			[true, false, true, false]: page_to_load_path = "heading"
+			[true, false, true, false]: page_to_load_path = "heading_content"
 			[true, true, true, false]: page_to_load_path = "heading_subtitle"
+			[true, true, true, false]: page_to_load_path = "heading_content_subtitle"
 			[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
 			[true, false, false, false]: page_to_load_path = "title"
 			[false, false, true, false]: page_to_load_path = "text_only"
@@ -90,8 +91,9 @@ static func get_specific_page(page_number:int, custom_config_file:String = "res:
 	var images:Array = page.images
 	
 	match [!!heading, !!subheading, !!content, !!images]:
-		[true, false, true, false]: page_to_load_path = "heading"
+		[true, false, true, false]: page_to_load_path = "heading_content"
 		[true, true, true, false]: page_to_load_path = "heading_subtitle"
+		[true, true, true, false]: page_to_load_path = "heading_content_subtitle"
 		[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
 		[true, false, false, false]: page_to_load_path = "title"
 		[false, false, true, false]: page_to_load_path = "text_only"
@@ -112,9 +114,9 @@ func set_slide_buttons(pages:Array):
 	for index in pages.size():
 		var page = pages[index]
 		await get_tree().process_frame # Required to get subviewport texture
-		var page_preview = main_slide_sorter.get_child(index).get_subviewport_texture()
+		var page_preview = main_slide_sorter.get_child(index).get_subviewport_texture() if main_slide_sorter.get_child(index).get_subviewport_texture() else null
 		var slide_button:SlideButton = slide_button_scene.instantiate()
-		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title), page_preview)
+		slide_button.set_content(index+1, pages.size(), (page.content.replace("\n"," ") if page.content else page.title), page_preview if page_preview else null)
 		slide_button.go_to_page.connect(scroll_to_page.bind(index))
 		slide_buttons_sorter.add_child(slide_button)
 
