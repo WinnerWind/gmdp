@@ -107,7 +107,7 @@ static func get_canonical_path_from_config(key:String) -> String:
 	if config.has_section_key(SCENE_NAME_SECTION, key):
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
 	else:
-		return "Does not exist!"
+		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only")
 
 func set_slide_buttons(pages:Array):
 	for child in slide_buttons_sorter.get_children(): child.queue_free()
