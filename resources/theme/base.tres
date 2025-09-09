@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://chomi8nn8138g"]
+[gd_resource type="Theme" load_steps=31 format=3 uid="uid://chomi8nn8138g"]
 
 [ext_resource type="FontFile" uid="uid://be06miu2tcruu" path="res://resources/fonts/FiraCode-Regular.ttf" id="1_7ip6p"]
 [ext_resource type="StyleBox" uid="uid://chl5nc56hjif0" path="res://resources/theme/styleboxes/panel_halo.tres" id="2_086gh"]
@@ -6,6 +6,7 @@
 [ext_resource type="FontFile" uid="uid://dssj6aiqil8up" path="res://resources/fonts/FiraCode-Light.ttf" id="3_lfacf"]
 [ext_resource type="StyleBox" uid="uid://bhauqvwqcnk2d" path="res://resources/theme/styleboxes/button_pressed.tres" id="3_r8lfk"]
 [ext_resource type="StyleBox" uid="uid://cpktkqpy8bfys" path="res://resources/theme/styleboxes/fg_panel_alt.tres" id="4_bwsqs"]
+[ext_resource type="Texture2D" uid="uid://brki86mtcteo7" path="res://resources/icons/refresh.svg" id="4_chhdl"]
 [ext_resource type="FontFile" uid="uid://b5l0orglnm1xl" path="res://resources/fonts/FiraCode-Bold.ttf" id="5_mra7g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jr5h8"]
@@ -51,6 +52,18 @@ bg_color = Color(0.027451, 0.203922, 0.247059, 0.380392)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mra7g"]
 bg_color = Color(0.976471, 0.94902, 0.87451, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sl5ae"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tv0ux"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jr5h8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_buvui"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21qgi"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d4vv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_086gh"]
 content_margin_left = 10.0
@@ -120,6 +133,11 @@ MarginSlides/constants/margin_bottom = 50
 MarginSlides/constants/margin_left = 50
 MarginSlides/constants/margin_right = 50
 MarginSlides/constants/margin_top = 50
+MarginsNavbar/base_type = &"MarginContainer"
+MarginsNavbar/constants/margin_bottom = 10
+MarginsNavbar/constants/margin_left = 0
+MarginsNavbar/constants/margin_right = 0
+MarginsNavbar/constants/margin_top = 10
 MarginsSlideButton/base_type = &"MarginContainer"
 MarginsSlideButton/constants/margin_bottom = 10
 MarginsSlideButton/constants/margin_left = 20
@@ -143,6 +161,20 @@ PopupMenu/colors/font_disabled_color = Color(0.027451, 0.203922, 0.247059, 0.325
 PopupMenu/colors/font_hover_color = Color(0.027451, 0.203922, 0.247059, 1)
 PopupMenu/styles/hover = SubResource("StyleBoxFlat_chhdl")
 PopupMenu/styles/panel = SubResource("StyleBoxFlat_mra7g")
+RefreshButton/base_type = &"Button"
+RefreshButton/colors/icon_focus_color = Color(0.933333, 0.909804, 0.835294, 1)
+RefreshButton/colors/icon_hover_color = Color(0.991831, 0.897263, 0.92808, 1)
+RefreshButton/colors/icon_hover_pressed_color = Color(0.827451, 0.211765, 0.509804, 1)
+RefreshButton/colors/icon_normal_color = Color(0.933333, 0.909804, 0.835294, 1)
+RefreshButton/colors/icon_pressed_color = Color(0.827451, 0.211765, 0.509804, 1)
+RefreshButton/constants/align_to_largest_stylebox = 0
+RefreshButton/icons/icon = ExtResource("4_chhdl")
+RefreshButton/styles/focus = SubResource("StyleBoxEmpty_sl5ae")
+RefreshButton/styles/hover = SubResource("StyleBoxEmpty_tv0ux")
+RefreshButton/styles/hover_mirrored = SubResource("StyleBoxEmpty_jr5h8")
+RefreshButton/styles/hover_pressed = SubResource("StyleBoxEmpty_buvui")
+RefreshButton/styles/normal = SubResource("StyleBoxEmpty_21qgi")
+RefreshButton/styles/pressed = SubResource("StyleBoxEmpty_0d4vv")
 RichTextLabel/colors/default_color = Color(0.976471, 0.94902, 0.87451, 1)
 RichTextLabel/fonts/bold_font = ExtResource("5_mra7g")
 RichTextLabel/fonts/italics_font = ExtResource("3_lfacf")
