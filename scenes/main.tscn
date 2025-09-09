@@ -116,6 +116,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="RichTextLabel" type="RichTextLabel" parent="NavSorter/Slides View/Slides/ScrollContainer/Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "[center]BLANK DOCUMENT[/center]"
+
 [node name="Main" type="ScrollContainer" parent="NavSorter/Slides View"]
 layout_mode = 2
 size_flags_horizontal = 3
