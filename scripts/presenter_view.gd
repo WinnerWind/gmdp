@@ -11,8 +11,12 @@ var current_page:int = 0:
 		current_page = clamp(new_var,0,total_pages_index)
 		page_container.add_page(PresentationManager.get_specific_page(current_page, theme_data_path))
 
+var previous_mode:Window.Mode
+
 func _ready() -> void:
 	page_container.add_page(PresentationManager.get_specific_page(0, theme_data_path))
+	previous_mode = get_window().mode
+	get_window().mode = Window.MODE_FULLSCREEN
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Next Page"):
@@ -21,4 +25,5 @@ func _input(event: InputEvent) -> void:
 		current_page -= 1
 	elif event.is_action_pressed("Exit Presentation"):
 		get_tree().root.get_node("Main").show()
+		get_window().mode = previous_mode
 		queue_free()
