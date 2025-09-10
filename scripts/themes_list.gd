@@ -37,7 +37,7 @@ func _ready() -> void:
 						var url = config.get_value("metadata", "url")
 						var heading_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_content")
 						var title_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "title")
-						var heading_subtitle_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_subtitle")
+						var heading_subtitle_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_content_subtitle")
 						var text_only_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "text_only")
 						
 						var new_theme_entry:ThemeEntry = theme_entry.instantiate()
@@ -65,10 +65,10 @@ func set_details(theme_name:String, author:String, designed_by:String, version:S
 	var text_only_scene:Slide = load(text_only_scene_path).instantiate()
 	
 	
-	title_scene.set_content(theme_name, "", "", [])
-	heading_scene.set_content("So what is {theme_name}?".format({"theme_name":theme_name}), "", "This is a really beautiful theme made for GMDP!\nTry me out! Please!",[])
-	subtitle_scene.set_content("So, you decided to try it", "but have you really?", "I mean, who's to say? Click the \"Use this theme\" button to try me!", [])
-	text_only_scene.set_content("","","This is a scene which only has text. This scene contains nothing but text. What did you expect?", [])
+	title_scene.set_content(theme_name, "" ,"", "", [])
+	heading_scene.set_content("So what is {theme_name}?".format({"theme_name":theme_name}), "", "This is the footer! Say hi!" , "This is a really beautiful theme made for GMDP!\nTry me out! Please!",[])
+	subtitle_scene.set_content("So, you decided to try it", "but have you really?", "", "I mean, who's to say? Click the \"Use this theme\" button to try me!", [])
+	text_only_scene.set_content("","","","This is a scene which only has text. This scene contains nothing but text. What did you expect?", [])
 	
 	title_page.show()
 	heading_page.show()

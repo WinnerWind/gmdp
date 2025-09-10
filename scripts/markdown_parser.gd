@@ -6,6 +6,7 @@ var data:Array[Dictionary] = [{}]
 const PAGE_SPLITTER:String = "\n---\n"
 const HEADING_1_REGEX:String = r"^# (.*)"
 const HEADING_2_REGEX:String = r"^## (.*)"
+const FOOTER_REGEX:String = r"^-# (.*)"
 const IMAGE_REGEX:String = r"\!\[.*\]\(.*\)"
 const IMAGE_NAME_REGEX:String = r"\!\[.*\]"
 const ITALIC_BOLD_REGEX:String = r"\*\*\*.*\*\*\*"
@@ -46,6 +47,7 @@ func parse_file_content(contents:String) -> void:
 		data[page_index] = {
 			"title": "",
 			"subtitle": "",
+			"footer": "",
 			"images": [],
 			"content": ""
 		}
@@ -67,9 +69,11 @@ func parse_file_content(contents:String) -> void:
 		# headings 
 		var headings:Array[RegExMatch] = regex_every_line(page, HEADING_1_REGEX)
 		var subheadings:Array[RegExMatch] = regex_every_line(page, HEADING_2_REGEX)
+		var footers:Array[RegExMatch] = regex_every_line(page, FOOTER_REGEX)
 		
 		for heading:RegExMatch in headings: data[page_index]["title"] = heading.get_string().trim_prefix("# ")
 		for subheading:RegExMatch in subheadings: data[page_index]["subtitle"] = subheading.get_string().trim_prefix("## ")
+		for footer:RegExMatch in footers: data[page_index]["footer"] = footer.get_string().trim_prefix("-# ")
 		
 		# deal with images
 		var images:Array[RegExMatch] = regex_every_line(page, IMAGE_REGEX)
@@ -114,6 +118,7 @@ func parse_file_content(contents:String) -> void:
 		# filter the content
 		for heading in headings: page = page.replace(heading.get_string(), "")
 		for subheading in subheadings: page = page.replace(subheading.get_string(), "")
+		for footer in footers: page = page.replace(footer.get_string(), "")
 		for image:RegExMatch in images: page = page.replace(image.get_string(), "")
 		page = page.strip_edges()
 		
