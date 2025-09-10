@@ -47,41 +47,20 @@ func set_text_content() -> void:
 	
 func iterate_pages():
 	for child in main_slide_sorter.get_children(): child.free()
-	config.load(config_file)
-	if not MarkdownParser.data[0]: return
-	
-	var page_to_load_path:String
+	if not MarkdownParser.data[0]: return #ensures we dont iterate over empty data
 	
 	var data:Array[Dictionary] = MarkdownParser.data
-	total_pages = data.size()
 	
-	for page in data:
-		var content:String = page.content
-		var heading:String = page.title
-		var subheading:String = page.subtitle
-		var images:Array = page.images
-		
-		match [!!heading, !!subheading, !!content, !!images]:
-			[true, false, true, false]: page_to_load_path = "heading_content"
-			[true, true, true, false]: page_to_load_path = "heading_subtitle"
-			[true, true, true, false]: page_to_load_path = "heading_content_subtitle"
-			[true, false, true, true]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
-			[true, false, false, false]: page_to_load_path = "title"
-			[false, false, true, false]: page_to_load_path = "text_only"
-			[false, false, false, true]: page_to_load_path = iterate_scenes_and_send_warning("gallery_%d_image", images.size())
-			_: page_to_load_path = "title"
-		
-		var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
-		var loaded_page:Slide = page_to_load.instantiate()
-		var subviewport:PageSubViewPort = page_subviewport.instantiate()
-		subviewport.add_page(loaded_page)
-		main_slide_sorter.add_child(subviewport)
-		loaded_page.set_content(heading, subheading, content, images)
+	for page_index in data.size():
+		var page_subviewport_instance:PageSubViewPort = page_subviewport.instantiate()
+		page_subviewport_instance.add_page(get_specific_page(page_index, config_file))
+		main_slide_sorter.add_child(page_subviewport_instance)
 	
 	set_slide_buttons(data)
 
-static func get_specific_page(page_number:int, custom_config_file:String = "res://templates/gummy/meta.ini"):
+static func get_specific_page(page_number:int, custom_config_file:String = "res://templates/gummy/meta.ini") -> Slide:
 	config.load(custom_config_file)
+	if not MarkdownParser.data[0]: return
 	
 	var data := MarkdownParser.data
 	var page = data[page_number]
@@ -104,6 +83,7 @@ static func get_specific_page(page_number:int, custom_config_file:String = "res:
 	var loaded_page:Slide = page_to_load.instantiate()
 	loaded_page.set_content(heading, subheading, content, images)
 	return loaded_page
+
 static func get_canonical_path_from_config(key:String) -> String:
 	if config.has_section_key(SCENE_NAME_SECTION, key):
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
