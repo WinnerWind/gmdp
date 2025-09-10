@@ -9,12 +9,12 @@ var total_pages_index:int = MarkdownParser.data.size() - 1
 var current_page:int = 0:
 	set(new_var):
 		current_page = clamp(new_var,0,total_pages_index)
-		page_container.add_page(PresentationManager.get_specific_page(current_page, theme_data_path))
+		page_container.add_page(PresentationParser.get_specific_page(current_page, theme_data_path))
 
 var previous_mode:Window.Mode
 
 func _ready() -> void:
-	page_container.add_page(PresentationManager.get_specific_page(0, theme_data_path))
+	page_container.add_page(PresentationParser.get_specific_page(0, theme_data_path))
 	previous_mode = get_window().mode
 	get_window().mode = Window.MODE_FULLSCREEN
 

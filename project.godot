@@ -17,6 +17,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MarkdownParser="*res://scripts/markdown_parser.gd"
+PresentationParser="*res://scripts/presentation_parser.gd"
 
 [editor_plugins]
 
