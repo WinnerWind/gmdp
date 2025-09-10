@@ -43,7 +43,6 @@ func refresh() -> void:
 func set_text_content() -> void:
 	var text = text_editor.text
 	MarkdownParser.refresh_set_content(text)
-	refresh()
 	
 func iterate_pages():
 	for child in main_slide_sorter.get_children(): child.free()
