@@ -11,3 +11,6 @@ func send_warning(content:String, page_number:int):
 		"warning": content,
 		"page": page_number
 	}))
+
+func reset_warnings() -> void:
+	warning_label.text = ""

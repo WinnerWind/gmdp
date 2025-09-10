@@ -288,6 +288,7 @@ filters = PackedStringArray("*.md", "*.txt")
 use_native_dialog = true
 
 [node name="Warnings Panel" type="MarginContainer" parent="." node_paths=PackedStringArray("warning_label")]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MarginsPopup"
 script = ExtResource("10_choun")
@@ -336,3 +337,4 @@ text = "Close"
 [connection signal="file_selected" from="NavSorter/Open File Dialog" to="." method="set_file_path"]
 [connection signal="file_selected" from="NavSorter/Save File" to="." method="save"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="hide"]
+[connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="reset_warnings"]

@@ -41,7 +41,7 @@ func get_canonical_path_from_config(key:String) -> String:
 	else:
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only")
 
-func iterate_scenes_and_send_warning(key:String, number:int, page_number:int) -> String:
+func iterate_scenes_and_send_warning(key:String, number:int, page_index:int) -> String:
 	var original_number = number
 	while PresentationParser.get_canonical_path_from_config(key % number) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only"):
 		number -= 1
@@ -51,5 +51,5 @@ func iterate_scenes_and_send_warning(key:String, number:int, page_number:int) ->
 			"current_scene_name": key % number
 		})
 		push_warning(warning_text)
-		send_warning.emit(warning_text, page_number)
+		send_warning.emit(warning_text, page_index+1)
 	return key % number
