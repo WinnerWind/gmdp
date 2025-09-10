@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dk4cmh4ptp2h3"]
+[gd_scene load_steps=4 format=3 uid="uid://dk4cmh4ptp2h3"]
 
 [ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_i270o"]
 [ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_qrnmy"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/auto_label_resizer.gd" id="3_20gsj"]
 
 [node name="Title" type="Panel" node_paths=PackedStringArray("heading_label", "contents_label", "image_nodes")]
 anchors_preset = 15
@@ -51,8 +52,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "HEADING"
-fit_content = true
 scroll_active = false
+script = ExtResource("3_20gsj")
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

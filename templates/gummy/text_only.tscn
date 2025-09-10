@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://1ilm21toqf2r"]
+[gd_scene load_steps=4 format=3 uid="uid://1ilm21toqf2r"]
 
 [ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_376g1"]
 [ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_6kalr"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/auto_label_resizer.gd" id="3_6kalr"]
 
 [node name="Text Only" type="Panel" node_paths=PackedStringArray("contents_label")]
 anchors_preset = 15
@@ -53,25 +54,7 @@ func autosize_font(min_size: int, max_size: int):
 		var fits = get_content_height() <= (get_parent().size.y - 200)
 		if fits:
 			best_fit = mid
-			low = mid + 1
-		else:
-			high = mid - 1
-	add_theme_font_size_override(\"normal_font_size\", best_fit)
-extends RichTextLabel
-
-func autosize_font(min_size: int, max_size: int):
-	var low = min_size
-	var high = max_size
-	var best_fit = min_size
-	while low <= high:
-		var mid = (low + high) / 2
-		add_theme_font_size_override(\"normal_font_size\", mid)
-		var fits = get_content_height() <= (get_parent().size.y - 200)
-		if fits:
-			best_fit = mid
-			low = mid + 1
-		else:
-			high = mid - 1
-	add_theme_font_size_override(\"normal_font_size\", best_fit)
 "
 scroll_active = false
+script = ExtResource("3_6kalr")
+max_font_size = 64
