@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cpqtwa0wkgwas"]
 
-[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_dp603"]
-[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_ariei"]
+[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_06ya8"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_8u2fs"]
 
 [node name="Title" type="Panel" node_paths=PackedStringArray("heading_label", "subheading_label", "contents_label")]
 anchors_preset = 15
@@ -11,9 +11,9 @@ offset_right = 768.0
 offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_dp603")
+theme = ExtResource("1_06ya8")
 theme_type_variation = &"BGPanel"
-script = ExtResource("2_ariei")
+script = ExtResource("2_8u2fs")
 heading_label = NodePath("MarginContainer/VBoxContainer/Heading")
 subheading_label = NodePath("MarginContainer/VBoxContainer/Subheading")
 contents_label = NodePath("MarginContainer/VBoxContainer/Content")

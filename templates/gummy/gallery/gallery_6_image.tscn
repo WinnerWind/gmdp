@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://blw0rvua7xrlv"]
 
-[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_5j35l"]
-[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_sac7i"]
+[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_0jmi6"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_mjgwf"]
 
 [node name="Gallery" type="Panel" node_paths=PackedStringArray("image_nodes")]
 anchors_preset = 15
@@ -11,9 +11,9 @@ offset_right = 768.0
 offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_5j35l")
+theme = ExtResource("1_0jmi6")
 theme_type_variation = &"BGPanel"
-script = ExtResource("2_sac7i")
+script = ExtResource("2_mjgwf")
 image_nodes = [NodePath("MarginContainer/GridContainer/Image 1"), NodePath("MarginContainer/GridContainer/Image 2"), NodePath("MarginContainer/GridContainer/Image 3"), NodePath("MarginContainer/GridContainer/Image 4"), NodePath("MarginContainer/GridContainer/Image 5"), NodePath("MarginContainer/GridContainer/Image 6")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
