@@ -11,6 +11,7 @@ class_name PresentationManager
 @export var slides_view:Control
 @export var location_label:RichTextLabel
 @export var view_button:MenuButton
+@export var warning_panel:WarningsPanel
 @export_subgroup("FileDialogs")
 @export var open_file:FileDialog
 @export var save_file:FileDialog
@@ -30,6 +31,7 @@ func switch_theme_to(theme_path:String):
 
 func _ready() -> void:
 	get_window().size_changed.connect(iterate_pages)
+	PresentationParser.send_warning.connect(warning_panel.send_warning)
 
 func refresh() -> void:
 	iterate_pages()

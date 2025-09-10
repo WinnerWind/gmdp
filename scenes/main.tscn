@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=11 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
@@ -9,8 +9,9 @@
 [ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/popup_menu_button.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://catm6dbuc0lhh" path="res://scripts/scroll_point_emitter.gd" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://b8bku7umsla6m" path="res://scripts/warnings_panel.gd" id="10_choun"]
 
-[node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "open_file", "save_file")]
+[node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "warning_panel", "open_file", "save_file")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,6 +29,7 @@ themes_view = NodePath("NavSorter/Themes")
 slides_view = NodePath("NavSorter/Slides View")
 location_label = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Location")
 view_button = NodePath("NavSorter/Navbar/MarginContainer/Sorter/Left/view")
+warning_panel = NodePath("Warnings Panel")
 open_file = NodePath("NavSorter/Open File Dialog")
 save_file = NodePath("NavSorter/Save File")
 slide_button_scene = ExtResource("2_0wfyh")
@@ -285,6 +287,42 @@ access = 2
 filters = PackedStringArray("*.md", "*.txt")
 use_native_dialog = true
 
+[node name="Warnings Panel" type="MarginContainer" parent="." node_paths=PackedStringArray("warning_label")]
+layout_mode = 2
+theme_type_variation = &"MarginsPopup"
+script = ExtResource("10_choun")
+warning_placeholder = "{warning}
+---> on page {page}"
+warning_label = NodePath("Panel/MarginContainer/Sorter/Warnings")
+
+[node name="Panel" type="PanelContainer" parent="Warnings Panel"]
+layout_mode = 2
+theme_type_variation = &"PanelPopup"
+
+[node name="MarginContainer" type="MarginContainer" parent="Warnings Panel/Panel"]
+layout_mode = 2
+theme_type_variation = &"MarginsPopup"
+
+[node name="Sorter" type="VBoxContainer" parent="Warnings Panel/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Header" type="RichTextLabel" parent="Warnings Panel/Panel/MarginContainer/Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_type_variation = &"LabelHeader"
+text = "Your Markdown content has a few issues with the current theme."
+fit_content = true
+scroll_active = false
+
+[node name="Warnings" type="RichTextLabel" parent="Warnings Panel/Panel/MarginContainer/Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Button" type="Button" parent="Warnings Panel/Panel/MarginContainer/Sorter"]
+layout_mode = 2
+text = "Close"
+
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/file" to="." method="file_menu_functions"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/view" to="." method="view_menu_functions"]
 [connection signal="tab_clicked" from="NavSorter/Navbar/MarginContainer/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
@@ -297,3 +335,4 @@ use_native_dialog = true
 [connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/URL" to="NavSorter/Themes" method="open_url"]
 [connection signal="file_selected" from="NavSorter/Open File Dialog" to="." method="set_file_path"]
 [connection signal="file_selected" from="NavSorter/Save File" to="." method="save"]
+[connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="hide"]

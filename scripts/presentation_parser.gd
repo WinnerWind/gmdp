@@ -1,5 +1,7 @@
 extends Node
 
+signal send_warning(content:String, page_number:int)
+
 var config_file:String = "res://templates/gummy/meta.ini"
 
 var config := ConfigFile.new()
@@ -21,10 +23,10 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 	match [!!heading, !!subheading, !!content, !!images, !!footer]:
 		[true, false, true, false, false]: page_to_load_path = "heading_content"
 		[true, true, true, false, false]: page_to_load_path = "heading_content_subtitle"
-		[true, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size())
+		[true, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size(), page_number)
 		[true, false, false, false, false]: page_to_load_path = "title"
 		[false, false, true, false, false]: page_to_load_path = "text_only"
-		[false, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("gallery_%d_image", images.size())
+		[false, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("gallery_%d_image", images.size(), page_number)
 		[true, false, true, false, true]: page_to_load_path = "heading_content_footer"
 		_: page_to_load_path = "title"
 	
@@ -39,13 +41,15 @@ func get_canonical_path_from_config(key:String) -> String:
 	else:
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only")
 
-func iterate_scenes_and_send_warning(key:String, number:int) -> String:
+func iterate_scenes_and_send_warning(key:String, number:int, page_number:int) -> String:
 	var original_number = number
-	while PresentationParser.get_canonical_path_from_config(key % number) == "Does not exist!":
+	while PresentationParser.get_canonical_path_from_config(key % number) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only"):
 		number -= 1
 	if original_number != number:
-		push_warning("Scene {original_scene_name} was not found and it was substituted with {current_scene_name}".format({
+		var warning_text := "Scene {original_scene_name} was not found and it was substituted with {current_scene_name}".format({
 			"original_scene_name": key % original_number,
 			"current_scene_name": key % number
-		}))
+		})
+		push_warning(warning_text)
+		send_warning.emit(warning_text, page_number)
 	return key % number

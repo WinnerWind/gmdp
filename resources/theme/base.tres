@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=31 format=3 uid="uid://chomi8nn8138g"]
+[gd_resource type="Theme" load_steps=32 format=3 uid="uid://chomi8nn8138g"]
 
 [ext_resource type="FontFile" uid="uid://be06miu2tcruu" path="res://resources/fonts/FiraCode-Regular.ttf" id="1_7ip6p"]
 [ext_resource type="StyleBox" uid="uid://chl5nc56hjif0" path="res://resources/theme/styleboxes/panel_halo.tres" id="2_086gh"]
@@ -26,6 +26,14 @@ border_blend = true
 bg_color = Color(0.00784314, 0.164706, 0.207843, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8lfk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_buvui"]
+bg_color = Color(0.027451, 0.203922, 0.247059, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.513726, 0.580392, 0.588235, 1)
 
 [sub_resource type="Gradient" id="Gradient_lfacf"]
 interpolation_color_space = 2
@@ -124,6 +132,8 @@ Button/styles/hover = SubResource("StyleBoxFlat_jr5h8")
 Button/styles/normal = ExtResource("2_lfacf")
 Button/styles/pressed = ExtResource("3_r8lfk")
 Label/colors/font_color = Color(0.976471, 0.94902, 0.87451, 1)
+LabelHeader/base_type = &"RichTextLabel"
+LabelHeader/font_sizes/normal_font_size = 32
 MarginContainer/constants/margin_bottom = 10
 MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
@@ -138,6 +148,11 @@ MarginsNavbar/constants/margin_bottom = 10
 MarginsNavbar/constants/margin_left = 0
 MarginsNavbar/constants/margin_right = 0
 MarginsNavbar/constants/margin_top = 10
+MarginsPopup/base_type = &"MarginContainer"
+MarginsPopup/constants/margin_bottom = 30
+MarginsPopup/constants/margin_left = 30
+MarginsPopup/constants/margin_right = 30
+MarginsPopup/constants/margin_top = 30
 MarginsSlideButton/base_type = &"MarginContainer"
 MarginsSlideButton/constants/margin_bottom = 10
 MarginsSlideButton/constants/margin_left = 20
@@ -148,6 +163,8 @@ PanelBG/styles/panel = SubResource("StyleBoxFlat_7ip6p")
 PanelContainer/styles/panel = SubResource("StyleBoxEmpty_r8lfk")
 PanelNav/base_type = &"PanelContainer"
 PanelNav/styles/panel = ExtResource("2_lfacf")
+PanelPopup/base_type = &"PanelContainer"
+PanelPopup/styles/panel = SubResource("StyleBoxFlat_buvui")
 PanelSlideToggled/base_type = &"Panel"
 PanelSlideToggled/styles/panel = SubResource("StyleBoxTexture_lfacf")
 PanelSlideUntoggled/base_type = &"Panel"
