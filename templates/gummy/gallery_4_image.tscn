@@ -1,0 +1,58 @@
+[gd_scene load_steps=3 format=3 uid="uid://wqpk6tf4kkgl"]
+
+[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_5f6ki"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_ima0s"]
+
+[node name="Gallery" type="Panel" node_paths=PackedStringArray("image_nodes")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_5f6ki")
+theme_type_variation = &"BGPanel"
+script = ExtResource("2_ima0s")
+image_nodes = [NodePath("MarginContainer/GridContainer/Image 1"), NodePath("MarginContainer/GridContainer/Image 2"), NodePath("MarginContainer/GridContainer/Image 3"), NodePath("MarginContainer/GridContainer/Image 4")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Image 1" type="TextureRect" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Image 2" type="TextureRect" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Image 3" type="TextureRect" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Image 4" type="TextureRect" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5

@@ -1,7 +1,9 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://8o7w7af37ine"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://8o7w7af37ine"]
 
 [ext_resource type="FontFile" uid="uid://bbkq7hth75yar" path="res://templates/gummy/fonts/SpaceGrotesk_VariableFont_wght.ttf" id="1_6r0ku"]
 [ext_resource type="FontFile" uid="uid://d0dl8am30um3g" path="res://templates/gummy/fonts/Peace_Sans.otf" id="1_obqlp"]
+[ext_resource type="FontFile" uid="uid://cc2fow73g2e5i" path="res://templates/gummy/fonts/SpaceGrotesk-Bold.ttf" id="1_rh1c7"]
+[ext_resource type="FontFile" uid="uid://c0lvcfqixhdyb" path="res://templates/gummy/fonts/SpaceGrotesk-Light.ttf" id="2_7o7yt"]
 
 [sub_resource type="Gradient" id="Gradient_60xmt"]
 colors = PackedColorArray(0.126, 0.1494, 0.36, 1, 0, 0, 0, 1)
@@ -25,5 +27,10 @@ MarginContainer/constants/margin_bottom = 50
 MarginContainer/constants/margin_left = 50
 MarginContainer/constants/margin_right = 50
 MarginContainer/constants/margin_top = 50
+RichTextLabel/font_sizes/italics_font_size = 58
+RichTextLabel/font_sizes/mono_font_size = 56
+RichTextLabel/fonts/bold_font = ExtResource("1_rh1c7")
+RichTextLabel/fonts/bold_italics_font = ExtResource("1_rh1c7")
+RichTextLabel/fonts/italics_font = ExtResource("2_7o7yt")
 Title/base_type = &"RichTextLabel"
 Title/fonts/normal_font = ExtResource("1_obqlp")
