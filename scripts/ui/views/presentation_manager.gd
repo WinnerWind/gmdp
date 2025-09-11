@@ -32,6 +32,8 @@ func switch_theme_to(theme_path:String):
 func _ready() -> void:
 	get_window().size_changed.connect(iterate_pages)
 	PresentationParser.send_warning.connect(warning_panel.send_warning)
+	if OS.get_name() == "Web":
+		get_window().content_scale_factor = 1.25
 
 func refresh() -> void:
 	iterate_pages()

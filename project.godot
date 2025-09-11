@@ -21,6 +21,12 @@ ThemeLoader="*res://scripts/systems/theme_loader.gd"
 MarkdownParser="*res://scripts/systems/markdown_parser.gd"
 PresentationParser="*res://scripts/systems/presentation_parser.gd"
 
+[display]
+
+window/energy_saving/keep_screen_on=false
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/startup_runner/plugin.cfg")
