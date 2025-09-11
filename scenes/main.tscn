@@ -227,6 +227,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
+theme_type_variation = &"RichTextLabelHeading"
 text = "NO THEME SELECTED"
 
 [node name="By" type="RichTextLabel" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
