@@ -18,6 +18,7 @@ func set_content(heading:String, subheading:String, footer:String, content:Strin
 	if contents_label: contents_label.text = content
 	if footer_label: footer_label.text = footer
 	if image_nodes:
-		for index in image_nodes.size():
+		for index in images.size():
 			var image_node:TextureRect = image_nodes[index]
-			image_node.texture = MarkdownParser.get_image_from_name(images[index])
+			if image_node:
+				image_node.texture = MarkdownParser.get_image_from_name(images[index])
