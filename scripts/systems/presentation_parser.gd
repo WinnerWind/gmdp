@@ -56,7 +56,7 @@ func get_canonical_path_from_config(key:String, page_number:int, send_warnings:b
 func iterate_scenes_and_send_warning(key:String, number:int, page_index:int) -> String:
 	var original_number = number
 	# Ensure we aren't getting the text only scene back
-	while get_canonical_path_from_config(key % number, page_index, false) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only"):
+	while get_canonical_path_from_config(key % number, page_index, false) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "content"):
 		number -= 1
 	if original_number != number:
 		var warning_text := "Scene {original_scene_name} was not found and it was substituted with {current_scene_name}".format({
