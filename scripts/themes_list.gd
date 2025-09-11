@@ -1,6 +1,8 @@
 extends PanelContainer
 class_name ThemesList
 
+signal send_warning(content:String, theme_path:String)
+
 @export_dir var themes_path:String
 
 @export var theme_list:VBoxContainer
@@ -46,10 +48,13 @@ func _ready() -> void:
 						theme_list.add_child(new_theme_entry)
 					else:
 						push_error("Metadata incomplete in %s" % meta_file_full_path)
+						send_warning.emit("Author data is incomplete!", meta_file_full_path)
 				else: 
 					push_error("content, heading_content, heading or heading_subtitle_content was not found in %s" % meta_file_full_path)
+					send_warning.emit("The theme lacks one or more basic slides! (content, heading_content, heading, and heading_subtitle_content)", meta_file_full_path)
 			else:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])
+				send_warning.emit("The theme file is missing a section (Found sections %s)" % config.get_sections(), meta_file_full_path)
 
 func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String, text_only_scene_path:String):
 	theme_name_label.text = theme_name

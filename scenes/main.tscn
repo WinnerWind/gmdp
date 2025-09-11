@@ -294,6 +294,9 @@ theme_type_variation = &"MarginsPopup"
 script = ExtResource("10_choun")
 warning_placeholder = "{warning}
 ---> on page {page}"
+theme_warning_placeholder = "{warning}
+This theme will not be usable until these errors are rectified.
+---> in theme file {path}"
 warning_label = NodePath("Panel/MarginContainer/Sorter/Warnings")
 
 [node name="Panel" type="PanelContainer" parent="Warnings Panel"]
@@ -312,7 +315,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 theme_type_variation = &"LabelHeader"
-text = "Your Markdown content has a few issues with the current theme."
+text = "GMDP has a few issues with the current theme."
 fit_content = true
 scroll_active = false
 
@@ -330,6 +333,7 @@ text = "Close"
 [connection signal="pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Right/Refresh" to="." method="refresh"]
 [connection signal="scroll_changed" from="NavSorter/Slides View/Main" to="." method="_on_main_scroll_changed"]
 [connection signal="text_changed" from="NavSorter/Editor Panel/MarginContainer/Sorter/Editor" to="." method="set_text_content"]
+[connection signal="send_warning" from="NavSorter/Themes" to="Warnings Panel" method="send_theme_warning"]
 [connection signal="switch_theme_to" from="NavSorter/Themes" to="." method="switch_theme_to"]
 [connection signal="meta_clicked" from="NavSorter/Themes/MarginContainer/Sorter/Info/By" to="NavSorter/Themes" method="open_url_custom"]
 [connection signal="pressed" from="NavSorter/Themes/MarginContainer/Sorter/Info/Buttons/Use" to="NavSorter/Themes" method="use_theme"]
