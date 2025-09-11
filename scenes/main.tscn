@@ -40,9 +40,8 @@ presentation = ExtResource("4_o6xl0")
 layout_mode = 2
 
 [node name="Navbar" type="PanelContainer" parent="NavSorter"]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.1
 theme_type_variation = &"PanelNav"
 
 [node name="MarginContainer" type="MarginContainer" parent="NavSorter/Navbar"]

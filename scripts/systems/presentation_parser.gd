@@ -51,7 +51,7 @@ func get_canonical_path_from_config(key:String, page_number:int, send_warnings:b
 			})
 			push_warning(warning_text)
 			send_warning.emit(warning_text, page_number)
-		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only")
+		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "content")
 
 func iterate_scenes_and_send_warning(key:String, number:int, page_index:int) -> String:
 	var original_number = number
