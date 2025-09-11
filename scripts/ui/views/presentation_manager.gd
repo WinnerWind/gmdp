@@ -37,6 +37,7 @@ func _ready() -> void:
 
 func refresh() -> void:
 	iterate_pages()
+	total_pages = MarkdownParser.data.size()
 	var has_data = !MarkdownParser.data[0]
 	view_button.get_popup().set_item_disabled(0, has_data)
 
@@ -71,7 +72,8 @@ func set_slide_buttons(pages:Array):
 
 func scroll_to_page(page_number:int):
 	var scroll_max = main_slide_scroll.get_v_scroll_bar().max_value
-	main_slide_scroll.scroll_vertical = int((float(scroll_max) / float(total_pages))*float(page_number))
+	var scroll_to = int(( float(scroll_max) / float(total_pages) ) * float(page_number))
+	main_slide_scroll.scroll_vertical = scroll_to
 
 func _on_tabs_tab_changed(tab: int) -> void:
 	match tab:
