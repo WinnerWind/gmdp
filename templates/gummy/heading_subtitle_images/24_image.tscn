@@ -1,0 +1,90 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5jhrroj6vser"]
+
+[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_k2gmt"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_d4x1i"]
+
+[node name="Title" type="Panel" node_paths=PackedStringArray("heading_label", "subheading_label", "image_nodes")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_k2gmt")
+theme_type_variation = &"BGPanel"
+script = ExtResource("2_d4x1i")
+heading_label = NodePath("MarginContainer/VBoxContainer/Heading")
+subheading_label = NodePath("MarginContainer/VBoxContainer/Subheading")
+image_nodes = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Image 1"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Image 2"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Image 3"), NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Image 4")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Heading" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_type_variation = &"Title"
+bbcode_enabled = true
+text = "HEADING"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Subheading" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+theme_type_variation = &"Title"
+bbcode_enabled = true
+text = "HEADING"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Image 1" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Image 2" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Image 3" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Image 4" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 5
