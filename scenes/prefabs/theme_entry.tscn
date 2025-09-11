@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b04phw386lbcv"]
 
-[ext_resource type="Script" uid="uid://6pycbnwve4af" path="res://scripts/theme_entry.gd" id="1_0o6a2"]
+[ext_resource type="Script" uid="uid://6pycbnwve4af" path="res://scripts/ui/buttons/theme_entry.gd" id="1_0o6a2"]
 
 [node name="ThemeEntry" type="VBoxContainer" node_paths=PackedStringArray("name_label", "author_label")]
 anchors_preset = 15

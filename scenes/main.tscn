@@ -1,15 +1,15 @@
 [gd_scene load_steps=11 format=3 uid="uid://dxdx73k3pcw5t"]
 
-[ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/presentation_manager.gd" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/ui/views/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://duimm05pw8ngk" path="res://scenes/prefabs/slide_button.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://dt8k4dbtsyj0o" path="res://scenes/prefabs/page_subviewport.tscn" id="3_sugp2"]
-[ext_resource type="Script" uid="uid://calus87qprk6b" path="res://scripts/themes_list.gd" id="4_jyhfs"]
+[ext_resource type="Script" uid="uid://calus87qprk6b" path="res://scripts/ui/views/themes_list.gd" id="4_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cb3246b2xfqtc" path="res://scenes/presenter_view.tscn" id="4_o6xl0"]
-[ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/popup_menu_button.gd" id="4_tefeu"]
+[ext_resource type="Script" uid="uid://44uiw2fma3fp" path="res://scripts/ui/buttons/popup_menu_button.gd" id="4_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
-[ext_resource type="Script" uid="uid://catm6dbuc0lhh" path="res://scripts/scroll_point_emitter.gd" id="7_85g3d"]
-[ext_resource type="Script" uid="uid://b8bku7umsla6m" path="res://scripts/warnings_panel.gd" id="10_choun"]
+[ext_resource type="Script" uid="uid://catm6dbuc0lhh" path="res://scripts/ui/scroll_point_emitter.gd" id="7_85g3d"]
+[ext_resource type="Script" uid="uid://b8bku7umsla6m" path="res://scripts/ui/views/warnings_panel.gd" id="10_choun"]
 
 [node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "warning_panel", "open_file", "save_file")]
 anchors_preset = 15

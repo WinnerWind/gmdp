@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-ThemeLoader="*res://scripts/theme_loader.gd"
-MarkdownParser="*res://scripts/markdown_parser.gd"
-PresentationParser="*res://scripts/presentation_parser.gd"
+ThemeLoader="*res://scripts/systems/theme_loader.gd"
+MarkdownParser="*res://scripts/systems/markdown_parser.gd"
+PresentationParser="*res://scripts/systems/presentation_parser.gd"
 
 [editor_plugins]
 

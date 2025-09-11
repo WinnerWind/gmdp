@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://1ihnsvypi3xr"]
 
 [ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_axd8u"]
-[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_co3qx"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_co3qx"]
 
 [node name="Gallery" type="Panel" node_paths=PackedStringArray("image_nodes")]
 anchors_preset = 15

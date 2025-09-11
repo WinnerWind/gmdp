@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cb3246b2xfqtc"]
 
 [ext_resource type="PackedScene" uid="uid://dt8k4dbtsyj0o" path="res://scenes/prefabs/page_subviewport.tscn" id="1_tw7g5"]
-[ext_resource type="Script" uid="uid://b1rwleetnslop" path="res://scripts/presenter_view.gd" id="1_vh47l"]
+[ext_resource type="Script" uid="uid://b1rwleetnslop" path="res://scripts/ui/views/presenter_view.gd" id="1_vh47l"]
 
 [node name="PresenterView" type="BoxContainer" node_paths=PackedStringArray("page_container")]
 anchors_preset = 15

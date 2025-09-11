@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dt8k4dbtsyj0o"]
 
-[ext_resource type="Script" uid="uid://dm1jrk1lmr6pr" path="res://scripts/page_subviewport.gd" id="1_vj1hi"]
+[ext_resource type="Script" uid="uid://dm1jrk1lmr6pr" path="res://scripts/ui/page_subviewport.gd" id="1_vj1hi"]
 
 [node name="AspectRatioContainer" type="AspectRatioContainer" node_paths=PackedStringArray("subviewport", "center_container")]
 anchors_preset = 15

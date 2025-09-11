@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://0ahfdq1itjm5"]
 
 [ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_80lna"]
-[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slide.gd" id="2_icv6q"]
-[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/auto_label_resizer.gd" id="3_f57wy"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_icv6q"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_f57wy"]
 
 [node name="Title" type="Panel" node_paths=PackedStringArray("heading_label", "subheading_label", "contents_label", "footer_label")]
 anchors_preset = 15

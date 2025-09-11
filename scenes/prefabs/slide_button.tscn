@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://duimm05pw8ngk"]
 
-[ext_resource type="Script" uid="uid://ds5y7skyggthf" path="res://scripts/slide_button.gd" id="1_e8lkv"]
+[ext_resource type="Script" uid="uid://ds5y7skyggthf" path="res://scripts/ui/buttons/slide_button.gd" id="1_e8lkv"]
 [ext_resource type="Texture2D" uid="uid://x888e3gcqm2a" path="res://test/soham.png" id="2_e8lkv"]
 
 [node name="SlideButton" type="MarginContainer" node_paths=PackedStringArray("page_number_container", "content_blurb_container", "preview_container", "toggle_panel")]
