@@ -30,20 +30,27 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 		[true, false, true, false, true]: page_to_load_path = "heading_content_footer"
 		_: page_to_load_path = "title"
 	
-	var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path))
+	var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path, page_number))
 	var loaded_page:Slide = page_to_load.instantiate()
 	loaded_page.set_content(heading, subheading, footer, content, images)
 	return loaded_page
 
-func get_canonical_path_from_config(key:String) -> String:
+func get_canonical_path_from_config(key:String, page_number:int, send_warnings:bool = true) -> String:
 	if config.has_section_key(SCENE_NAME_SECTION, key):
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
 	else:
+		if send_warnings:
+			var warning_text := "Your current theme does not have any styles for {original_style}. Using the \"text_only\" style instead.".format({
+				"original_style": key
+			})
+			push_warning(warning_text)
+			send_warning.emit(warning_text, page_number)
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only")
 
 func iterate_scenes_and_send_warning(key:String, number:int, page_index:int) -> String:
 	var original_number = number
-	while PresentationParser.get_canonical_path_from_config(key % number) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only"):
+	# Ensure we aren't getting the text only scene back
+	while get_canonical_path_from_config(key % number, page_index, false) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "text_only"):
 		number -= 1
 	if original_number != number:
 		var warning_text := "Scene {original_scene_name} was not found and it was substituted with {current_scene_name}".format({

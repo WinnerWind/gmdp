@@ -25,7 +25,7 @@ func _ready() -> void:
 			# Data validation
 			if "metadata" in config.get_sections() and "scenes" in config.get_sections():
 				var scenes = config.get_section_keys("scenes")
-				if "text_only" in scenes:
+				if "text_only" in scenes and "heading_content" in scenes and "title" in scenes and "heading_content_subtitle" in scenes:
 					var metadata = config.get_section_keys("metadata")
 					if "name" in metadata and "author" in metadata and "designed_by" in metadata and "version" in metadata and "date" in metadata and "url" in metadata:
 						# All data checks are done so lets populate the scene
@@ -47,7 +47,7 @@ func _ready() -> void:
 					else:
 						push_error("Metadata incomplete in %s" % meta_file_full_path)
 				else: 
-					push_error("text_only was not found in %s" % meta_file_full_path)
+					push_error("text_only, heading_content, title or heading_content_subtitle was not found in %s" % meta_file_full_path)
 			else:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])
 
