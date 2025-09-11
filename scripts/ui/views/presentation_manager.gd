@@ -97,6 +97,13 @@ func set_file_path(file_path:String):
 	location_label.text = "%s/[b]%s"%[MarkdownParser.last_file_basepath, MarkdownParser.last_file_path.get_file()]
 	refresh()
 
+func set_file_path_web(content:String):
+	MarkdownParser.text_content = content
+	MarkdownParser.parse_file_content(content)
+	text_editor.text = MarkdownParser.text_content
+	location_label.text = "[b]WEB MODE[/b]"
+	refresh()
+
 func save(path:String):
 	var file := FileAccess.open(path, FileAccess.WRITE)
 	file.store_string(MarkdownParser.text_content)
@@ -108,12 +115,22 @@ func save(path:String):
 func file_menu_functions(id:int):
 	match id:
 		0: #open file
-			open_file.show()
-		1: #save
-			if MarkdownParser.last_file_path:
-				save(MarkdownParser.last_file_path)
+			if OS.get_name() == "Web":
+				var file_access := FileAccessWeb.new()
+				add_child(file_access)
+				file_access.data_loaded.connect(func(data:Array):
+					set_file_path_web(data[0])
+					)
 			else:
-				save_file.show()
+				open_file.show()
+		1: #save
+			if OS.get_name() == "Web":
+				JavaScriptBridge.download_buffer(MarkdownParser.text_content.to_ascii_buffer(), "presentation.md")
+			else:
+				if MarkdownParser.last_file_path:
+					save(MarkdownParser.last_file_path)
+				else:
+					save_file.show()
 		2: #open new file
 			MarkdownParser.last_file_path = ""
 			MarkdownParser.text_content = ""
@@ -121,7 +138,8 @@ func file_menu_functions(id:int):
 			text_editor.text = MarkdownParser.text_content
 			refresh()
 		3: #exit
-			get_tree().quit()
+			if not OS.get_name() == "Web":
+				get_tree().quit()
 
 func view_menu_functions(id:int):
 	match id:
