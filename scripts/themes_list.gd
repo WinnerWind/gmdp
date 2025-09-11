@@ -17,7 +17,11 @@ signal send_warning(content:String, theme_path:String)
 
 @export var theme_entry:PackedScene
 func _ready() -> void:
+	load_themes()
+
+func load_themes() -> void:
 	var dir = DirAccess.open(themes_path)
+	print("Found themes %s" % dir.get_directories())
 	for directory in dir.get_directories():
 		var full_path:String = themes_path+"/"+directory
 		var meta_file_full_path:String = full_path + "/meta.ini"
