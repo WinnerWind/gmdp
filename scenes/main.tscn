@@ -197,7 +197,7 @@ size_flags_vertical = 3
 theme_type_variation = &"PanelThemes"
 script = ExtResource("4_jyhfs")
 themes_path = "res://templates"
-theme_list = NodePath("MarginContainer/Sorter/List")
+theme_list = NodePath("MarginContainer/Sorter/ListScroll/List")
 theme_name_label = NodePath("MarginContainer/Sorter/Info/Name")
 theme_by_label = NodePath("MarginContainer/Sorter/Info/By")
 title_page = NodePath("MarginContainer/Sorter/Info/Previews/Title")
@@ -214,9 +214,15 @@ layout_mode = 2
 [node name="Sorter" type="HBoxContainer" parent="NavSorter/Themes/MarginContainer"]
 layout_mode = 2
 
-[node name="List" type="VBoxContainer" parent="NavSorter/Themes/MarginContainer/Sorter"]
+[node name="ListScroll" type="ScrollContainer" parent="NavSorter/Themes/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.4
+
+[node name="List" type="VBoxContainer" parent="NavSorter/Themes/MarginContainer/Sorter/ListScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 0.4
 
 [node name="VSeparator" type="VSeparator" parent="NavSorter/Themes/MarginContainer/Sorter"]
