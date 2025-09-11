@@ -48,10 +48,10 @@ metadata/_snap_enabled = true
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lfacf"]
 texture = SubResource("GradientTexture2D_bwsqs")
-expand_margin_left = 40.0
-expand_margin_top = 40.0
-expand_margin_right = 40.0
-expand_margin_bottom = 40.0
+expand_margin_left = 20.0
+expand_margin_top = 20.0
+expand_margin_right = 20.0
+expand_margin_bottom = 20.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bwsqs"]
 
