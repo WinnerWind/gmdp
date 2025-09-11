@@ -154,13 +154,16 @@ layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true
 text = "Welcome to GMDP! 
-If you're reading this, you have no presentation configured. 
+[b]No presentation is currently open [/b]
 
-You can start editing a new presentation from scratch by going to the edit tab. 
+Click on the File tab to open an existing mark down file, or go to the Edit tab to author a new one. 
 
 You can open existing markdown files as a presentation from the File menu.
 
-I hope you enjoy GMDP!"
+You can select a theme by going to the Themes tab.
+
+I hope you enjoy GMDP!
+[ul]  WinnerWind 2025[/ul]"
 
 [node name="Editor Panel" type="PanelContainer" parent="NavSorter"]
 visible = false
