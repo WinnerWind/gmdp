@@ -21,20 +21,20 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 	var footer:String = page.footer
 	
 	match [!!heading, !!subheading, !!content, !!images, !!footer]:
-		[true, false, false, false, false]: page_to_load_path = "heading"
-		[true, false, true, false, false]: page_to_load_path = "heading_content"
-		[true, false, true, false, true]: page_to_load_path = "heading_content_footer"
-		[true, true, false, false, false]: page_to_load_path = "heading_subtitle"
-		[true, true, true, false, false]: page_to_load_path = "heading_subtitle_content"
-		[true, true, true, false, true]: page_to_load_path = "heading_subtitle_content_footer"
-		[true, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size(), page_number)
-		[true, true, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_subtitle_%d_image", images.size(), page_number)
-		[true, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_content_%d_image", images.size(), page_number)
 		[true, true, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_subtitle_content_%d_image", images.size(), page_number)
+		[true, true, true, false, true]: page_to_load_path = "heading_subtitle_content_footer"
+		[true, true, true, false, false]: page_to_load_path = "heading_subtitle_content"
+		[true, true, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_subtitle_%d_image", images.size(), page_number)
+		[true, true, false, false, false]: page_to_load_path = "heading_subtitle"
+		[true, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_content_%d_image", images.size(), page_number)
+		[true, false, true, false, true]: page_to_load_path = "heading_content_footer"
+		[true, false, true, false, false]: page_to_load_path = "heading_content"
+		[true, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size(), page_number)
+		[true, false, false, false, false]: page_to_load_path = "heading"
 		[false, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("gallery_%d_image", images.size(), page_number)
 		[false, false, true, false, false]: page_to_load_path = "content"
 		[false, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("content_%d_image", images.size(), page_number)
-		_: page_to_load_path = "heading"
+		_: page_to_load_path = "content"
 	
 	var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path, page_number))
 	var loaded_page:Slide = page_to_load.instantiate()
