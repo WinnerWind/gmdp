@@ -354,7 +354,7 @@ theme_type_variation = &"MarginsPopup"
 script = ExtResource("11_ya4ey")
 tree = NodePath("Panel/Sorter/Tree")
 content_label = NodePath("Panel/Sorter/Content")
-docs_path = "res://docs/Welcome to GMDP!"
+docs_path = "res://docs"
 
 [node name="Panel" type="PanelContainer" parent="Help Panel"]
 layout_mode = 2
@@ -389,3 +389,4 @@ size_flags_stretch_ratio = 2.0
 [connection signal="file_selected" from="NavSorter/Save File" to="." method="save"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="hide"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="reset_warnings"]
+[connection signal="cell_selected" from="Help Panel/Panel/Sorter/Tree" to="Help Panel" method="_on_tree_cell_selected"]

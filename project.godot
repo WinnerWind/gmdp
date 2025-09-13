@@ -35,6 +35,7 @@ enabled=PackedStringArray("res://addons/startup_runner/plugin.cfg")
 
 folder_colors={
 "res://addons/": "gray",
+"res://docs/": "red",
 "res://resources/": "teal",
 "res://scenes/": "green",
 "res://scripts/": "blue",
