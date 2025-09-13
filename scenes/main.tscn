@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=12 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/ui/views/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://b04phw386lbcv" path="res://scenes/prefabs/theme_entry.tscn" id="5_tbgi4"]
 [ext_resource type="Script" uid="uid://catm6dbuc0lhh" path="res://scripts/ui/scroll_point_emitter.gd" id="7_85g3d"]
 [ext_resource type="Script" uid="uid://b8bku7umsla6m" path="res://scripts/ui/views/warnings_panel.gd" id="10_choun"]
+[ext_resource type="Script" uid="uid://bon4gqlm1pwvx" path="res://scripts/ui/views/help_panel.gd" id="11_ya4ey"]
 
 [node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "file_button", "warning_panel", "open_file", "save_file")]
 anchors_preset = 15
@@ -346,6 +347,30 @@ size_flags_vertical = 3
 [node name="Button" type="Button" parent="Warnings Panel/Panel/MarginContainer/Sorter"]
 layout_mode = 2
 text = "Close"
+
+[node name="Help Panel" type="MarginContainer" parent="." node_paths=PackedStringArray("tree", "content_label")]
+layout_mode = 2
+theme_type_variation = &"MarginsPopup"
+script = ExtResource("11_ya4ey")
+tree = NodePath("Panel/Sorter/Tree")
+content_label = NodePath("Panel/Sorter/Content")
+docs_path = "res://docs/Welcome to GMDP!"
+
+[node name="Panel" type="PanelContainer" parent="Help Panel"]
+layout_mode = 2
+theme_type_variation = &"PanelPopup"
+
+[node name="Sorter" type="HBoxContainer" parent="Help Panel/Panel"]
+layout_mode = 2
+
+[node name="Tree" type="Tree" parent="Help Panel/Panel/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Content" type="RichTextLabel" parent="Help Panel/Panel/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
 
 [connection signal="send_file_notification" from="." to="Warnings Panel" method="send_file_notification"]
 [connection signal="send_notification" from="." to="Warnings Panel" method="send_notification"]
