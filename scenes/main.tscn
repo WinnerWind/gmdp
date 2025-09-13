@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=13 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/ui/views/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://catm6dbuc0lhh" path="res://scripts/ui/scroll_point_emitter.gd" id="7_85g3d"]
 [ext_resource type="Script" uid="uid://b8bku7umsla6m" path="res://scripts/ui/views/warnings_panel.gd" id="10_choun"]
 [ext_resource type="Script" uid="uid://bon4gqlm1pwvx" path="res://scripts/ui/views/help_panel.gd" id="11_ya4ey"]
+[ext_resource type="Script" uid="uid://bdi7ie21v5kpn" path="res://scripts/ui/views/toasts.gd" id="12_eb6dy"]
 
 [node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "file_button", "warning_panel", "open_file", "save_file")]
 anchors_preset = 15
@@ -355,28 +356,78 @@ visible = false
 layout_mode = 2
 theme_type_variation = &"MarginsPopup"
 script = ExtResource("11_ya4ey")
-tree = NodePath("Panel/Sorter/Tree")
-content_label = NodePath("Panel/Sorter/Content")
+tree = NodePath("Panel/Sorter/Seperator/Tree")
+content_label = NodePath("Panel/Sorter/Seperator/Content")
 docs_path = "res://docs"
 
 [node name="Panel" type="PanelContainer" parent="Help Panel"]
 layout_mode = 2
 theme_type_variation = &"PanelPopup"
 
-[node name="Sorter" type="HBoxContainer" parent="Help Panel/Panel"]
+[node name="Sorter" type="VBoxContainer" parent="Help Panel/Panel"]
 layout_mode = 2
 
-[node name="Tree" type="Tree" parent="Help Panel/Panel/Sorter"]
+[node name="Seperator" type="HBoxContainer" parent="Help Panel/Panel/Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tree" type="Tree" parent="Help Panel/Panel/Sorter/Seperator"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="RichTextLabel" parent="Help Panel/Panel/Sorter"]
+[node name="Content" type="RichTextLabel" parent="Help Panel/Panel/Sorter/Seperator"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
+[node name="Button" type="Button" parent="Help Panel/Panel/Sorter"]
+layout_mode = 2
+text = "Close"
+
+[node name="Toasts" type="MarginContainer" parent="." node_paths=PackedStringArray("text_label", "timer")]
+visible = false
+layout_mode = 2
+theme_type_variation = &"MarginsPopup"
+script = ExtResource("12_eb6dy")
+text_label = NodePath("TopMargins/HMargins/Panel/MarginContainer/Text")
+timer = NodePath("Timer")
+
+[node name="TopMargins" type="VBoxContainer" parent="Toasts"]
+layout_mode = 2
+
+[node name="HMargins" type="HBoxContainer" parent="Toasts/TopMargins"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="Toasts/TopMargins/HMargins"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="Panel" type="PanelContainer" parent="Toasts/TopMargins/HMargins"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = &"PanelPopup"
+
+[node name="MarginContainer" type="MarginContainer" parent="Toasts/TopMargins/HMargins/Panel"]
+layout_mode = 2
+
+[node name="Text" type="RichTextLabel" parent="Toasts/TopMargins/HMargins/Panel/MarginContainer"]
+layout_mode = 2
+text = "File saved!"
+
+[node name="Spacer" type="Control" parent="Toasts/TopMargins"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 5.0
+
+[node name="Timer" type="Timer" parent="Toasts"]
+
 [connection signal="send_file_notification" from="." to="Warnings Panel" method="send_file_notification"]
 [connection signal="send_notification" from="." to="Warnings Panel" method="send_notification"]
+[connection signal="send_toast" from="." to="Toasts" method="send_toast"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/file" to="." method="file_menu_functions"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/view" to="." method="view_menu_functions"]
 [connection signal="tab_clicked" from="NavSorter/Navbar/MarginContainer/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
@@ -392,4 +443,6 @@ size_flags_stretch_ratio = 2.0
 [connection signal="file_selected" from="NavSorter/Save File" to="." method="save"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="hide"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="reset_warnings"]
-[connection signal="cell_selected" from="Help Panel/Panel/Sorter/Tree" to="Help Panel" method="_on_tree_cell_selected"]
+[connection signal="cell_selected" from="Help Panel/Panel/Sorter/Seperator/Tree" to="Help Panel" method="_on_tree_cell_selected"]
+[connection signal="pressed" from="Help Panel/Panel/Sorter/Button" to="Help Panel" method="hide"]
+[connection signal="timeout" from="Toasts/Timer" to="Toasts" method="hide"]

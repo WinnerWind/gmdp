@@ -27,6 +27,7 @@ class_name PresentationManager
 var total_pages:int
 
 signal send_notification(content:String)
+signal send_toast(content:String)
 signal send_file_notification(content:String, path:String)
 
 func switch_theme_to(theme_path:String):
@@ -119,7 +120,8 @@ func save(path:String):
 	MarkdownParser.last_file_path = path
 	location_label.text = "%s/[b]%s"%[MarkdownParser.last_file_basepath, MarkdownParser.last_file_path.get_file()]
 	print("Saved!")
-	send_notification.emit("Your file has been saved!")
+	#send_notification.emit("Your file has been saved!")
+	send_toast.emit("Your file has been saved!")
 
 func file_menu_functions(id:int):
 	match id:
