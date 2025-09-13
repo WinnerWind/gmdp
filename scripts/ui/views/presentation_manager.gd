@@ -26,6 +26,9 @@ class_name PresentationManager
 
 var total_pages:int
 
+signal send_notification(content:String)
+signal send_file_notification(content:String, path:String)
+
 func switch_theme_to(theme_path:String):
 	PresentationParser.config_file = theme_path
 	refresh()
@@ -116,6 +119,7 @@ func save(path:String):
 	MarkdownParser.last_file_path = path
 	location_label.text = "%s/[b]%s"%[MarkdownParser.last_file_basepath, MarkdownParser.last_file_path.get_file()]
 	print("Saved!")
+	send_notification.emit("Your file has been saved!")
 
 func file_menu_functions(id:int):
 	match id:
@@ -159,9 +163,11 @@ func file_menu_functions(id:int):
 			
 			zip_file.close()
 			if OS.get_name() == "Web":
+				send_file_notification.emit("Your slides have been saved as images", "your Downloads")
 				JavaScriptBridge.download_buffer(FileAccess.get_file_as_bytes(slides_path),"slides.zip")
 			else:
-				print("File saved!")
+				print("ZIP saved!")
+				send_file_notification.emit("Your slides have been saved as images", ProjectSettings.globalize_path(slides_path))
 				OS.shell_open(ProjectSettings.globalize_path(slides_path).get_base_dir())
 
 func view_menu_functions(id:int):
@@ -184,7 +190,7 @@ func _on_main_scroll_changed(new_value: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Save"):
-		if MarkdownParser.last_file_path:
+		if MarkdownParser.last_file_path or OS.get_name() == "Web":
 			save(MarkdownParser.last_file_path)
 		else:
 			save_file.show()
