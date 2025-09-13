@@ -449,7 +449,6 @@ size_flags_stretch_ratio = 5.0
 [node name="Timer" type="Timer" parent="Toasts"]
 
 [connection signal="send_file_notification" from="." to="Warnings Panel" method="send_file_notification"]
-[connection signal="send_notification" from="." to="Warnings Panel" method="send_notification"]
 [connection signal="send_toast" from="." to="Toasts" method="send_toast"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/file" to="." method="file_menu_functions"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/view" to="." method="view_menu_functions"]

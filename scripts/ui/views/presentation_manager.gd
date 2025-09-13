@@ -26,7 +26,7 @@ class_name PresentationManager
 
 var total_pages:int
 
-signal send_notification(content:String)
+#signal send_notification(content:String)
 signal send_toast(content:String)
 signal send_file_notification(content:String, path:String)
 
