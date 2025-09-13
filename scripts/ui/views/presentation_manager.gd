@@ -11,6 +11,7 @@ class_name PresentationManager
 @export var slides_view:Control
 @export var location_label:RichTextLabel
 @export var view_button:MenuButton
+@export var file_button:MenuButton
 @export var warning_panel:WarningsPanel
 @export_subgroup("FileDialogs")
 @export var open_file:FileDialog
@@ -39,7 +40,9 @@ func refresh() -> void:
 	iterate_pages()
 	total_pages = MarkdownParser.data.size()
 	var has_data = !MarkdownParser.data[0]
-	view_button.get_popup().set_item_disabled(0, has_data)
+	view_button.get_popup().set_item_disabled(0, has_data) #disable presentation view
+	file_button.get_popup().set_item_disabled(2, has_data) #disable export as images
+	file_button.get_popup().set_item_disabled(1, has_data) #disable save markdown file
 
 func set_text_content() -> void:
 	var text = text_editor.text
@@ -142,6 +145,24 @@ func file_menu_functions(id:int):
 		3: #exit
 			if not OS.get_name() == "Web":
 				get_tree().quit()
+		4: # export as images
+			var slides_path := "user://slides.zip"
+			var zip_file = ZIPPacker.new()
+			var err = zip_file.open(slides_path)
+			if not err == OK: return 
+			for page_index:int in main_slide_sorter.get_children().size():
+				var page:PageSubViewPort = main_slide_sorter.get_children()[page_index]
+				var texture:Image = page.get_subviewport_texture().get_image()
+				zip_file.start_file("%s.png"%page_index)
+				zip_file.write_file(texture.save_png_to_buffer())
+				zip_file.close_file()
+			
+			zip_file.close()
+			if OS.get_name() == "Web":
+				JavaScriptBridge.download_buffer(FileAccess.get_file_as_bytes(slides_path),"slides.zip")
+			else:
+				print("File saved!")
+				OS.shell_open(ProjectSettings.globalize_path(slides_path).get_base_dir())
 
 func view_menu_functions(id:int):
 	match id:
