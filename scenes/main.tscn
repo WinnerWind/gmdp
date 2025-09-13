@@ -187,7 +187,9 @@ layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Basic markdown syntax such at italic are supported here."
 wrap_mode = 1
+scroll_smooth = true
 scroll_fit_content_width = true
+minimap_draw = true
 
 [node name="Location" type="RichTextLabel" parent="NavSorter/Editor Panel/MarginContainer/Sorter"]
 layout_mode = 2
@@ -349,6 +351,7 @@ layout_mode = 2
 text = "Close"
 
 [node name="Help Panel" type="MarginContainer" parent="." node_paths=PackedStringArray("tree", "content_label")]
+visible = false
 layout_mode = 2
 theme_type_variation = &"MarginsPopup"
 script = ExtResource("11_ya4ey")
