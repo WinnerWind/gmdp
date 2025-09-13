@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://iqkk7rijsp8n"]
 
-[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_fuctg"]
-[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_q11ol"]
-[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_ayo3q"]
+[ext_resource type="Theme" uid="uid://8o7w7af37ine" path="res://templates/gummy/gummy.tres" id="1_4hpll"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_yia5y"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_7vxs4"]
 
 [node name="Title" type="Panel" node_paths=PackedStringArray("heading_label", "contents_label", "image_nodes")]
 anchors_preset = 15
@@ -12,9 +12,9 @@ offset_right = 768.0
 offset_bottom = 432.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_fuctg")
+theme = ExtResource("1_4hpll")
 theme_type_variation = &"BGPanel"
-script = ExtResource("2_q11ol")
+script = ExtResource("2_yia5y")
 heading_label = NodePath("MarginContainer/VBoxContainer/Heading")
 contents_label = NodePath("MarginContainer/VBoxContainer/HBoxContainer/Content")
 image_nodes = [NodePath("MarginContainer/VBoxContainer/HBoxContainer/GridContainer/Image 1")]
@@ -53,7 +53,7 @@ size_flags_vertical = 3
 bbcode_enabled = true
 text = "HEADING"
 scroll_active = false
-script = ExtResource("3_ayo3q")
+script = ExtResource("3_7vxs4")
 
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2

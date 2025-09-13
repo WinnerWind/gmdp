@@ -13,28 +13,24 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 	
 	var data := MarkdownParser.data
 	var page = data[page_number]
-	var page_to_load_path:String
+	var page_to_load_path:String = ""
 	var content:String = page.content
 	var heading:String = page.title
 	var subheading:String = page.subtitle
 	var images:Array = page.images
 	var footer:String = page.footer
+	var theme_item_name_list:Array[String]
 	
-	match [!!heading, !!subheading, !!content, !!images, !!footer]:
-		[true, true, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_subtitle_content_%d_image", images.size(), page_number)
-		[true, true, true, false, true]: page_to_load_path = "heading_subtitle_content_footer"
-		[true, true, true, false, false]: page_to_load_path = "heading_subtitle_content"
-		[true, true, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_subtitle_%d_image", images.size(), page_number)
-		[true, true, false, false, false]: page_to_load_path = "heading_subtitle"
-		[true, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_content_%d_image", images.size(), page_number)
-		[true, false, true, false, true]: page_to_load_path = "heading_content_footer"
-		[true, false, true, false, false]: page_to_load_path = "heading_content"
-		[true, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("heading_%d_image", images.size(), page_number)
-		[true, false, false, false, false]: page_to_load_path = "heading"
-		[false, false, false, true, false]: page_to_load_path = iterate_scenes_and_send_warning("gallery_%d_image", images.size(), page_number)
-		[false, false, true, false, false]: page_to_load_path = "content"
-		[false, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("content_%d_image", images.size(), page_number)
-		_: page_to_load_path = "content"
+	if heading: theme_item_name_list.append("heading")
+	if subheading: theme_item_name_list.append("subtitle")
+	if content: theme_item_name_list.append("content")
+	if footer: theme_item_name_list.append("footer")
+	if images: theme_item_name_list.append("%d_image")
+	
+	for item in theme_item_name_list: page_to_load_path += "_"+item
+	page_to_load_path = page_to_load_path.trim_prefix("_") # Get rid of trailing prefix from the _heading if any
+	# Get the scene, iterate if it has an iterator
+	page_to_load_path = iterate_scenes_and_send_warning(page_to_load_path, images.size(), page_number) if page_to_load_path.contains("%d") else page_to_load_path
 	
 	var canonical_path = get_canonical_path_from_config(page_to_load_path, page_number)
 	if not FileAccess.file_exists(canonical_path): canonical_path = get_canonical_path_from_config("content", page_number)
