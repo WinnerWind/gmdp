@@ -36,7 +36,9 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 		[false, false, true, true, false]: page_to_load_path = iterate_scenes_and_send_warning("content_%d_image", images.size(), page_number)
 		_: page_to_load_path = "content"
 	
-	var page_to_load:PackedScene = load(get_canonical_path_from_config(page_to_load_path, page_number))
+	var canonical_path = get_canonical_path_from_config(page_to_load_path, page_number)
+	if not FileAccess.file_exists(canonical_path): canonical_path = get_canonical_path_from_config("content", page_number)
+	var page_to_load:PackedScene = load(canonical_path)
 	var loaded_page:Slide = page_to_load.instantiate()
 	loaded_page.set_content(heading, subheading, footer, content, images)
 	return loaded_page
@@ -58,6 +60,9 @@ func iterate_scenes_and_send_warning(key:String, number:int, page_index:int) -> 
 	# Ensure we aren't getting the text only scene back
 	while get_canonical_path_from_config(key % number, page_index, false) == config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, "content"):
 		number -= 1
+		if number <= 1: 
+			number = 1
+			break
 	if original_number != number:
 		var warning_text := "Scene {original_scene_name} was not found and it was substituted with {current_scene_name}".format({
 			"original_scene_name": key % original_number,
