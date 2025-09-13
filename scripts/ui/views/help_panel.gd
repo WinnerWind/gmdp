@@ -2,6 +2,7 @@ extends MarginContainer
 class_name HelpPanel
 
 @export var tree:Tree
+@export var header_label:RichTextLabel
 @export var content_label:RichTextLabel
 @export_dir var docs_path:String
 
@@ -49,4 +50,5 @@ func set_text_content(absolute_path:String) -> void:
 	var file = FileAccess.open(absolute_path+"index.md", FileAccess.READ)
 	if not file: return
 	
+	header_label.text = absolute_path.rsplit("/")[-2] #Gets path of parent dir
 	content_label.text = file.get_as_text()

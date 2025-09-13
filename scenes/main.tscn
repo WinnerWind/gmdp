@@ -85,6 +85,10 @@ popup/item_0/id = 0
 popup/item_0/disabled = true
 script = ExtResource("4_tefeu")
 
+[node name="help" type="Button" parent="NavSorter/Navbar/MarginContainer/Sorter/Left"]
+layout_mode = 2
+text = "help"
+
 [node name="Center" type="HBoxContainer" parent="NavSorter/Navbar/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -351,36 +355,55 @@ size_flags_vertical = 3
 layout_mode = 2
 text = "Close"
 
-[node name="Help Panel" type="MarginContainer" parent="." node_paths=PackedStringArray("tree", "content_label")]
+[node name="Help Panel" type="MarginContainer" parent="." node_paths=PackedStringArray("tree", "header_label", "content_label")]
 visible = false
 layout_mode = 2
 theme_type_variation = &"MarginsPopup"
 script = ExtResource("11_ya4ey")
-tree = NodePath("Panel/Sorter/Seperator/Tree")
-content_label = NodePath("Panel/Sorter/Seperator/Content")
+tree = NodePath("Panel/MarginContainer/Sorter/Seperator/Tree")
+header_label = NodePath("Panel/MarginContainer/Sorter/Seperator/Content/Header")
+content_label = NodePath("Panel/MarginContainer/Sorter/Seperator/Content/Main")
 docs_path = "res://docs"
 
 [node name="Panel" type="PanelContainer" parent="Help Panel"]
 layout_mode = 2
 theme_type_variation = &"PanelPopup"
 
-[node name="Sorter" type="VBoxContainer" parent="Help Panel/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="Help Panel/Panel"]
 layout_mode = 2
 
-[node name="Seperator" type="HBoxContainer" parent="Help Panel/Panel/Sorter"]
+[node name="Sorter" type="VBoxContainer" parent="Help Panel/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Seperator" type="HBoxContainer" parent="Help Panel/Panel/MarginContainer/Sorter"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Tree" type="Tree" parent="Help Panel/Panel/Sorter/Seperator"]
+[node name="Tree" type="Tree" parent="Help Panel/Panel/MarginContainer/Sorter/Seperator"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Content" type="RichTextLabel" parent="Help Panel/Panel/Sorter/Seperator"]
+[node name="Content" type="VBoxContainer" parent="Help Panel/Panel/MarginContainer/Sorter/Seperator"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Button" type="Button" parent="Help Panel/Panel/Sorter"]
+[node name="Header" type="RichTextLabel" parent="Help Panel/Panel/MarginContainer/Sorter/Seperator/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+theme_type_variation = &"LabelHeader"
+text = "No Help Article Selected"
+fit_content = true
+
+[node name="Main" type="RichTextLabel" parent="Help Panel/Panel/MarginContainer/Sorter/Seperator/Content"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1000.0
+
+[node name="Button" type="Button" parent="Help Panel/Panel/MarginContainer/Sorter"]
 layout_mode = 2
 text = "Close"
 
@@ -430,6 +453,7 @@ size_flags_stretch_ratio = 5.0
 [connection signal="send_toast" from="." to="Toasts" method="send_toast"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/file" to="." method="file_menu_functions"]
 [connection signal="id_pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/view" to="." method="view_menu_functions"]
+[connection signal="pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Left/help" to="Help Panel" method="show"]
 [connection signal="tab_clicked" from="NavSorter/Navbar/MarginContainer/Sorter/Center/Tabs" to="." method="_on_tabs_tab_changed"]
 [connection signal="pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Right/Refresh" to="." method="refresh"]
 [connection signal="scroll_changed" from="NavSorter/Slides View/Main" to="." method="_on_main_scroll_changed"]
@@ -443,6 +467,6 @@ size_flags_stretch_ratio = 5.0
 [connection signal="file_selected" from="NavSorter/Save File" to="." method="save"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="hide"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="reset_warnings"]
-[connection signal="cell_selected" from="Help Panel/Panel/Sorter/Seperator/Tree" to="Help Panel" method="_on_tree_cell_selected"]
-[connection signal="pressed" from="Help Panel/Panel/Sorter/Button" to="Help Panel" method="hide"]
+[connection signal="cell_selected" from="Help Panel/Panel/MarginContainer/Sorter/Seperator/Tree" to="Help Panel" method="_on_tree_cell_selected"]
+[connection signal="pressed" from="Help Panel/Panel/MarginContainer/Sorter/Button" to="Help Panel" method="hide"]
 [connection signal="timeout" from="Toasts/Timer" to="Toasts" method="hide"]
