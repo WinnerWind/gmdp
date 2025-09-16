@@ -85,18 +85,19 @@ func parse_file_content(contents:String) -> void:
 			data[page_index]["images"].append(image_link)
 		
 		# bold and italics
-		var bold_and_italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_BOLD_REGEX)
-		var bold_text:Array[RegExMatch] = regex_every_line(page, BOLD_REGEX)
-		var italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_REGEX)
 		
+		
+		var bold_and_italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_BOLD_REGEX)
 		for bold_and_italic:RegExMatch in bold_and_italic_text:
 			var bold_and_italic_bbcode:String = "[b][i]%s[/i][/b]" % bold_and_italic.get_string().replace("***", "")
 			page = page.replace(bold_and_italic.get_string(), bold_and_italic_bbcode)
-		
+			
+		var bold_text:Array[RegExMatch] = regex_every_line(page, BOLD_REGEX)
 		for bold:RegExMatch in bold_text:
 			var bold_bbcode:String = "[b]%s[/b]" % bold.get_string().replace("**","")
 			page = page.replace(bold.get_string(), bold_bbcode)
-		
+			
+		var italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_REGEX)
 		for italic:RegExMatch in italic_text:
 			var italic_bbcode:String = "[i]%s[/i]" % italic.get_string().replace("*", "")
 			page = page.replace(italic.get_string(), italic_bbcode)
