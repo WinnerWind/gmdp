@@ -13,7 +13,7 @@ const ITALIC_BOLD_REGEX:String = r"\*\*\*.*\*\*\*"
 const BOLD_REGEX:String = r"\*\*.*\*\*"
 const ITALIC_REGEX:String = r"\*.*\*"
 const INLINE_CODE_REGEX:String = r"`.*`"
-const MULTILINE_CODE_REGEX:String = r"```.*\n.*\n```"
+const MULTILINE_CODE_REGEX:String = r"(```[\s\S]*?```|~~~[\s\S]*?~~~)"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
 const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{0,})+"
 
