@@ -54,3 +54,6 @@ func set_text_content(absolute_path:String) -> void:
 	
 	header_label.text = absolute_path.rsplit("/")[-2] #Gets path of parent dir
 	content_label.set_text_with_replacements(file.get_as_text())
+
+func _on_content_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)

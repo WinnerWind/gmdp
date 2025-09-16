@@ -410,7 +410,8 @@ selection_enabled = true
 script = ExtResource("12_trceg")
 replacements = Dictionary[String, String]({
 "[/code]": "   [/code][/cell][/table]",
-"[code]": "[table=1][cell bg={code_bg}][code]"
+"[code]": "[table=1][cell bg={code_bg}][code]",
+"[img]": "[img=500]"
 })
 colors = Dictionary[String, String]({
 "code_bg": "000000"
@@ -480,5 +481,6 @@ size_flags_stretch_ratio = 5.0
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="hide"]
 [connection signal="pressed" from="Warnings Panel/Panel/MarginContainer/Sorter/Button" to="Warnings Panel" method="reset_warnings"]
 [connection signal="cell_selected" from="Help Panel/Panel/MarginContainer/Sorter/Seperator/Tree" to="Help Panel" method="_on_tree_cell_selected"]
+[connection signal="meta_clicked" from="Help Panel/Panel/MarginContainer/Sorter/Seperator/Content/Main" to="Help Panel" method="_on_content_meta_clicked"]
 [connection signal="pressed" from="Help Panel/Panel/MarginContainer/Sorter/Button" to="Help Panel" method="hide"]
 [connection signal="timeout" from="Toasts/Timer" to="Toasts" method="hide"]
