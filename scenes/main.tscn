@@ -364,6 +364,7 @@ tree = NodePath("Panel/MarginContainer/Sorter/Seperator/Tree")
 header_label = NodePath("Panel/MarginContainer/Sorter/Seperator/Content/Header")
 content_label = NodePath("Panel/MarginContainer/Sorter/Seperator/Content/Main")
 docs_path = "res://docs"
+default_doc = "res://docs/Welcome to GMDP!"
 
 [node name="Panel" type="PanelContainer" parent="Help Panel"]
 layout_mode = 2
@@ -402,6 +403,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1000.0
+bbcode_enabled = true
 
 [node name="Button" type="Button" parent="Help Panel/Panel/MarginContainer/Sorter"]
 layout_mode = 2

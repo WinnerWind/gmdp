@@ -5,9 +5,11 @@ class_name HelpPanel
 @export var header_label:RichTextLabel
 @export var content_label:RichTextLabel
 @export_dir var docs_path:String
+@export_dir var default_doc:String
 
 func _ready() -> void:
 	get_directories_recursive(docs_path)
+	set_text_content(default_doc+"/")
 
 func get_directories_recursive(path:String) -> void:
 	var dir := DirAccess.open(path)
