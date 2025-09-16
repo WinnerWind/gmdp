@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxdx73k3pcw5t"]
+[gd_scene load_steps=14 format=3 uid="uid://dxdx73k3pcw5t"]
 
 [ext_resource type="Script" uid="uid://drv52qxljc4b0" path="res://scripts/ui/views/presentation_manager.gd" id="1_o5qli"]
 [ext_resource type="Theme" uid="uid://chomi8nn8138g" path="res://resources/theme/base.tres" id="1_tipki"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://b8bku7umsla6m" path="res://scripts/ui/views/warnings_panel.gd" id="10_choun"]
 [ext_resource type="Script" uid="uid://bon4gqlm1pwvx" path="res://scripts/ui/views/help_panel.gd" id="11_ya4ey"]
 [ext_resource type="Script" uid="uid://bdi7ie21v5kpn" path="res://scripts/ui/views/toasts.gd" id="12_eb6dy"]
+[ext_resource type="Script" uid="uid://deuue6bjfi8yt" path="res://scripts/ui/rt_label_with_replacements.gd" id="12_trceg"]
 
 [node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "file_button", "warning_panel", "open_file", "save_file")]
 anchors_preset = 15
@@ -403,7 +404,17 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1000.0
+focus_mode = 2
 bbcode_enabled = true
+selection_enabled = true
+script = ExtResource("12_trceg")
+replacements = Dictionary[String, String]({
+"[/code]": "   [/code][/cell][/table]",
+"[code]": "[table=1][cell bg={code_bg}][code]"
+})
+colors = Dictionary[String, String]({
+"code_bg": "000000"
+})
 
 [node name="Button" type="Button" parent="Help Panel/Panel/MarginContainer/Sorter"]
 layout_mode = 2

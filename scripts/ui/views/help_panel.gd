@@ -3,7 +3,7 @@ class_name HelpPanel
 
 @export var tree:Tree
 @export var header_label:RichTextLabel
-@export var content_label:RichTextLabel
+@export var content_label:RichTextLabelWithReplacements
 @export_dir var docs_path:String
 @export_dir var default_doc:String
 
@@ -53,4 +53,4 @@ func set_text_content(absolute_path:String) -> void:
 	if not file: return
 	
 	header_label.text = absolute_path.rsplit("/")[-2] #Gets path of parent dir
-	content_label.text = file.get_as_text()
+	content_label.set_text_with_replacements(file.get_as_text())
