@@ -45,7 +45,10 @@ func load_themes() -> void:
 						var text_only_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "content")
 						
 						var new_theme_entry:ThemeEntry = theme_entry.instantiate()
-						new_theme_entry.set_details(theme_name, author)
+						if author == designed_by:
+							new_theme_entry.set_details(theme_name, author)
+						else:
+							new_theme_entry.set_details(theme_name, "%s & %s" %[author, designed_by])
 						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path, meta_file_full_path, text_only_scene_path))
 						theme_list.add_child(new_theme_entry)
 					else:

@@ -18,15 +18,12 @@ mouse_filter = 1
 text = "My Amazing Theme"
 text_overrun_behavior = 3
 
-[node name="Author" type="RichTextLabel" parent="."]
+[node name="Author" type="Label" parent="."]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 1
-bbcode_enabled = true
 text = "[i]WinnerWind[/i]"
-fit_content = true
-visible_characters = 25
-visible_ratio = 2.5
+text_overrun_behavior = 3
 
 [node name="HSeparator" type="HSeparator" parent="."]
 layout_mode = 2
