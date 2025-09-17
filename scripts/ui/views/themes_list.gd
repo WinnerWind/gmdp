@@ -33,13 +33,11 @@ func load_themes() -> void:
 				var scenes = config.get_section_keys("scenes")
 				if "content" in scenes and "heading_content" in scenes and "heading" in scenes and "heading_subtitle_content" in scenes:
 					var metadata = config.get_section_keys("metadata")
-					if "name" in metadata and "author" in metadata and "designed_by" in metadata and "version" in metadata and "date" in metadata and "url" in metadata:
+					if "name" in metadata and "author" in metadata and "designed_by" in metadata and "url" in metadata:
 						# All data checks are done so lets populate the scene
 						var theme_name = config.get_value("metadata", "name")
 						var author = config.get_value("metadata", "author")
 						var designed_by = config.get_value("metadata", "designed_by")
-						var version = config.get_value("metadata", "version")
-						var date = config.get_value("metadata", "date")
 						var url = config.get_value("metadata", "url")
 						var heading_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_content")
 						var title_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading")
@@ -48,7 +46,7 @@ func load_themes() -> void:
 						
 						var new_theme_entry:ThemeEntry = theme_entry.instantiate()
 						new_theme_entry.set_details(theme_name, author)
-						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, version, date, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path, meta_file_full_path, text_only_scene_path))
+						new_theme_entry.pressed.connect(set_details.bind(theme_name, author, designed_by, url, heading_scene_path, title_scene_path, heading_subtitle_scene_path, meta_file_full_path, text_only_scene_path))
 						theme_list.add_child(new_theme_entry)
 					else:
 						push_error("Metadata incomplete in %s" % meta_file_full_path)
@@ -60,13 +58,11 @@ func load_themes() -> void:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])
 				send_warning.emit("The theme file is missing a section (Found sections %s)" % config.get_sections(), meta_file_full_path)
 
-func set_details(theme_name:String, author:String, designed_by:String, version:String, date:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String, text_only_scene_path:String):
+func set_details(theme_name:String, author:String, designed_by:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String, text_only_scene_path:String):
 	theme_name_label.text = theme_name
-	theme_by_label.text = "Authored by [b]{author}[/b] and designed by [b]{designer}[/b] on {date}. [i]Version v{version}[/i]".format({
+	theme_by_label.text = "Authored by [b]{author}[/b] and designed by [b]{designer}[/b]".format({
 		"author": author,
 		"designer": designed_by,
-		"version": version,
-		"date": date
 	})
 	var heading_scene:Slide = load(heading_scene_path).instantiate()
 	var title_scene:Slide = load(title_scene_path).instantiate()

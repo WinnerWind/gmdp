@@ -14,7 +14,7 @@ Your first step should be to get a copy of [url=https://github.com/WinnerWind/gm
 After that, open the project in [url=https://godotengine.org]Godot[/url] create a folder in the newly formed copy of the repository in the templates folder. 
 Create a meta.ini file.
 Create a metadata section in the meta.ini file. If you don't know how to do this, the bottom of this document contains a sample meta.ini file.
-In the metadata section, add keys for "name", "author", "designed_by", "version", "date" and "url". These all tell users who designed the theme. [img]res://docs/Welcome to GMDP!/101 - Making Themes/101-1 - Creating a Basic Theme/metadata.png[/img]
+In the metadata section, add keys for "name", "author", "designed_by", and "url". These all tell users who designed the theme. [img]res://docs/Welcome to GMDP!/101 - Making Themes/101-1 - Creating a Basic Theme/metadata.png[/img]
 Create a section called "scenes"
 This section contains key-value pairs which tell GMDP which scenes to use for which type of slide. After reading through "Types of Slides", you define each key to be the internal name of the slide type, and the value to be the relative path to the scene. 
 Each slide scene must have the root node to have the slide.gd script (located in res://scripts/slides/slide.gd) or it must have a script that extends slide.gd. After that, you point the exported nodes (Heading Label, Subheading Label etc.) at their respective nodes. 
@@ -28,8 +28,6 @@ A sample (incomplete!) metadata file looks like:
 name="Gummy Revived"
 author="WinnerWind"
 designed_by="WinnerWind"
-version="1.0.0"
-date="2025-09-06"
 url="https://winnerwind.in"
 
 [scenes]
