@@ -1,0 +1,37 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://bfjtic6q1v53j"]
+
+[ext_resource type="FontFile" uid="uid://bsb6q8su8qs7r" path="res://templates/newspaper/fonts/PirataOne-Regular.ttf" id="1_7kdkq"]
+[ext_resource type="FontFile" uid="uid://cinhil40vtern" path="res://templates/newspaper/fonts/Newsreader_60pt-Regular.ttf" id="1_gpgoa"]
+[ext_resource type="FontFile" uid="uid://cuqghgg5fiufs" path="res://templates/newspaper/fonts/Newsreader_60pt-ExtraBold.ttf" id="2_tygh7"]
+[ext_resource type="FontFile" uid="uid://bkcko03lossl7" path="res://templates/newspaper/fonts/Newsreader_60pt-BoldItalic.ttf" id="3_f3chw"]
+[ext_resource type="FontFile" uid="uid://ybi2bwyy0kqc" path="res://templates/newspaper/fonts/Newsreader_60pt-MediumItalic.ttf" id="4_538bo"]
+[ext_resource type="FontFile" uid="uid://ck7s310pfbn2n" path="res://templates/newspaper/fonts/Cinzel-Regular.ttf" id="5_f3chw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fxlim"]
+bg_color = Color(0.9372549, 0.92941177, 0.8392157, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7kdkq"]
+thickness = 3
+
+[resource]
+default_font = ExtResource("1_gpgoa")
+default_font_size = 64
+BGPanel/base_type = &"Panel"
+BGPanel/styles/panel = SubResource("StyleBoxFlat_fxlim")
+HSeparator/styles/separator = SubResource("StyleBoxLine_7kdkq")
+LabelFooter/base_type = &"RichTextLabel"
+LabelFooter/font_sizes/normal_font_size = 32
+LabelSubtitle/base_type = &"RichTextLabel"
+LabelSubtitle/font_sizes/normal_font_size = 46
+LabelTitle/base_type = &"RichTextLabel"
+LabelTitle/font_sizes/normal_font_size = 96
+LabelTitle/fonts/normal_font = ExtResource("1_7kdkq")
+MarginContainer/constants/margin_bottom = 20
+MarginContainer/constants/margin_left = 20
+MarginContainer/constants/margin_right = 20
+MarginContainer/constants/margin_top = 20
+RichTextLabel/colors/default_color = Color(0.16924527, 0.1692453, 0.16924521, 1)
+RichTextLabel/fonts/bold_font = ExtResource("2_tygh7")
+RichTextLabel/fonts/bold_italics_font = ExtResource("3_f3chw")
+RichTextLabel/fonts/italics_font = ExtResource("4_538bo")
+RichTextLabel/fonts/mono_font = ExtResource("5_f3chw")

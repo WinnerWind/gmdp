@@ -1,0 +1,72 @@
+[gd_scene load_steps=4 format=3 uid="uid://cbmn2q116og8m"]
+
+[ext_resource type="Theme" uid="uid://bfjtic6q1v53j" path="res://templates/newspaper/newspaper.tres" id="1_7wad0"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_31ig6"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_xbg1a"]
+
+[node name="HeadingOnly" type="Panel" node_paths=PackedStringArray("heading_label", "subheading_label", "contents_label", "footer_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7wad0")
+theme_type_variation = &"BGPanel"
+script = ExtResource("2_31ig6")
+heading_label = NodePath("VBoxContainer/Heading")
+subheading_label = NodePath("VBoxContainer/Subtitle")
+contents_label = NodePath("VBoxContainer/MarginContainer/Content")
+footer_label = NodePath("VBoxContainer/Footer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Pad" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Heading" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelTitle"
+text = "The Times of WinnerWind"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Subtitle" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelSubtitle"
+text = "29th May 2025"
+fit_content = true
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Content" type="RichTextLabel" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "29th May 2025"
+script = ExtResource("3_xbg1a")
+
+[node name="Footer" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelFooter"
+text = "The Times of WinnerWindAAAAA"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1

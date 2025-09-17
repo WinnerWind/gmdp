@@ -1,0 +1,44 @@
+[gd_scene load_steps=4 format=3 uid="uid://kixcab780ukt"]
+
+[ext_resource type="Theme" uid="uid://bfjtic6q1v53j" path="res://templates/newspaper/newspaper.tres" id="1_i6iyo"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_0ad0f"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_c0lvq"]
+
+[node name="HeadingOnly" type="Panel" node_paths=PackedStringArray("contents_label", "footer_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_i6iyo")
+theme_type_variation = &"BGPanel"
+script = ExtResource("2_0ad0f")
+contents_label = NodePath("MarginContainer/VBoxContainer/Content")
+footer_label = NodePath("MarginContainer/VBoxContainer/Footer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Content" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+text = "29th May 2025"
+script = ExtResource("3_c0lvq")
+
+[node name="Footer" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelFooter"
+text = "The Times of WinnerWindAAAAA"
+fit_content = true
+scroll_active = false
+vertical_alignment = 1
