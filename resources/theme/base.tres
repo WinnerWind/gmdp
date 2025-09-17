@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=36 format=3 uid="uid://chomi8nn8138g"]
+[gd_resource type="Theme" load_steps=37 format=3 uid="uid://chomi8nn8138g"]
 
 [ext_resource type="FontFile" uid="uid://be06miu2tcruu" path="res://resources/fonts/FiraCode-Regular.ttf" id="1_7ip6p"]
 [ext_resource type="StyleBox" uid="uid://chl5nc56hjif0" path="res://resources/theme/styleboxes/panel_halo.tres" id="2_086gh"]
@@ -72,6 +72,8 @@ bg_color = Color(0.976471, 0.94902, 0.87451, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21qgi"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d4vv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_itdar"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_086gh"]
 content_margin_left = 10.0
@@ -201,8 +203,10 @@ RefreshButton/styles/hover_pressed = SubResource("StyleBoxEmpty_buvui")
 RefreshButton/styles/normal = SubResource("StyleBoxEmpty_21qgi")
 RefreshButton/styles/pressed = SubResource("StyleBoxEmpty_0d4vv")
 RichTextLabel/colors/default_color = Color(0.976471, 0.94902, 0.87451, 1)
+RichTextLabel/colors/selection_color = Color(0.99, 0.891, 0.924, 0.5529412)
 RichTextLabel/fonts/bold_font = ExtResource("5_mra7g")
 RichTextLabel/fonts/italics_font = ExtResource("3_lfacf")
+RichTextLabel/styles/focus = SubResource("StyleBoxEmpty_itdar")
 RichTextLabelHeading/base_type = &"RichTextLabel"
 RichTextLabelHeading/font_sizes/normal_font_size = 32
 TabBar/colors/font_selected_color = Color(0.933333, 0.909804, 0.835294, 1)
@@ -214,6 +218,8 @@ TabBar/styles/tab_selected = SubResource("StyleBoxFlat_bwsqs")
 TabBar/styles/tab_unselected = SubResource("StyleBoxFlat_r8lfk")
 TextEdit/colors/caret_color = Color(0.976471, 0.94902, 0.87451, 1)
 TextEdit/colors/font_color = Color(0.976471, 0.94902, 0.87451, 1)
+TextEdit/colors/font_selected_color = Color(0.126, 0.1494, 0.36, 1)
+TextEdit/colors/selection_color = Color(0.991831, 0.897263, 0.92808, 1)
 TextEdit/styles/focus = SubResource("StyleBoxEmpty_7ip6p")
 TextEdit/styles/normal = ExtResource("2_lfacf")
 Tree/styles/focus = SubResource("StyleBoxEmpty_obvna")
