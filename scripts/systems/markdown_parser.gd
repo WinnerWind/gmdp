@@ -9,10 +9,10 @@ const HEADING_2_REGEX:String = r"^## (.*)"
 const FOOTER_REGEX:String = r"^-# (.*)"
 const IMAGE_REGEX:String = r"\!\[.*\]\(.*\)"
 const IMAGE_NAME_REGEX:String = r"\!\[.*\]"
-const ITALIC_BOLD_REGEX:String = r"\*\*\*.*\*\*\*"
-const BOLD_REGEX:String = r"\*\*.*\*\*"
-const ITALIC_REGEX:String = r"\*.*\*"
-const INLINE_CODE_REGEX:String = r"`.*`"
+const ITALIC_BOLD_REGEX:String = r"\*\*\*(.+?)\*\*\*"
+const BOLD_REGEX:String = r"\*\*(.+?)\*\*"
+const ITALIC_REGEX:String = r"\*(.+?)\*"
+const INLINE_CODE_REGEX:String = r"`(.+?)`"
 const MULTILINE_CODE_REGEX:String = r"(```[\s\S]*?```|~~~[\s\S]*?~~~)"
 const COMMENT_REGEX:String = r"(%%\n.*?\n%%)|(%%.*?%%)"
 const BULLET_REGEX:String = r"(?<=\n)([-+*]\s.*\n{0,})+"
@@ -96,7 +96,7 @@ func parse_file_content(contents:String) -> void:
 		for bold:RegExMatch in bold_text:
 			var bold_bbcode:String = "[b]%s[/b]" % bold.get_string().replace("**","")
 			page = page.replace(bold.get_string(), bold_bbcode)
-			
+		
 		var italic_text:Array[RegExMatch] = regex_every_line(page, ITALIC_REGEX)
 		for italic:RegExMatch in italic_text:
 			var italic_bbcode:String = "[i]%s[/i]" % italic.get_string().replace("*", "")
