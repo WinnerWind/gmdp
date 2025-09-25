@@ -1,0 +1,57 @@
+[gd_scene load_steps=5 format=3 uid="uid://bb371mp7uwm82"]
+
+[ext_resource type="Theme" uid="uid://b0d7ckdjgdf18" path="res://templates/whimsy/carrot_whimsy.tres" id="1_6aifh"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_6xxb7"]
+[ext_resource type="Texture2D" uid="uid://dhrtgxnv07noa" path="res://templates/whimsy/assets/3.svg" id="3_6xxb7"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="4_tgquc"]
+
+[node name="Content" type="ColorRect" node_paths=PackedStringArray("contents_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6aifh")
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_6xxb7")
+contents_label = NodePath("HBoxContainer/Content")
+heading_format = "~%s~"
+
+[node name="BG Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_6xxb7")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Content" type="RichTextLabel" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"LabelContent"
+text = "~Title~"
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_tgquc")
+
+[node name="Control2" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.12

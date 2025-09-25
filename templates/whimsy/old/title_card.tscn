@@ -1,0 +1,205 @@
+[gd_scene load_steps=15 format=3 uid="uid://b74jfy7a6f6re"]
+
+[ext_resource type="Theme" uid="uid://b0d7ckdjgdf18" path="res://templates/whimsy/carrot_whimsy.tres" id="1_ddlxg"]
+[ext_resource type="Texture2D" uid="uid://cu0g630a2oe5a" path="res://templates/whimsy/assets/old/top_trap.svg" id="2_4knkm"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_gu6mx"]
+[ext_resource type="Texture2D" uid="uid://gf1e8kjmium" path="res://templates/whimsy/assets/old/g156.svg" id="3_7pmnu"]
+[ext_resource type="Texture2D" uid="uid://bwidj2uh65y3o" path="res://templates/whimsy/assets/old/squiggly1.svg" id="4_7ctpq"]
+[ext_resource type="Texture2D" uid="uid://b3a4mi6vkri31" path="res://templates/whimsy/assets/old/g230.svg" id="5_v7ks1"]
+[ext_resource type="Texture2D" uid="uid://35de2e3o2o3b" path="res://templates/whimsy/assets/old/g80.svg" id="6_xn8e1"]
+[ext_resource type="Texture2D" uid="uid://x74di8btp3rn" path="res://templates/whimsy/assets/old/g142.svg" id="7_3swdp"]
+[ext_resource type="Texture2D" uid="uid://dwhmlrvaqyv4b" path="res://templates/whimsy/assets/old/g150.svg" id="8_dh4ca"]
+[ext_resource type="Texture2D" uid="uid://daxgakuxfyegt" path="res://templates/whimsy/assets/old/g76.svg" id="8_tjnpn"]
+[ext_resource type="Texture2D" uid="uid://dojrmnj2nwklr" path="res://templates/whimsy/assets/old/g126.svg" id="10_pnt5y"]
+[ext_resource type="Texture2D" uid="uid://y0tuduvna06u" path="res://templates/whimsy/assets/old/g134.svg" id="11_5lq6j"]
+[ext_resource type="Texture2D" uid="uid://citsi7p42iwb6" path="res://templates/whimsy/assets/old/sparkles1.svg" id="12_xj78k"]
+[ext_resource type="Texture2D" uid="uid://ccvprbran3obv" path="res://templates/whimsy/assets/old/g238.svg" id="13_5xquh"]
+
+[node name="TitleCard" type="Panel" node_paths=PackedStringArray("heading_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ddlxg")
+script = ExtResource("2_gu6mx")
+heading_label = NodePath("Sorter/Main/FG/VBoxContainer/Heading")
+heading_format = "~%s~"
+
+[node name="Sorter" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Top" type="TextureRect" parent="Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("2_4knkm")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Main" type="MarginContainer" parent="Sorter"]
+custom_minimum_size = Vector2(0, 800)
+layout_mode = 2
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 160
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 160
+
+[node name="FG" type="Panel" parent="Sorter/Main"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"PanelFGPop"
+
+[node name="BG" type="Panel" parent="Sorter/Main/FG"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 45.0
+offset_top = -30.0
+offset_right = 45.0
+offset_bottom = -30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"PanelBG"
+
+[node name="Fluff" type="Control" parent="Sorter/Main/FG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = -131.0
+offset_top = -255.0
+offset_right = 38.0
+offset_bottom = -50.0
+texture = ExtResource("4_7ctpq")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect2" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = -194.0
+offset_top = -108.0
+offset_right = -25.0
+offset_bottom = 97.0
+texture = ExtResource("5_v7ks1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect3" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = -194.0
+offset_top = 385.0
+offset_right = -25.0
+offset_bottom = 590.0
+texture = ExtResource("6_xn8e1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect4" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = -66.0
+offset_top = 480.0
+offset_right = 103.0
+offset_bottom = 685.0
+texture = ExtResource("7_3swdp")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect5" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 480.0
+offset_right = 190.0
+offset_bottom = 640.0
+texture = ExtResource("8_dh4ca")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect6" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = 1156.0
+offset_top = 480.0
+offset_right = 1365.0
+offset_bottom = 685.0
+texture = ExtResource("8_tjnpn")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect7" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = 1314.0
+offset_top = 452.0
+offset_right = 1442.0
+offset_bottom = 584.0
+texture = ExtResource("10_pnt5y")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect8" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = 1377.0
+offset_top = 346.0
+offset_right = 1467.0
+offset_bottom = 476.15387
+texture = ExtResource("11_5lq6j")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect9" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = 1180.0
+offset_top = -276.0
+offset_right = 1425.0
+offset_bottom = -8.0
+texture = ExtResource("12_xj78k")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextureRect10" type="TextureRect" parent="Sorter/Main/FG/Fluff"]
+layout_mode = 0
+offset_left = 1418.0
+offset_top = -168.0
+offset_right = 1544.0
+offset_bottom = 10.0
+texture = ExtResource("13_5xquh")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Sorter/Main/FG"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heading" type="RichTextLabel" parent="Sorter/Main/FG/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LabelHeading"
+text = "~Title~"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Bottom" type="TextureRect" parent="Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
+texture = ExtResource("3_7pmnu")
+expand_mode = 1
+stretch_mode = 5

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="1402.3594"
+   zoomAndPan="magnify"
+   viewBox="0 0 1051.7695 388.56642"
+   height="518.08856"
+   preserveAspectRatio="xMidYMid"
+   version="1.0"
+   id="svg238"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs68">
+    <clipPath
+       id="84b18b51e5">
+      <path
+         d="M 267.44531,163.375 H 1319.3047 V 551.94141 H 267.44531 Z m 0,0"
+         clip-rule="nonzero"
+         id="path15" />
+    </clipPath>
+    <clipPath
+       id="b7a13b90dd">
+      <path
+         d="m 305.69531,163.375 h 975.26949 c 21.125,0 38.25,17.125 38.25,38.25 v 312.06641 c 0,21.125 -17.125,38.25 -38.25,38.25 H 305.69531 c -21.125,0 -38.25,-17.125 -38.25,-38.25 V 201.625 c 0,-21.125 17.125,-38.25 38.25,-38.25 z m 0,0"
+         clip-rule="nonzero"
+         id="path16" />
+    </clipPath>
+    <clipPath
+       id="ea6f494f82">
+      <path
+         d="M 0.445312,0.375 H 1052.2813 V 388.94141 H 0.445312 Z m 0,0"
+         clip-rule="nonzero"
+         id="path17" />
+    </clipPath>
+    <clipPath
+       id="06ccc20f8c">
+      <path
+         d="M 38.695312,0.375 H 1013.9648 c 21.125,0 38.25,17.125 38.25,38.25 v 312.06641 c 0,21.125 -17.125,38.25 -38.25,38.25 H 38.695312 c -21.125,0 -38.25,-17.125 -38.25,-38.25 V 38.625 c 0,-21.125 17.125,-38.25 38.25,-38.25 z m 0,0"
+         clip-rule="nonzero"
+         id="path18" />
+    </clipPath>
+    <clipPath
+       id="6d06e5be59">
+      <rect
+         x="0"
+         width="1053"
+         y="0"
+         height="389"
+         id="rect18" />
+    </clipPath>
+  </defs>
+  <g
+     clip-path="url(#84b18b51e5)"
+     id="g89"
+     transform="translate(-267.44532,-163.37499)">
+    <g
+       clip-path="url(#b7a13b90dd)"
+       id="g88">
+      <g
+         transform="translate(267,163)"
+         id="g87">
+        <g
+           clip-path="url(#6d06e5be59)"
+           id="g86">
+          <g
+             clip-path="url(#ea6f494f82)"
+             id="g85">
+            <g
+               clip-path="url(#06ccc20f8c)"
+               id="g84">
+              <path
+                 fill="#1ca379"
+                 d="M 0.445312,0.375 H 1052.3047 V 388.94141 H 0.445312 Z m 0,0"
+                 fill-opacity="1"
+                 fill-rule="nonzero"
+                 id="path83" />
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

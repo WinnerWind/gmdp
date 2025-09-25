@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3y68qswx53go"]
+
+[ext_resource type="Theme" uid="uid://b0d7ckdjgdf18" path="res://templates/whimsy/carrot_whimsy.tres" id="1_nux2x"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_e7xpn"]
+[ext_resource type="Texture2D" uid="uid://bdka1wlyouu87" path="res://templates/whimsy/assets/5.svg" id="3_csus5"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="4_lgg11"]
+[ext_resource type="Texture2D" uid="uid://ca0fpr13pgxd4" path="res://icon.svg" id="5_gkp7u"]
+
+[node name="TitleCard" type="ColorRect" node_paths=PackedStringArray("heading_label", "contents_label", "image_nodes")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_nux2x")
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_e7xpn")
+heading_label = NodePath("VBoxContainer/Heading")
+contents_label = NodePath("VBoxContainer/HBoxContainer/AutoSizeRichTextLabel")
+image_nodes = [NodePath("VBoxContainer/HBoxContainer/Images/TextureRect")]
+heading_format = "~%s~"
+
+[node name="BG Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_csus5")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.07
+
+[node name="Heading" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"LabelHeading"
+text = "~Title~"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control2" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.21
+
+[node name="AutoSizeRichTextLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.2
+theme_type_variation = &"LabelContent"
+text = "ARIVEDERCHI"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("4_lgg11")
+metadata/_custom_type_script = "uid://cdr6fh8s5uf7g"
+
+[node name="Spacer2" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Images" type="GridContainer" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/HBoxContainer/Images"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("5_gkp7u")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Spacer3" type="Control" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+
+[node name="Control3" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.15

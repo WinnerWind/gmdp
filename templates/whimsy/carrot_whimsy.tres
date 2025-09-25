@@ -1,0 +1,34 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://b0d7ckdjgdf18"]
+
+[ext_resource type="FontFile" uid="uid://mtfi4wdbwa6h" path="res://templates/whimsy/fonts/Fredoka-Regular.ttf" id="1_ai4aa"]
+[ext_resource type="Texture2D" uid="uid://crgk7btg41dce" path="res://templates/whimsy/assets/old/g95.svg" id="1_i06xw"]
+[ext_resource type="Texture2D" uid="uid://bt03pfwedauq" path="res://templates/whimsy/assets/old/g89.svg" id="1_lgcmv"]
+[ext_resource type="FontFile" uid="uid://jycuh53kkfxn" path="res://templates/whimsy/fonts/Fredoka-Bold.ttf" id="3_lgcmv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wa1us"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8pkr0"]
+texture = ExtResource("1_lgcmv")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lgcmv"]
+texture = ExtResource("1_i06xw")
+
+[resource]
+default_font = ExtResource("3_lgcmv")
+default_font_size = 64
+LabelContent/base_type = &"RichTextLabel"
+LabelContent/colors/default_color = Color(0, 0.30980393, 0.21568628, 1)
+LabelContent/font_sizes/normal_font_size = 50
+LabelContent/fonts/normal_font = ExtResource("1_ai4aa")
+LabelHeading/base_type = &"RichTextLabel"
+LabelHeading/colors/default_color = Color(0.015686275, 0.30980393, 0.21568628, 1)
+LabelHeading/font_sizes/normal_font_size = 80
+LabelSubheading/base_type = &"RichTextLabel"
+LabelSubheading/colors/default_color = Color(0, 0.44313726, 0.30980393, 1)
+LabelSubheading/font_sizes/normal_font_size = 60
+Panel/styles/panel = SubResource("StyleBoxFlat_wa1us")
+PanelBG/base_type = &"Panel"
+PanelBG/styles/panel = SubResource("StyleBoxTexture_8pkr0")
+PanelFGPop/base_type = &"Panel"
+PanelFGPop/styles/panel = SubResource("StyleBoxTexture_lgcmv")

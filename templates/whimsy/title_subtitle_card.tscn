@@ -1,0 +1,59 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmkw74y5hisje"]
+
+[ext_resource type="Theme" uid="uid://b0d7ckdjgdf18" path="res://templates/whimsy/carrot_whimsy.tres" id="1_qglgf"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_vj213"]
+[ext_resource type="Texture2D" uid="uid://cxue2852uamyd" path="res://templates/whimsy/assets/1.svg" id="3_cff0y"]
+
+[node name="TitleCard" type="ColorRect" node_paths=PackedStringArray("heading_label", "subheading_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_qglgf")
+color = Color(0, 0, 0, 1)
+script = ExtResource("2_vj213")
+heading_label = NodePath("Sorter/Heading")
+subheading_label = NodePath("Sorter/Subheading")
+heading_format = "~%s~"
+subheading_format = "~%s~"
+
+[node name="BG Image" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_cff0y")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sorter" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Heading" type="RichTextLabel" parent="Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.25
+theme_type_variation = &"LabelHeading"
+text = "~Title~"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="Subheading" type="RichTextLabel" parent="Sorter"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"LabelSubheading"
+text = "~Title~"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
