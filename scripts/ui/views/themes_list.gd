@@ -31,7 +31,7 @@ func load_themes() -> void:
 			# Data validation
 			if "metadata" in config.get_sections() and "scenes" in config.get_sections():
 				var scenes = config.get_section_keys("scenes")
-				if "content" in scenes and "heading_content" in scenes and "heading" in scenes and "heading_subtitle_content" in scenes:
+				if "content" in scenes and "heading_content" in scenes and "heading" in scenes and "heading_subheading_content" in scenes:
 					var metadata = config.get_section_keys("metadata")
 					if "name" in metadata and "author" in metadata and "designed_by" in metadata and "url" in metadata:
 						# All data checks are done so lets populate the scene
@@ -41,7 +41,7 @@ func load_themes() -> void:
 						var url = config.get_value("metadata", "url")
 						var heading_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_content")
 						var title_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading")
-						var heading_subtitle_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_subtitle_content")
+						var heading_subtitle_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "heading_subheading_content")
 						var text_only_scene_path = meta_file_full_path.get_base_dir() + "/"+config.get_value("scenes", "content")
 						
 						var new_theme_entry:ThemeEntry = theme_entry.instantiate()
@@ -56,7 +56,7 @@ func load_themes() -> void:
 						send_warning.emit("Author data is incomplete!", meta_file_full_path)
 				else: 
 					push_error("content, heading_content, heading or heading_subtitle_content was not found in %s" % meta_file_full_path)
-					send_warning.emit("The theme lacks one or more basic slides! (content, heading_content, heading, and heading_subtitle_content)", meta_file_full_path)
+					send_warning.emit("The theme lacks one or more basic slides! (content, heading_content, heading, and heading_subheading_content)", meta_file_full_path)
 			else:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])
 				send_warning.emit("The theme file is missing a section (Found sections %s)" % config.get_sections(), meta_file_full_path)

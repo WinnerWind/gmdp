@@ -22,7 +22,7 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 	var theme_item_name_list:Array[String]
 	
 	if heading: theme_item_name_list.append("heading")
-	if subheading: theme_item_name_list.append("subtitle")
+	if subheading: theme_item_name_list.append("subheading")
 	if content: theme_item_name_list.append("content")
 	if footer: theme_item_name_list.append("footer")
 	if images: theme_item_name_list.append("%d_image")
