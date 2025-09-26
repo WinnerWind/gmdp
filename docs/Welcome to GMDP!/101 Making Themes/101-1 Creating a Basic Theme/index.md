@@ -34,5 +34,5 @@ url="https://winnerwind.in"
 heading="heading.tscn"
 heading_content="heading_content.tscn"
 content="content.tscn"
-heading_subtitle_content="heading_subtitle_content.tscn"
+heading_subheading_content="heading_subtitle_content.tscn"
 [/code]

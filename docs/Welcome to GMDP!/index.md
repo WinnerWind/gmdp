@@ -12,5 +12,3 @@ Importing/Exporting your text content
 [/ul]
 
 If this is your first time with GMDP, start by reading the "Your First Presentation" document in the left.
-
-
