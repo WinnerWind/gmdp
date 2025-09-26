@@ -62,6 +62,13 @@ func load_themes() -> void:
 				send_warning.emit("The theme file is missing a section (Found sections %s)" % config.get_sections(), meta_file_full_path)
 
 func set_details(theme_name:String, author:String, designed_by:String, url:String, heading_scene_path:String, title_scene_path:String, heading_subtitle_scene_path:String, meta_file:String, text_only_scene_path:String):
+	# Safety checks before loading the scene
+	if not FileAccess.file_exists(heading_scene_path) or not FileAccess.file_exists(title_scene_path) \
+	or not FileAccess.file_exists(heading_subtitle_scene_path) or not FileAccess.file_exists(text_only_scene_path):
+		push_error("The path to some of the basic scenes does not exist! Stopped loading!")
+		send_warning.emit("The path to some (or all) of the basic scenes do not exist! Stopped loading.", meta_file)
+		return 
+	
 	theme_name_label.text = theme_name
 	theme_by_label.text = "Authored by [b]{author}[/b] and designed by [b]{designer}[/b]".format({
 		"author": author,
