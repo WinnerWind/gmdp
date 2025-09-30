@@ -424,6 +424,7 @@ text = "Close"
 [node name="Toasts" type="MarginContainer" parent="." node_paths=PackedStringArray("text_label", "timer")]
 visible = false
 layout_mode = 2
+mouse_filter = 2
 theme_type_variation = &"MarginsPopup"
 script = ExtResource("12_eb6dy")
 text_label = NodePath("TopMargins/HMargins/Panel/MarginContainer/Text")
@@ -431,34 +432,41 @@ timer = NodePath("Timer")
 
 [node name="TopMargins" type="VBoxContainer" parent="Toasts"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HMargins" type="HBoxContainer" parent="Toasts/TopMargins"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="Spacer" type="Control" parent="Toasts/TopMargins/HMargins"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
+mouse_filter = 2
 
 [node name="Panel" type="PanelContainer" parent="Toasts/TopMargins/HMargins"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+mouse_filter = 2
 theme_type_variation = &"PanelPopup"
 
 [node name="MarginContainer" type="MarginContainer" parent="Toasts/TopMargins/HMargins/Panel"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Text" type="RichTextLabel" parent="Toasts/TopMargins/HMargins/Panel/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 text = "File saved!"
 
 [node name="Spacer" type="Control" parent="Toasts/TopMargins"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 5.0
+mouse_filter = 2
 
 [node name="Timer" type="Timer" parent="Toasts"]
 
@@ -471,6 +479,7 @@ size_flags_stretch_ratio = 5.0
 [connection signal="pressed" from="NavSorter/Navbar/MarginContainer/Sorter/Right/Refresh" to="." method="refresh"]
 [connection signal="scroll_changed" from="NavSorter/Slides View/Main" to="." method="_on_main_scroll_changed"]
 [connection signal="text_changed" from="NavSorter/Editor Panel/MarginContainer/Sorter/Editor" to="." method="set_text_content"]
+[connection signal="send_toast" from="NavSorter/Themes" to="Toasts" method="send_toast"]
 [connection signal="send_warning" from="NavSorter/Themes" to="Warnings Panel" method="send_theme_warning"]
 [connection signal="switch_theme_to" from="NavSorter/Themes" to="." method="switch_theme_to"]
 [connection signal="meta_clicked" from="NavSorter/Themes/MarginContainer/Sorter/Info/By" to="NavSorter/Themes" method="open_url_custom"]
