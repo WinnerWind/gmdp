@@ -2,6 +2,7 @@ extends PanelContainer
 class_name ThemesList
 
 signal send_warning(content:String, theme_path:String)
+signal send_toast(content:String)
 
 @export_dir var themes_path:String
 
@@ -113,4 +114,9 @@ var current_theme_meta_file:String
 signal switch_theme_to(theme_meta_file:String)
 func use_theme():
 	if not current_theme_meta_file == "":
+		var config = ConfigFile.new()
+		config.load(current_theme_meta_file)
+		send_toast.emit("Switched theme to {theme_name}".format({
+			"theme_name" = config.get_value("metadata", "name", "your selected theme")
+		}))
 		switch_theme_to.emit(current_theme_meta_file)
