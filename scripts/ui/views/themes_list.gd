@@ -55,7 +55,7 @@ func load_themes() -> void:
 						push_error("Metadata incomplete in %s" % meta_file_full_path)
 						send_warning.emit("Author data is incomplete!", meta_file_full_path)
 				else: 
-					push_error("content, heading_content, heading or heading_subtitle_content was not found in %s" % meta_file_full_path)
+					push_error("content, heading_content, heading or heading_subheading_content was not found in %s" % meta_file_full_path)
 					send_warning.emit("The theme lacks one or more basic slides! (content, heading_content, heading, and heading_subheading_content)", meta_file_full_path)
 			else:
 				push_error("Metadata file %s is missing a section (Found sections %s)"%[meta_file_full_path, config.get_sections()])

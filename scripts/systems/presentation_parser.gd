@@ -16,7 +16,7 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 	var page_to_load_path:String = ""
 	var content:String = page.content
 	var heading:String = page.title
-	var subheading:String = page.subtitle
+	var subheading:String = page.subheading
 	var images:Array = page.images
 	var footer:String = page.footer
 	var theme_item_name_list:Array[String]
