@@ -74,5 +74,5 @@ func iterate_scenes_and_send_warning(key:String, number:int, page_index:int) -> 
 			"current_scene_name": key % number
 		})
 		push_warning(warning_text)
-		send_warning.emit(warning_text, page_index+1)
+		send_warning.emit(warning_text, page_index)
 	return key % number

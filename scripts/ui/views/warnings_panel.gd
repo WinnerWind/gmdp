@@ -16,7 +16,7 @@ func send_warning(content:String, page_number:int):
 	warning_label.push_color(Color.YELLOW)
 	warning_label.append_text("\n\n"+warning_placeholder.format({
 		"warning": content,
-		"page": page_number
+		"page": page_number+1 # Page index is passed instead 
 	}))
 	warning_label.pop()
 
