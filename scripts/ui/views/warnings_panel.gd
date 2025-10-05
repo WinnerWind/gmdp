@@ -23,7 +23,7 @@ func send_warning(content:String, page_number:int):
 func send_theme_warning(content:String, theme_path:String):
 	show()
 	header_label.text = warning_title
-	warning_label.push_color(Color.RED)
+	warning_label.push_color(Color.DARK_ORANGE)
 	warning_label.append_text("\n\n"+theme_warning_placeholder.format({
 		"warning":content,
 		"path":theme_path
