@@ -2,12 +2,16 @@ extends Node
 
 signal send_warning(content:String, page_number:int)
 
-var config_file:String = "res://templates/gummy/meta.ini"
+var config_file:String = "res://templates/gummy/meta.ini":
+	set(new_path):
+		config_file = new_path
+		config = ConfigFile.new()
 
 var config := ConfigFile.new()
 const SCENE_NAME_SECTION:String = "scenes"
 
 func get_specific_page(page_number:int, custom_config_file:String = "res://templates/gummy/meta.ini") -> Slide:
+	config.clear()
 	config.load(custom_config_file)
 	if not MarkdownParser.data[0]: return
 	
