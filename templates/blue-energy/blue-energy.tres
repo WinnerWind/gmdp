@@ -1,0 +1,39 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://150knysk64m7"]
+
+[ext_resource type="FontFile" uid="uid://w78e240dhly6" path="res://templates/blue-energy/fonts/CHORUS-BOLD.otf" id="1_d62dv"]
+[ext_resource type="FontFile" uid="uid://blcq77cni2aur" path="res://templates/blue-energy/fonts/CHORUS-BLACK.otf" id="1_tevlo"]
+[ext_resource type="FontFile" uid="uid://dxt0v3ofj3woa" path="res://templates/blue-energy/fonts/Genaminto-Regular.ttf" id="2_aiyhi"]
+[ext_resource type="FontFile" uid="uid://cem1qq1bejmtt" path="res://templates/blue-energy/fonts/CHORUS-BOLD-ITALIC.otf" id="2_vfh8t"]
+[ext_resource type="FontFile" uid="uid://co0miqx0v723u" path="res://templates/blue-energy/fonts/CHORUS-BLACK-ITALIC.otf" id="3_3l51o"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rbmd"]
+bg_color = Color(0, 0.44349232, 0.72984785, 1)
+
+[resource]
+default_font_size = 64
+BG/base_type = &"Panel"
+BG/styles/panel = SubResource("StyleBoxFlat_2rbmd")
+Content/base_type = &"RichTextLabel"
+Content/colors/default_color = Color(0.86, 0.95100003, 1, 1)
+Content/font_sizes/bold_font_size = 72
+Content/font_sizes/bold_italics_font_size = 72
+Content/font_sizes/italics_font_size = 72
+Content/font_sizes/mono_font_size = 32
+Content/fonts/bold_font = ExtResource("1_tevlo")
+Content/fonts/bold_italics_font = ExtResource("2_vfh8t")
+Content/fonts/italics_font = ExtResource("3_3l51o")
+Content/fonts/mono_font = ExtResource("2_aiyhi")
+Content/fonts/normal_font = ExtResource("2_aiyhi")
+Header/base_type = &"RichTextLabel"
+Header/colors/default_color = Color(0, 0.6431373, 1, 1)
+Header/constants/line_separation = 2
+Header/font_sizes/normal_font_size = 128
+Header/fonts/normal_font = ExtResource("1_d62dv")
+MarginContainer/constants/margin_bottom = 15
+MarginContainer/constants/margin_left = 15
+MarginContainer/constants/margin_right = 15
+MarginContainer/constants/margin_top = 15
+Subheader/base_type = &"RichTextLabel"
+Subheader/colors/default_color = Color(0.43547752, 0.7479457, 0.99999994, 1)
+Subheader/font_sizes/normal_font_size = 48
+Subheader/fonts/normal_font = ExtResource("2_aiyhi")

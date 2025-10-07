@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://8qbjtw7qb8x"]
+
+[ext_resource type="Theme" uid="uid://150knysk64m7" path="res://templates/blue-energy/blue-energy.tres" id="1_apbkm"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_krhsb"]
+
+[node name="Slide" type="Panel" node_paths=PackedStringArray("image_nodes")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_apbkm")
+theme_type_variation = &"BG"
+script = ExtResource("2_krhsb")
+image_nodes = [NodePath("MarginContainer/GridContainer/1"), NodePath("MarginContainer/GridContainer/2")]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="1" type="TextureRect" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 6
+
+[node name="2" type="TextureRect" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+expand_mode = 1
+stretch_mode = 6
