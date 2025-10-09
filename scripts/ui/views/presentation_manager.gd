@@ -8,6 +8,7 @@ class_name PresentationManager
 @export var text_editor:TextEdit
 @export var editor_panel:PanelContainer
 @export var themes_view:Control
+@export var slide_button_scroll:ScrollContainer
 @export var slides_view:Control
 @export var location_label:RichTextLabel
 @export var view_button:MenuButton
@@ -189,6 +190,12 @@ func _on_main_scroll_changed(new_value: float) -> void:
 	for child:SlideButton in slide_buttons_sorter.get_children():
 		child.untoggle()
 	slide_buttons_sorter.get_child(current_page_number - 1).toggle()
+	
+	# scroll slides to that point
+	var main_scroll_total = main_slide_scroll.get_v_scroll_bar().max_value
+	var button_scroll_total = slide_button_scroll.get_v_scroll_bar().max_value
+	var scroll_to =  (button_scroll_total * new_value)/main_scroll_total
+	slide_button_scroll.scroll_vertical = int(scroll_to)
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Save"):

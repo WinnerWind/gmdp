@@ -14,7 +14,7 @@
 [ext_resource type="Script" uid="uid://bdi7ie21v5kpn" path="res://scripts/ui/views/toasts.gd" id="12_eb6dy"]
 [ext_resource type="Script" uid="uid://deuue6bjfi8yt" path="res://scripts/ui/rt_label_with_replacements.gd" id="12_trceg"]
 
-[node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slides_view", "location_label", "view_button", "file_button", "warning_panel", "open_file", "save_file")]
+[node name="Main" type="PanelContainer" node_paths=PackedStringArray("main_slide_sorter", "main_slide_scroll", "slide_buttons_sorter", "text_editor", "editor_panel", "themes_view", "slide_button_scroll", "slides_view", "location_label", "view_button", "file_button", "warning_panel", "open_file", "save_file")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -29,6 +29,7 @@ slide_buttons_sorter = NodePath("NavSorter/Slides View/Slides/ScrollContainer/So
 text_editor = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Editor")
 editor_panel = NodePath("NavSorter/Editor Panel")
 themes_view = NodePath("NavSorter/Themes")
+slide_button_scroll = NodePath("NavSorter/Slides View/Slides/ScrollContainer")
 slides_view = NodePath("NavSorter/Slides View")
 location_label = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Location")
 view_button = NodePath("NavSorter/Navbar/MarginContainer/Sorter/Left/view")
