@@ -53,7 +53,7 @@ func get_canonical_path_from_config(key:String, page_number:int, send_warnings:b
 		return config_file.get_base_dir() + "/" + config.get_value(SCENE_NAME_SECTION, key)
 	else:
 		if send_warnings:
-			var warning_text := "Your current theme does not have any styles for {original_style}. Using the \"text_only\" style instead.".format({
+			var warning_text := "Your current theme does not have any styles for {original_style}. Using the \"content\" style instead.".format({
 				"original_style": key
 			})
 			push_warning(warning_text)
