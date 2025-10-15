@@ -1,0 +1,73 @@
+[gd_scene load_steps=8 format=3 uid="uid://dms8jfiebotvf"]
+
+[ext_resource type="Shader" uid="uid://dbw1tay7hb6ya" path="res://templates/metropole/assets/colorshift.gdshader" id="1_c8mn6"]
+[ext_resource type="Texture2D" uid="uid://cwrscev6qb2qp" path="res://templates/metropole/assets/images/train.svg" id="2_di7bf"]
+[ext_resource type="Script" uid="uid://bkj3hm80k2bmc" path="res://templates/metropole/assets/scripts/train.gd" id="3_di7bf"]
+[ext_resource type="Texture2D" uid="uid://qchre04h178t" path="res://templates/metropole/assets/images/shapes/square.svg" id="4_p7xu7"]
+[ext_resource type="Texture2D" uid="uid://ed45s8qusapx" path="res://templates/metropole/assets/images/shapes/circle.svg" id="5_5anu5"]
+[ext_resource type="Texture2D" uid="uid://ye6mo1opf0a3" path="res://templates/metropole/assets/images/shapes/triangle.svg" id="6_2lrqb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1rbd7"]
+resource_local_to_scene = true
+shader = ExtResource("1_c8mn6")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[node name="Train" type="TextureRect" node_paths=PackedStringArray("grid")]
+material = SubResource("ShaderMaterial_1rbd7")
+offset_right = 77.0
+offset_bottom = 108.0
+pivot_offset = Vector2(38.5, 54)
+texture = ExtResource("2_di7bf")
+expand_mode = 1
+stretch_mode = 6
+script = ExtResource("3_di7bf")
+color = Color(0.54901963, 0.65882355, 0, 1)
+lighten_amount = 0.3
+grid = NodePath("MarginContainer/GridContainer")
+shapes = Array[Texture2D]([ExtResource("4_p7xu7"), ExtResource("5_5anu5"), ExtResource("6_2lrqb")])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Control" type="Control" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control3" type="Control" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control4" type="Control" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control5" type="Control" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Control6" type="Control" parent="MarginContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3

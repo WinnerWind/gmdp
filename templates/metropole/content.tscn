@@ -1,0 +1,172 @@
+[gd_scene load_steps=12 format=3 uid="uid://hr4ubtpyo6jg"]
+
+[ext_resource type="Theme" uid="uid://chrwmk7tfoc05" path="res://templates/metropole/metropole.tres" id="1_174u6"]
+[ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_8eybx"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_w51w3"]
+[ext_resource type="Script" uid="uid://ccjmgrrepej27" path="res://templates/metropole/assets/scripts/train_track.gd" id="3_x5e7s"]
+[ext_resource type="PackedScene" uid="uid://dms8jfiebotvf" path="res://templates/metropole/assets/scenes/train.tscn" id="4_hkcuw"]
+[ext_resource type="Shader" uid="uid://dbw1tay7hb6ya" path="res://templates/metropole/assets/colorshift.gdshader" id="5_guola"]
+[ext_resource type="Texture2D" uid="uid://pjb7834bxxe8" path="res://templates/metropole/assets/images/triangle-station.svg" id="7_8eybx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vkja5"]
+resource_local_to_scene = true
+shader = ExtResource("5_guola")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8eybx"]
+resource_local_to_scene = true
+shader = ExtResource("5_guola")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x5e7s"]
+resource_local_to_scene = true
+shader = ExtResource("5_guola")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkcuw"]
+resource_local_to_scene = true
+shader = ExtResource("5_guola")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[node name="Content" type="Panel" node_paths=PackedStringArray("heading_label", "subheading_label", "contents_label", "footer_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_174u6")
+theme_type_variation = &"BG"
+script = ExtResource("2_8eybx")
+heading_label = NodePath("MarginContainer/VBoxContainer/Header")
+subheading_label = NodePath("MarginContainer/VBoxContainer/Subheading")
+contents_label = NodePath("MarginContainer/VBoxContainer/Content")
+footer_label = NodePath("MarginContainer/VBoxContainer/Footer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Top Rails" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Yellow" type="Line2D" parent="MarginContainer/VBoxContainer/Top Rails" node_paths=PackedStringArray("train")]
+z_index = 1
+position = Vector2(1823, -25)
+points = PackedVector2Array(-107, -24, 140, 158)
+default_color = Color(0.8784314, 0.73333335, 0, 1)
+script = ExtResource("3_x5e7s")
+train = NodePath("Train")
+
+[node name="Train" parent="MarginContainer/VBoxContainer/Top Rails/Yellow" instance=ExtResource("4_hkcuw")]
+material = SubResource("ShaderMaterial_vkja5")
+scale = Vector2(0.5, 0.5)
+number_of_shapes = 1
+scale_modifier = 0.5
+
+[node name="Header" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="Subheading" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+fit_content = true
+
+[node name="Content" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Content"
+bbcode_enabled = true
+text = "[b]Bold [/b]
+[i]I see [/i]
+[b][i]Bold Italic [/i][/b]
+[code]Code Code Code Code![/code]
+Normal Text. Normal Text.
+
+
+a
+
+a
+a
+
+a
+"
+scroll_active = false
+script = ExtResource("3_w51w3")
+
+[node name="Footer" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Footer"
+fit_content = true
+
+[node name="Bottom Rails" type="Control" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Pink" type="Line2D" parent="MarginContainer/VBoxContainer/Bottom Rails" node_paths=PackedStringArray("train")]
+z_index = 1
+position = Vector2(58, -25)
+points = PackedVector2Array(-242, -132, 128, 158)
+default_color = Color(1, 0.34117648, 0.78039217, 1)
+script = ExtResource("3_x5e7s")
+train = NodePath("Train")
+
+[node name="Train" parent="MarginContainer/VBoxContainer/Bottom Rails/Pink" instance=ExtResource("4_hkcuw")]
+material = SubResource("ShaderMaterial_8eybx")
+scale = Vector2(0.5, 0.5)
+number_of_shapes = 1
+scale_modifier = 0.5
+
+[node name="Pink2" type="Line2D" parent="MarginContainer/VBoxContainer/Bottom Rails" node_paths=PackedStringArray("train")]
+z_index = 1
+position = Vector2(1497, -50)
+points = PackedVector2Array(-111, 519, -242, 168, 128, 4, 523, 4)
+default_color = Color(1, 0.34117648, 0.78039217, 1)
+script = ExtResource("3_x5e7s")
+train = NodePath("Train")
+
+[node name="Train" parent="MarginContainer/VBoxContainer/Bottom Rails/Pink2" instance=ExtResource("4_hkcuw")]
+material = SubResource("ShaderMaterial_x5e7s")
+scale = Vector2(0.5, 0.5)
+number_of_shapes = 3
+scale_modifier = 0.5
+
+[node name="Middle" type="Line2D" parent="MarginContainer/VBoxContainer/Bottom Rails" node_paths=PackedStringArray("train")]
+position = Vector2(792, 0)
+points = PackedVector2Array(-202, 755, -207, 284, -1, -77, 255, 280)
+default_color = Color(1, 0.34117648, 0.78039217, 1)
+script = ExtResource("3_x5e7s")
+train = NodePath("Train")
+
+[node name="Train" parent="MarginContainer/VBoxContainer/Bottom Rails/Middle" instance=ExtResource("4_hkcuw")]
+material = SubResource("ShaderMaterial_hkcuw")
+scale = Vector2(0.5, 0.5)
+scale_modifier = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Bottom Rails"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -187.0
+offset_top = -136.0
+offset_right = -116.0
+offset_bottom = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_8eybx")
+expand_mode = 1
+stretch_mode = 5

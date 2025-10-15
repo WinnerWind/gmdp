@@ -1,0 +1,35 @@
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://chrwmk7tfoc05"]
+
+[ext_resource type="FontFile" uid="uid://dtip028k8o80q" path="res://templates/metropole/fonts/Sloth Extrabold.ttf" id="1_7d31s"]
+[ext_resource type="FontFile" uid="uid://co2w4ht6xxege" path="res://templates/metropole/fonts/Sloth-Light.ttf" id="1_76jqt"]
+[ext_resource type="FontFile" uid="uid://ypsall567r5t" path="res://templates/metropole/fonts/Sloth-Regular.ttf" id="1_c1flh"]
+[ext_resource type="FontFile" uid="uid://b83movkyyrv16" path="res://templates/metropole/fonts/ZTNature-Medium.ttf" id="1_cs6f0"]
+[ext_resource type="FontFile" uid="uid://cadkggxf5s33m" path="res://templates/metropole/fonts/ZTNature-BlackItalic.ttf" id="2_hs3wc"]
+[ext_resource type="FontFile" uid="uid://c7cxgtxxr4yim" path="res://templates/metropole/fonts/ZTNature-ThinItalic.ttf" id="3_7d31s"]
+[ext_resource type="FontFile" uid="uid://dvtwktb2chsgx" path="res://templates/metropole/fonts/ZTNature-Thin.ttf" id="6_hs3wc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dxd2k"]
+bg_color = Color(0.10980392, 0.10980392, 0.10980392, 1)
+
+[resource]
+default_font = ExtResource("1_c1flh")
+default_font_size = 64
+BG/base_type = &"Panel"
+BG/styles/panel = SubResource("StyleBoxFlat_dxd2k")
+Content/base_type = &"RichTextLabel"
+Content/font_sizes/bold_font_size = 48
+Content/font_sizes/bold_italics_font_size = 48
+Content/font_sizes/italics_font_size = 48
+Content/font_sizes/mono_font_size = 48
+Content/font_sizes/normal_font_size = 48
+Content/fonts/bold_font = ExtResource("1_7d31s")
+Content/fonts/bold_italics_font = ExtResource("2_hs3wc")
+Content/fonts/italics_font = ExtResource("3_7d31s")
+Content/fonts/mono_font = ExtResource("1_76jqt")
+Content/fonts/normal_font = ExtResource("1_cs6f0")
+Footer/base_type = &"RichTextLabel"
+Footer/font_sizes/normal_font_size = 48
+Footer/fonts/normal_font = ExtResource("6_hs3wc")
+Subheader/base_type = &"RichTextLabel"
+Subheader/font_sizes/normal_font_size = 48
+Subheader/fonts/normal_font = ExtResource("1_76jqt")

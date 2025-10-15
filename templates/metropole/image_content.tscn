@@ -1,0 +1,133 @@
+[gd_scene load_steps=10 format=3 uid="uid://bnvlo2ldwmim8"]
+
+[ext_resource type="Theme" uid="uid://chrwmk7tfoc05" path="res://templates/metropole/metropole.tres" id="1_pagkg"]
+[ext_resource type="Script" uid="uid://gl2mwf7v10en" path="res://templates/metropole/assets/scripts/galleries.gd" id="2_pgapl"]
+[ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_fp1vn"]
+[ext_resource type="PackedScene" uid="uid://dms8jfiebotvf" path="res://templates/metropole/assets/scenes/train.tscn" id="4_t1316"]
+[ext_resource type="Script" uid="uid://ccjmgrrepej27" path="res://templates/metropole/assets/scripts/train_track.gd" id="4_xy2xx"]
+[ext_resource type="Shader" uid="uid://dbw1tay7hb6ya" path="res://templates/metropole/assets/colorshift.gdshader" id="5_pagkg"]
+[ext_resource type="Texture2D" uid="uid://pk32ybk27alm" path="res://templates/metropole/assets/images/circle-station.svg" id="6_pgapl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pagkg"]
+resource_local_to_scene = true
+shader = ExtResource("5_pagkg")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pgapl"]
+resource_local_to_scene = true
+shader = ExtResource("5_pagkg")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[node name="ImageContent" type="Panel" node_paths=PackedStringArray("grid_node", "heading_label", "subheading_label", "contents_label", "footer_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_pagkg")
+theme_type_variation = &"BG"
+script = ExtResource("2_pgapl")
+grid_node = NodePath("MarginContainer/Sorter/Images")
+grid_definitions = Array[int]([1, 1, 2, 1, 2, 2, 3, 3, 4, 5, 5])
+heading_label = NodePath("MarginContainer/Sorter/VBoxContainer/Header")
+subheading_label = NodePath("MarginContainer/Sorter/VBoxContainer/Subheader")
+contents_label = NodePath("MarginContainer/Sorter/VBoxContainer/Content")
+footer_label = NodePath("MarginContainer/Sorter/VBoxContainer/Footer")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="TrainLine" type="Line2D" parent="MarginContainer" node_paths=PackedStringArray("train")]
+points = PackedVector2Array(-110, 517, 20, 300, 20, 20, 1000, 20, 1200, -20)
+default_color = Color(0.8784314, 0.73333335, 0, 1)
+script = ExtResource("4_xy2xx")
+train = NodePath("Train")
+rotation_time = 0.2
+metadata/_custom_type_script = "uid://ccjmgrrepej27"
+
+[node name="Train" parent="MarginContainer/TrainLine" instance=ExtResource("4_t1316")]
+material = SubResource("ShaderMaterial_pagkg")
+offset_left = -210.0
+offset_top = -55.0
+offset_right = -133.0
+offset_bottom = 53.0
+scale = Vector2(0.5, 0.5)
+number_of_shapes = 6
+scale_modifier = 0.5
+
+[node name="TrainLine2" type="Line2D" parent="MarginContainer" node_paths=PackedStringArray("train")]
+position = Vector2(1920, 1080)
+rotation = -3.1415925
+points = PackedVector2Array(-110, 517, 20, 300, 20, 20, 1000, 20, 1200, -20)
+default_color = Color(0.20784314, 0.72156864, 0.17254902, 1)
+script = ExtResource("4_xy2xx")
+train = NodePath("Train")
+rotation_time = 0.2
+metadata/_custom_type_script = "uid://ccjmgrrepej27"
+
+[node name="Train" parent="MarginContainer/TrainLine2" instance=ExtResource("4_t1316")]
+material = SubResource("ShaderMaterial_pgapl")
+offset_left = -210.0
+offset_top = -55.0
+offset_right = -133.0
+offset_bottom = 53.0
+scale = Vector2(0.5, 0.5)
+number_of_shapes = 2
+scale_modifier = 0.5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TrainLine2"]
+offset_left = 90.0
+offset_top = 0.9999864
+offset_right = 130.0
+offset_bottom = 40.999985
+texture = ExtResource("6_pgapl")
+expand_mode = 1
+
+[node name="Sorter" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Images" type="GridContainer" parent="MarginContainer/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Content" type="RichTextLabel" parent="MarginContainer/Sorter/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"Content"
+bbcode_enabled = true
+horizontal_alignment = 2
+script = ExtResource("3_fp1vn")
+
+[node name="Subheader" type="RichTextLabel" parent="MarginContainer/Sorter/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Subheader"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Header" type="RichTextLabel" parent="MarginContainer/Sorter/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Heading"
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Footer" type="RichTextLabel" parent="MarginContainer/Sorter/VBoxContainer"]
+layout_mode = 2
+theme_type_variation = &"Footer"
+fit_content = true
+horizontal_alignment = 2

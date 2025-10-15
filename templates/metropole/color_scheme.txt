@@ -1,0 +1,6 @@
+BG = #1c1c1c
+Red = #f54242
+Blue = #428df5
+Green = #35b82c
+Yellow = #e0bb00
+Pink = #ff57c7

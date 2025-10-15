@@ -1,0 +1,95 @@
+[gd_scene load_steps=9 format=3 uid="uid://buhdvt5njmemx"]
+
+[ext_resource type="Theme" uid="uid://chrwmk7tfoc05" path="res://templates/metropole/metropole.tres" id="1_l2vy1"]
+[ext_resource type="Script" uid="uid://gl2mwf7v10en" path="res://templates/metropole/assets/scripts/galleries.gd" id="2_n76xn"]
+[ext_resource type="PackedScene" uid="uid://dms8jfiebotvf" path="res://templates/metropole/assets/scenes/train.tscn" id="3_374kb"]
+[ext_resource type="Script" uid="uid://ccjmgrrepej27" path="res://templates/metropole/assets/scripts/train_track.gd" id="3_qpn6y"]
+[ext_resource type="Shader" uid="uid://dbw1tay7hb6ya" path="res://templates/metropole/assets/colorshift.gdshader" id="4_qpn6y"]
+[ext_resource type="Texture2D" uid="uid://cj8ne2kn2mjy8" path="res://templates/metropole/assets/images/square-station.svg" id="6_qs0p0"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qs0p0"]
+resource_local_to_scene = true
+shader = ExtResource("4_qpn6y")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qpn6y"]
+resource_local_to_scene = true
+shader = ExtResource("4_qpn6y")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[node name="Galleries" type="Panel" node_paths=PackedStringArray("grid_node")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 768.0
+offset_bottom = 432.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_l2vy1")
+theme_type_variation = &"BG"
+script = ExtResource("2_n76xn")
+grid_node = NodePath("MarginContainer/VBoxContainer/GridContainer")
+grid_definitions = Array[int]([1, 1, 2, 1, 2, 2, 3, 3, 4, 5, 5])
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="top" type="Control" parent="MarginContainer/VBoxContainer"]
+z_index = 1
+layout_mode = 2
+
+[node name="Line" type="Line2D" parent="MarginContainer/VBoxContainer/top" node_paths=PackedStringArray("train")]
+points = PackedVector2Array(-100, 400, -10, 300, -10, -10, 200, -10, 300, -100)
+width = 7.5
+default_color = Color(0.25882354, 0.5529412, 0.9607843, 1)
+script = ExtResource("3_qpn6y")
+train = NodePath("Train")
+speed = 50.0
+
+[node name="Train" parent="MarginContainer/VBoxContainer/top/Line" instance=ExtResource("3_374kb")]
+material = SubResource("ShaderMaterial_qs0p0")
+scale = Vector2(0.3, 0.3)
+number_of_shapes = 1
+scale_modifier = 0.3
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="bottom" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TrainLine" type="Line2D" parent="MarginContainer/VBoxContainer/bottom" node_paths=PackedStringArray("train")]
+position = Vector2(757, 0)
+points = PackedVector2Array(1289, -435, 1100, -230, 1100, 0, 300, 0, 220, 76)
+default_color = Color(0.8784314, 0.73333335, 0, 1)
+script = ExtResource("3_qpn6y")
+train = NodePath("Train")
+metadata/_custom_type_script = "uid://ccjmgrrepej27"
+
+[node name="Train" parent="MarginContainer/VBoxContainer/bottom/TrainLine" instance=ExtResource("3_374kb")]
+material = SubResource("ShaderMaterial_qpn6y")
+scale = Vector2(0.4, 0.4)
+number_of_shapes = 6
+scale_modifier = 0.4
+
+[node name="Station" type="TextureRect" parent="MarginContainer/VBoxContainer/bottom/TrainLine"]
+offset_left = 682.0
+offset_top = -20.0
+offset_right = 724.0
+offset_bottom = 22.0
+texture = ExtResource("6_qs0p0")
+expand_mode = 1
+stretch_mode = 5

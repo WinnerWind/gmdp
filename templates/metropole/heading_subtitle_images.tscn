@@ -1,0 +1,136 @@
+[gd_scene load_steps=10 format=3 uid="uid://dw1ogqgho23jf"]
+
+[ext_resource type="Theme" uid="uid://chrwmk7tfoc05" path="res://templates/metropole/metropole.tres" id="1_tidv1"]
+[ext_resource type="Script" uid="uid://gl2mwf7v10en" path="res://templates/metropole/assets/scripts/galleries.gd" id="2_tidv1"]
+[ext_resource type="Script" uid="uid://ccjmgrrepej27" path="res://templates/metropole/assets/scripts/train_track.gd" id="3_fvsf8"]
+[ext_resource type="PackedScene" uid="uid://dms8jfiebotvf" path="res://templates/metropole/assets/scenes/train.tscn" id="4_t80vo"]
+[ext_resource type="Shader" uid="uid://dbw1tay7hb6ya" path="res://templates/metropole/assets/colorshift.gdshader" id="5_gk6uq"]
+[ext_resource type="Texture2D" uid="uid://pjb7834bxxe8" path="res://templates/metropole/assets/images/triangle-station.svg" id="6_tidv1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p7vrf"]
+resource_local_to_scene = true
+shader = ExtResource("5_gk6uq")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tidv1"]
+resource_local_to_scene = true
+shader = ExtResource("5_gk6uq")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_da1us"]
+resource_local_to_scene = true
+shader = ExtResource("5_gk6uq")
+shader_parameter/color = Vector3(0.54901963, 0.65882355, 0)
+
+[node name="Images" type="Panel" node_paths=PackedStringArray("grid_node", "heading_label", "subheading_label")]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tidv1")
+theme_type_variation = &"BG"
+script = ExtResource("2_tidv1")
+grid_node = NodePath("Sorter/TextContainer/Images")
+grid_definitions = Array[int]([0, 1, 2, 2, 2, 2, 3, 3, 4, 5, 3])
+heading_label = NodePath("Sorter/TextContainer/Header")
+subheading_label = NodePath("Sorter/TextContainer/Subheader")
+
+[node name="Sorter" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Rails" type="Control" parent="Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Green" type="Line2D" parent="Sorter/Rails" node_paths=PackedStringArray("train")]
+position = Vector2(-113, 6)
+points = PackedVector2Array(170, 1224, 170, 405, 251, 134, 251, -100)
+width = 20.0
+default_color = Color(0.20784314, 0.72156864, 0.17254902, 1)
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 32
+antialiased = true
+script = ExtResource("3_fvsf8")
+train = NodePath("Train")
+speed = 150.0
+
+[node name="Train" parent="Sorter/Rails/Green" instance=ExtResource("4_t80vo")]
+z_index = 2
+material = SubResource("ShaderMaterial_p7vrf")
+scale = Vector2(0.8, 0.8)
+number_of_shapes = 3
+scale_modifier = 0.8
+
+[node name="Yellow" type="Line2D" parent="Sorter/Rails" node_paths=PackedStringArray("train")]
+points = PackedVector2Array(-500, 275, 77, 276, 118, 138, 123, -350)
+width = 20.0
+default_color = Color(0.9607843, 0.25882354, 0.25882354, 1)
+script = ExtResource("3_fvsf8")
+train = NodePath("Train")
+speed = 175.0
+metadata/_custom_type_script = "uid://ccjmgrrepej27"
+
+[node name="Train" parent="Sorter/Rails/Yellow" instance=ExtResource("4_t80vo")]
+z_index = 2
+material = SubResource("ShaderMaterial_tidv1")
+scale = Vector2(0.8, 0.8)
+number_of_shapes = 5
+scale_modifier = 0.8
+
+[node name="Blue" type="Line2D" parent="Sorter/Rails" node_paths=PackedStringArray("train")]
+position = Vector2(-113, 6)
+points = PackedVector2Array(250, 1726, 250, 334, 168, 190, 168, -88)
+width = 20.0
+default_color = Color(0.25882354, 0.5529412, 0.9607843, 1)
+joint_mode = 2
+sharp_limit = 0.0
+round_precision = 32
+antialiased = true
+script = ExtResource("3_fvsf8")
+train = NodePath("Train")
+
+[node name="Train" parent="Sorter/Rails/Blue" instance=ExtResource("4_t80vo")]
+z_index = 2
+material = SubResource("ShaderMaterial_da1us")
+scale = Vector2(0.8, 0.8)
+scale_modifier = 0.8
+
+[node name="Station" type="TextureRect" parent="Sorter/Rails"]
+z_index = 2
+layout_mode = 0
+offset_left = 37.0
+offset_top = 203.0
+offset_right = 137.0
+offset_bottom = 303.0
+texture = ExtResource("6_tidv1")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextContainer" type="VBoxContainer" parent="Sorter"]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 2
+
+[node name="Images" type="GridContainer" parent="Sorter/TextContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 2
+
+[node name="Header" type="RichTextLabel" parent="Sorter/TextContainer"]
+layout_mode = 2
+fit_content = true
+horizontal_alignment = 2
+
+[node name="Subheader" type="RichTextLabel" parent="Sorter/TextContainer"]
+layout_mode = 2
+theme_type_variation = &"Subheader"
+fit_content = true
+horizontal_alignment = 2
