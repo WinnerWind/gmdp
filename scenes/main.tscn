@@ -25,11 +25,11 @@ theme_type_variation = &"PanelBG"
 script = ExtResource("1_o5qli")
 main_slide_sorter = NodePath("NavSorter/Slides View/Main/Margins/Slides")
 main_slide_scroll = NodePath("NavSorter/Slides View/Main")
-slide_buttons_sorter = NodePath("NavSorter/Slides View/Slides/ScrollContainer/Sorter")
+slide_buttons_sorter = NodePath("NavSorter/Slides View/Slides/VBoxContainer/ScrollContainer/Sorter")
 text_editor = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Editor")
 editor_panel = NodePath("NavSorter/Editor Panel")
 themes_view = NodePath("NavSorter/Themes")
-slide_button_scroll = NodePath("NavSorter/Slides View/Slides/ScrollContainer")
+slide_button_scroll = NodePath("NavSorter/Slides View/Slides/VBoxContainer/ScrollContainer")
 slides_view = NodePath("NavSorter/Slides View")
 location_label = NodePath("NavSorter/Editor Panel/MarginContainer/Sorter/Location")
 view_button = NodePath("NavSorter/Navbar/MarginContainer/Sorter/Left/view")
@@ -129,19 +129,24 @@ size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.2
 theme_type_variation = &"PanelSlides"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="NavSorter/Slides View/Slides"]
+[node name="VBoxContainer" type="VBoxContainer" parent="NavSorter/Slides View/Slides"]
 layout_mode = 2
 
-[node name="Sorter" type="VBoxContainer" parent="NavSorter/Slides View/Slides/ScrollContainer"]
+[node name="SlideButtonEmptyWarning" type="RichTextLabel" parent="NavSorter/Slides View/Slides/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]BLANK DOCUMENT[/center]"
+fit_content = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="NavSorter/Slides View/Slides/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Sorter" type="VBoxContainer" parent="NavSorter/Slides View/Slides/VBoxContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="RichTextLabel" type="RichTextLabel" parent="NavSorter/Slides View/Slides/ScrollContainer/Sorter"]
-layout_mode = 2
-size_flags_vertical = 3
-bbcode_enabled = true
-text = "[center]BLANK DOCUMENT[/center]"
 
 [node name="Main" type="ScrollContainer" parent="NavSorter/Slides View"]
 layout_mode = 2
@@ -161,7 +166,8 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Starting Text" type="RichTextLabel" parent="NavSorter/Slides View/Main/Margins/Slides"]
+[node name="Starting Text" type="RichTextLabel" parent="NavSorter/Slides View/Main/Margins"]
+unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 bbcode_enabled = true

@@ -43,11 +43,19 @@ func _ready() -> void:
 
 func refresh() -> void:
 	iterate_pages()
-	total_pages = MarkdownParser.data.size()
-	var has_data = !MarkdownParser.data[0]
-	view_button.get_popup().set_item_disabled(0, has_data) #disable presentation view
-	file_button.get_popup().set_item_disabled(2, has_data) #disable export as images
-	file_button.get_popup().set_item_disabled(1, has_data) #disable save markdown file
+	var is_empty = !MarkdownParser.data[0]
+	view_button.get_popup().set_item_disabled(0, is_empty) #disable presentation view
+	file_button.get_popup().set_item_disabled(2, is_empty) #disable export as images
+	file_button.get_popup().set_item_disabled(1, is_empty) #disable save markdown file
+	if !is_empty: 
+		%"Starting Text".hide()
+		%SlideButtonEmptyWarning.hide()
+		total_pages = MarkdownParser.data.size()
+	else:
+		%"Starting Text".show()
+		%SlideButtonEmptyWarning.show()
+		for child in slide_buttons_sorter.get_children(): child.queue_free()
+		total_pages = 0
 
 func set_text_content() -> void:
 	var text = text_editor.text

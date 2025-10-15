@@ -38,6 +38,10 @@ func refresh_set_content(content:String) -> void:
 	text_content = content
 
 func parse_file_content(contents:String) -> void:
+	if not contents:
+		data = [{}]
+		return
+	
 	# Split Pages
 	var pages:PackedStringArray = contents.split(PAGE_SPLITTER)
 	data.resize(pages.size())
