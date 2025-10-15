@@ -11,10 +11,12 @@ config_version=5
 [application]
 
 config/name="gmdp"
+config/description="Make presentations easily using familiar markdown syntax."
+config/version="1.0.0"
 config/tags=PackedStringArray("programs")
 run/main_scene="uid://dxdx73k3pcw5t"
 config/features=PackedStringArray("4.5")
-config/icon="res://icon.svg"
+config/icon="uid://ca0fpr13pgxd4"
 
 [autoload]
 
