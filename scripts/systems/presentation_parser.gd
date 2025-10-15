@@ -37,7 +37,7 @@ func get_specific_page(page_number:int, custom_config_file:String = "res://templ
 	page_to_load_path = iterate_scenes_and_send_warning(page_to_load_path, images.size(), page_number) if page_to_load_path.contains("%d") else page_to_load_path
 	
 	var canonical_path = get_canonical_path_from_config(page_to_load_path, page_number)
-	if not FileAccess.file_exists(canonical_path): 
+	if not ResourceLoader.exists(canonical_path): 
 		var warning_text = "The file path to the scene %s does not exist. It was substituted with the default scene. This is usually an error with the theme itself." % canonical_path
 		send_warning.emit(warning_text, page_number)
 		push_warning(warning_text)
