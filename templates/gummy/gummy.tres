@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://cc2fow73g2e5i" path="res://templates/gummy/fonts/SpaceGrotesk-Bold.ttf" id="1_rh1c7"]
 [ext_resource type="FontFile" uid="uid://deyrsck2bl7lk" path="res://templates/gummy/fonts/JetBrainsMono-BoldItalic.ttf" id="2_7o7yt"]
 [ext_resource type="FontFile" uid="uid://bwj62mp2vbl0o" path="res://templates/gummy/fonts/JetBrainsMonoNL-ThinItalic.ttf" id="2_rh1c7"]
-[ext_resource type="FontFile" uid="uid://c074hrgx72xh1" path="res://templates/gummy/fonts/JetBrainsMono-Medium.ttf" id="4_04rko"]
+[ext_resource type="FontFile" uid="uid://cwjrbu6f6uu8a" path="res://templates/gummy/fonts/JetBrainsMonoNL-Regular.ttf" id="4_04rko"]
 
 [sub_resource type="Gradient" id="Gradient_60xmt"]
 colors = PackedColorArray(0.126, 0.1494, 0.36, 1, 0, 0, 0, 1)

@@ -72,7 +72,6 @@ train = NodePath("Train")
 [node name="Train" parent="MarginContainer/VBoxContainer/Top Rails/Yellow" instance=ExtResource("4_hkcuw")]
 material = SubResource("ShaderMaterial_vkja5")
 scale = Vector2(0.5, 0.5)
-number_of_shapes = 1
 scale_modifier = 0.5
 
 [node name="Header" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
@@ -125,7 +124,7 @@ train = NodePath("Train")
 [node name="Train" parent="MarginContainer/VBoxContainer/Bottom Rails/Pink" instance=ExtResource("4_hkcuw")]
 material = SubResource("ShaderMaterial_8eybx")
 scale = Vector2(0.5, 0.5)
-number_of_shapes = 1
+number_of_shapes = 4
 scale_modifier = 0.5
 
 [node name="Pink2" type="Line2D" parent="MarginContainer/VBoxContainer/Bottom Rails" node_paths=PackedStringArray("train")]
@@ -139,7 +138,7 @@ train = NodePath("Train")
 [node name="Train" parent="MarginContainer/VBoxContainer/Bottom Rails/Pink2" instance=ExtResource("4_hkcuw")]
 material = SubResource("ShaderMaterial_x5e7s")
 scale = Vector2(0.5, 0.5)
-number_of_shapes = 3
+number_of_shapes = 6
 scale_modifier = 0.5
 
 [node name="Middle" type="Line2D" parent="MarginContainer/VBoxContainer/Bottom Rails" node_paths=PackedStringArray("train")]
@@ -152,6 +151,7 @@ train = NodePath("Train")
 [node name="Train" parent="MarginContainer/VBoxContainer/Bottom Rails/Middle" instance=ExtResource("4_hkcuw")]
 material = SubResource("ShaderMaterial_hkcuw")
 scale = Vector2(0.5, 0.5)
+number_of_shapes = 6
 scale_modifier = 0.5
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Bottom Rails"]

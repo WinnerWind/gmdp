@@ -252,6 +252,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 theme_type_variation = &"RichTextLabelHeading"
 text = "NO THEME SELECTED"
+fit_content = true
 
 [node name="By" type="RichTextLabel" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2
@@ -259,6 +260,7 @@ size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 bbcode_enabled = true
 text = "You can add themes here. For more info about themes, visit [url=\"https://winnerwind.in\"]this link[/url]"
+fit_content = true
 
 [node name="Previews" type="GridContainer" parent="NavSorter/Themes/MarginContainer/Sorter/Info"]
 layout_mode = 2

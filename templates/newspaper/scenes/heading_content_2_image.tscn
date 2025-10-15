@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b6q5kcnr4wnqq"]
+[gd_scene load_steps=5 format=3 uid="uid://b6q5kcnr4wnqq"]
 
 [ext_resource type="Theme" uid="uid://bfjtic6q1v53j" path="res://templates/newspaper/newspaper.tres" id="1_uqitw"]
 [ext_resource type="Script" uid="uid://bbaynb86fl4m0" path="res://scripts/slides/slide.gd" id="2_wuais"]
 [ext_resource type="Script" uid="uid://cdr6fh8s5uf7g" path="res://scripts/slides/auto_label_resizer.gd" id="3_g2jxo"]
 [ext_resource type="Texture2D" uid="uid://x888e3gcqm2a" path="res://test/soham.png" id="4_njed6"]
-[ext_resource type="Texture2D" uid="uid://prra3bfgjtoo" path="res://test/milk_firefiles.png" id="5_wuais"]
 
 [node name="HeadingOnly" type="Panel" node_paths=PackedStringArray("heading_label", "contents_label", "image_nodes")]
 anchors_preset = 15
@@ -78,6 +77,5 @@ stretch_mode = 6
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-texture = ExtResource("5_wuais")
 expand_mode = 2
 stretch_mode = 6

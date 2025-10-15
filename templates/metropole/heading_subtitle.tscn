@@ -56,7 +56,7 @@ train = NodePath("Train")
 [node name="Train" parent="Sorter/Rails/Red" instance=ExtResource("3_1hnl0")]
 z_index = 1
 material = SubResource("ShaderMaterial_da1us")
-number_of_shapes = 6
+number_of_shapes = 2
 
 [node name="Green" type="Line2D" parent="Sorter/Rails" node_paths=PackedStringArray("train")]
 position = Vector2(32, 6)
@@ -74,6 +74,7 @@ speed = 150.0
 [node name="Train" parent="Sorter/Rails/Green" instance=ExtResource("3_1hnl0")]
 z_index = 1
 material = SubResource("ShaderMaterial_p7vrf")
+number_of_shapes = 3
 
 [node name="Station" type="TextureRect" parent="Sorter/Rails"]
 z_index = 2
