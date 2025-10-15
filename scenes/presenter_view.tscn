@@ -3,15 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://dt8k4dbtsyj0o" path="res://scenes/prefabs/page_subviewport.tscn" id="1_tw7g5"]
 [ext_resource type="Script" uid="uid://b1rwleetnslop" path="res://scripts/ui/views/presenter_view.gd" id="1_vh47l"]
 
-[node name="PresenterView" type="BoxContainer" node_paths=PackedStringArray("page_container")]
+[node name="PresenterView" type="ColorRect" node_paths=PackedStringArray("page_container")]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0, 0, 1)
 script = ExtResource("1_vh47l")
 page_container = NodePath("Page")
 main_scene = "uid://dxdx73k3pcw5t"
 
 [node name="Page" parent="." instance=ExtResource("1_tw7g5")]
-layout_mode = 2
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
