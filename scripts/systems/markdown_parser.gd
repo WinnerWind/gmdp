@@ -52,6 +52,9 @@ func parse_file_content(contents:String) -> void:
 			"content": ""
 		}
 		## markdown to bbcode
+		var footers:Array[RegExMatch] = regex_every_line(page, FOOTER_REGEX)
+		for footer:RegExMatch in footers: data[page_index]["footer"] = footer.get_string().trim_prefix("-# ")
+		
 		# Bullet points
 		var bullet_regex:RegEx = RegEx.new()
 		bullet_regex.compile(BULLET_REGEX)
@@ -69,11 +72,9 @@ func parse_file_content(contents:String) -> void:
 		# headings 
 		var headings:Array[RegExMatch] = regex_every_line(page, HEADING_1_REGEX)
 		var subheadings:Array[RegExMatch] = regex_every_line(page, HEADING_2_REGEX)
-		var footers:Array[RegExMatch] = regex_every_line(page, FOOTER_REGEX)
 		
 		for heading:RegExMatch in headings: data[page_index]["title"] = heading.get_string().trim_prefix("# ")
 		for subheading:RegExMatch in subheadings: data[page_index]["subheading"] = subheading.get_string().trim_prefix("## ")
-		for footer:RegExMatch in footers: data[page_index]["footer"] = footer.get_string().trim_prefix("-# ")
 		
 		# deal with images
 		var images:Array[RegExMatch] = regex_every_line(page, IMAGE_REGEX)
