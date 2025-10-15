@@ -77,8 +77,8 @@ func parse_file_content(contents:String) -> void:
 		var headings:Array[RegExMatch] = regex_every_line(page, HEADING_1_REGEX)
 		var subheadings:Array[RegExMatch] = regex_every_line(page, HEADING_2_REGEX)
 		
-		for heading:RegExMatch in headings: data[page_index]["title"] = heading.get_string().trim_prefix("# ")
 		for subheading:RegExMatch in subheadings: data[page_index]["subheading"] = subheading.get_string().trim_prefix("## ")
+		for heading:RegExMatch in headings: data[page_index]["title"] = heading.get_string().trim_prefix("# ")
 		
 		# deal with images
 		var images:Array[RegExMatch] = regex_every_line(page, IMAGE_REGEX)
@@ -122,9 +122,9 @@ func parse_file_content(contents:String) -> void:
 		
 		
 		# filter the content
-		for heading in headings: page = page.replace(heading.get_string(), "")
 		for subheading in subheadings: page = page.replace(subheading.get_string(), "")
 		for footer in footers: page = page.replace(footer.get_string(), "")
+		for heading in headings: page = page.replace(heading.get_string(), "")
 		for image:RegExMatch in images: page = page.replace(image.get_string(), "")
 		page = page.strip_edges()
 		
