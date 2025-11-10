@@ -39,7 +39,7 @@ func _ready() -> void:
 	get_window().size_changed.connect(iterate_pages)
 	PresentationParser.send_warning.connect(warning_panel.send_warning)
 	if OS.get_name() == "Web":
-		get_window().content_scale_factor = 1.25
+		get_window().content_scale_factor = 2
 
 func refresh() -> void:
 	iterate_pages()

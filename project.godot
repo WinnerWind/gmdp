@@ -27,8 +27,6 @@ PresentationParser="*res://scripts/systems/presentation_parser.gd"
 [display]
 
 window/energy_saving/keep_screen_on=false
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 
