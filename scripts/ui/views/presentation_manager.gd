@@ -207,9 +207,15 @@ func _on_main_scroll_changed(new_value: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Save"):
+		await get_tree().process_frame
+		text_editor.backspace() # Remove any excess character that may be inserted via keybind.
+		await get_tree().process_frame
 		if MarkdownParser.last_file_path or OS.get_name() == "Web":
 			save(MarkdownParser.last_file_path)
 		else:
 			save_file.show()
 	elif event.is_action_pressed("Open File"):
+		await get_tree().process_frame
+		text_editor.backspace() # Remove any excess character that may be inserted via keybind.
+		await get_tree().process_frame
 		open_file.show()
